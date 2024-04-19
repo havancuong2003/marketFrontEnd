@@ -1,11 +1,12 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
-import Test from "./components/Test"
-import { StartPage } from "./pages/Start-page"
+import Test from "./components/test"
+import { StartPage } from "./pages/start-page"
 import { WithAuth } from "./utils/with-auth"
-import { Start } from "./pages/Start"
-import { SignUpForm } from "./components/Sign-up-form"
+import { Start } from "./pages/start"
+import { SignUpForm } from "./components/sign-up-form"
 import { LoginForm } from "./components"
-import { Market } from "./pages/Market"
+import { Market } from "./pages/market/market"
+import { HeroDetail } from "./pages"
 
 const App = () => {
     return (
@@ -21,6 +22,8 @@ const App = () => {
                     }
                 />
                 <Route path="/auth" element={<Start />} />
+                <Route path="/hero/" element={<HeroDetail />} />
+                <Route path="/hero/:id" element={<HeroDetail />} />
                 <Route
                     path="/dashboard"
                     element={<WithAuth component={Test} />}

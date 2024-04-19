@@ -20,10 +20,13 @@ export const useLoginForm = () => {
     const handleSubmit = async (event) => {
         event.preventDefault()
         try {
-            const response = await axios.post("http://localhost:3000/login", {
-                email,
-                password,
-            })
+            const response = await axios.post(
+                "http://localhost:3000/auth/login",
+                {
+                    email,
+                    password,
+                }
+            )
             const token = response.data.access_token
             localStorage.setItem("token", token) // Lưu token vào Local Storage
             navigate("/")

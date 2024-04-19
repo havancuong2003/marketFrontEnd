@@ -1,3 +1,10 @@
+import { Header, InfoHero } from "../components"
+
 export const HeroDetail = () => {
-    return <div></div>
+    return (
+        <div>
+            <Header />
+            <InfoHero />
+        </div>
+    )
 }

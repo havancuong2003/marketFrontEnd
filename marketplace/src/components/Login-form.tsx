@@ -1,6 +1,6 @@
 // components/LoginForm.js
 import { useLoginForm } from "../hooks/use-login-form"
-import { Input } from "./common/Input"
+import { Input } from "./common/input"
 
 export const LoginForm = () => {
     const {

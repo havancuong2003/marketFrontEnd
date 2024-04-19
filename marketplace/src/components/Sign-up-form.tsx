@@ -1,5 +1,5 @@
 import { useRegister } from "../hooks/use-register"
-import { Input } from "./common/Input"
+import { Input } from "./common/input"
 
 export const SignUpForm = () => {
     const {

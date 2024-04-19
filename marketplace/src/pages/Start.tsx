@@ -1,4 +1,4 @@
-import { ButtonStart } from "../components/common/Button-start"
+import { ButtonStart } from "../components/common/button-start"
 import button from "../assets/img/button.png"
 export const Start = () => {
     return (
