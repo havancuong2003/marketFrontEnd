@@ -4,7 +4,7 @@ import { StartPage } from "./pages/start-page"
 import { WithAuth } from "./utils/with-auth"
 import { Start } from "./pages/start"
 import { SignUpForm } from "./components/sign-up-form"
-import { LoginForm } from "./components"
+import { LoginForm } from "./components/login-form"
 import { Market } from "./pages/market/market"
 import { HeroDetail } from "./pages"
 

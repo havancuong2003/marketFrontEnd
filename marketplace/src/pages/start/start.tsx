@@ -1,8 +1,18 @@
-import { ButtonStart } from "../components/common/button-start"
-import button from "../assets/img/button.png"
-export const Start = () => {
+import { ButtonStart } from "../../components/common/button-start"
+import button from "../../assets/img/button.png"
+type StartProps = {
+    classes?: {
+        [key: string]: string
+    }
+}
+export const Start: React.FC<StartProps> = ({ classes }) => {
     return (
-        <div className="flex justify-center items-center bg-bglogin h-screen relative">
+        <div
+            className={
+                (classes?.container,
+                "flex justify-center items-center bg-bglogin h-screen relative")
+            }
+        >
             <div className="text-white absolute top-32 left-28">
                 <img src={button} alt="button" className="relative" />
                 <span
@@ -12,7 +22,7 @@ export const Start = () => {
                     Market
                 </span>
             </div>
-            <div className="text-while flex justify-center items-center">
+            <div className="text-while lg:flex lg:justify-center lg:items-center">
                 <ButtonStart
                     data="Login"
                     to="/login"

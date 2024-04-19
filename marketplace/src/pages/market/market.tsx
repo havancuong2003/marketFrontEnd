@@ -4,8 +4,12 @@ import { useState } from "react"
 import { Header, MainMarkerr, SideBar } from "../../components"
 import { useHeroMarket, useSearchMarket } from "../../hooks"
 import clsx from "clsx"
-
-export const Market = ({ classes }) => {
+type MarketProps = {
+    classes?: {
+        [key: string]: string
+    }
+}
+export const Market: React.FC<MarketProps> = ({ classes }) => {
     const { heros, setHeros, dataSize, heroBackup } = useHeroMarket()
 
     const {

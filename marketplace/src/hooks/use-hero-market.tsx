@@ -9,7 +9,7 @@ export const useHeroMarket = () => {
 
     useEffect(() => {
         axios
-            .post("http://localhost:3000/hero/listmarket")
+            .get("http://localhost:3000/hero/show-market")
             .then((res) => {
                 setHeros(res.data)
                 setHeroBackup(res.data)

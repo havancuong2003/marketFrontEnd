@@ -33,9 +33,6 @@ export const MainMarkerr: React.FC<MainMarkerrProps> = ({
             onPageChange(currentPage + 1)
         }
     }
-    const clickMe = () => {
-        console.log("aaaaa")
-    }
 
     return (
         <div className="flex w-[410px] lg:w-full h-full">

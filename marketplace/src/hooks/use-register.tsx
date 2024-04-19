@@ -8,9 +8,14 @@ export const useRegister = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
+    const [emailError, setEmailError] = useState("")
+    const [passwordError, setPasswordError] = useState("")
+    const [usernameError, setUsernameError] = useState("")
+
     const handleEmailChange = (event) => {
         setEmail(event.target.value)
     }
+
     const handlePasswordChange = (event) => {
         setPassword(event.target.value)
     }
@@ -18,6 +23,7 @@ export const useRegister = () => {
     const handleUsernameChange = (event) => {
         setUsername(event.target.value)
     }
+
     const handleSubmit = async (event) => {
         event.preventDefault()
         try {
@@ -37,9 +43,21 @@ export const useRegister = () => {
             console.log(username)
         } catch (error) {
             console.error("Register failed: ", error)
-            setError(error.response.data.message)
+            if (error.response) {
+                const { message } = error.response.data
+                if (Array.isArray(message) && message.length === 3) {
+                    setEmailError(message[2])
+                    setPasswordError(message[1])
+                    setUsernameError(message[0])
+                } else {
+                    setError(message)
+                }
+            } else {
+                setError("Unexpected error occurred.")
+            }
         }
     }
+
     return {
         email,
         password,
@@ -49,5 +67,8 @@ export const useRegister = () => {
         error,
         handleUsernameChange,
         username,
+        emailError,
+        passwordError,
+        usernameError,
     }
 }
