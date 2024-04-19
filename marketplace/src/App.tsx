@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Test from "./components/Test";
-import { StartPage } from "./pages/start-page";
+import { StartPage } from "./pages/Start-page";
 import { WithAuth } from "./utils/with-auth";
 import { Start } from "./pages/Start";
 import { SignUpForm } from "./components/Sign-up-form";
 import { LoginForm } from "./components";
-import { Market } from "./pages/market";
+import { Market } from "./pages/Market";
 import { HeroDetail } from "./pages";
 
 const App = () => {

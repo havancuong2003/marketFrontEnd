@@ -1,4 +1,4 @@
-export * from "./market";
+export * from "./Market";
 export * from "./Start";
-export * from "./start-page";
+export * from "./Start-page";
 export * from "./hero-info";
