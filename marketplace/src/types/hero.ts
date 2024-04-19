@@ -1,15 +1,14 @@
-export interface Hero {
-  id: number;
+export interface DetailHeroProps {
   name: string;
   rank: string;
   race: string;
-  class: string;
-  power: number;
+  classes: string;
+  atk: number;
   hp: number;
   speed: number;
   dps: number;
   status: boolean;
   price: number;
   avatar: string;
-  account_id: string;
+  owner: string;
 }
