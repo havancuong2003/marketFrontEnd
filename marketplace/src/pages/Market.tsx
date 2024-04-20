@@ -2,10 +2,10 @@
 
 import { useState } from "react"
 import Header from "../components/common/Header"
-import MainMarkerr from "../components/market/Main-markerr"
-import SideBar from "../components/market/Side-bar-market"
+
 import useHeroMarket from "../hooks/use-hero-market"
 import useSearchMarket from "../hooks/use-search-market"
+import { MainMarkerr, SideBar } from "../components"
 
 const Market = () => {
     const { heros, setHeros, dataSize, heroBackup } = useHeroMarket()
@@ -36,7 +36,7 @@ const Market = () => {
         onToggleRace,
     } = useSearchMarket()
     console.log(selectedClass, selectedRank, selectedRace)
-    const ITEMS_PER_PAGE = 5 // Số lượng hero mỗi trang
+    const ITEMS_PER_PAGE = 2 // Số lượng hero mỗi trang
 
     const [currentPage, setCurrentPage] = useState(1)
 
@@ -51,7 +51,8 @@ const Market = () => {
     const handlePageChange = (page) => {
         setCurrentPage(page)
     }
-    const filterItems = (selectedFilter) => {
+    const 
+    filterItems = (selectedFilter) => {
         const { selectedRank, selectedClass, selectedRace } = selectedFilter
         const filteredHeros = heroBackup.filter((hero) => {
             return (

@@ -3,7 +3,7 @@
 import useSearchMarket from "../../hooks/use-search-market"
 import Filter from "./Filter"
 
-const SideBar = ({
+export const SideBar = ({
     filterItems,
     resetFilters,
     toggleRank,
@@ -106,4 +106,4 @@ const SideBar = ({
     )
 }
 
-export default SideBar
+

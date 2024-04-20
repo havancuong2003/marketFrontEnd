@@ -1,6 +1,5 @@
 // Filter.js
 
-import React from "react"
 
 const Filter = ({
     toggle,

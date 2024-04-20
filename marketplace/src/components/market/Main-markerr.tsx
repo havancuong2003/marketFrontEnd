@@ -1,7 +1,7 @@
 import DetailHero from "../common/Detail-hero"
 import button from "../../assets/img/button.png"
 
-const MainMarkerr = ({
+export const MainMarkerr = ({
     heros,
     dataSize,
     totalPages,
@@ -71,4 +71,4 @@ const MainMarkerr = ({
     )
 }
 
-export default MainMarkerr
+
