@@ -1,3 +1,5 @@
-export const HeroDetail = () => {
+const HeroDetail = () => {
     return <div></div>
 }
+
+export default HeroDetail

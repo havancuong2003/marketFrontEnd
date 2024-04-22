@@ -1,4 +1,4 @@
-export const Input = ({ ...inputProps }) => {
+const Input = ({ ...inputProps }) => {
     return (
         <div>
             <input
@@ -8,3 +8,5 @@ export const Input = ({ ...inputProps }) => {
         </div>
     )
 }
+
+export default Input

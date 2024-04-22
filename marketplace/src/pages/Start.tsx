@@ -35,7 +35,7 @@ import { ButtonStart } from "../components/common/button-start"
 import { ButtonStart } from "../components/common/Button-start"
 >>>>>>> parent of c09efe0 (add:add responsive)
 import button from "../assets/img/button.png"
-export const Start = () => {
+const Start = () => {
     return (
         <div className="flex justify-center items-center bg-bglogin h-screen relative">
             <div className="text-white absolute top-32 left-28">

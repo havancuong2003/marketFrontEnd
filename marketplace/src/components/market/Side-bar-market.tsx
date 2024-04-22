@@ -1,9 +1,9 @@
 // SideBarMarket.js
 
-import { useSearchMarket } from "../../hooks/use-search-market"
-import { Filter } from "./Filter"
+import useSearchMarket from "../../hooks/use-search-market"
+import Filter from "./Filter"
 
-export const SideBar = ({
+const SideBar = ({
     filterItems,
     resetFilters,
     toggleRank,
@@ -105,3 +105,5 @@ export const SideBar = ({
         </div>
     )
 }
+
+export default SideBar

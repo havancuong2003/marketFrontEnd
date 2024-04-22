@@ -51,7 +51,7 @@ export const Header = () => {
 import { useNavigate } from "react-router-dom"
 import logo from "../../assets/img/logo.png"
 import { isAuthenticated } from "../../utils/is-authenticated"
-export const Header = () => {
+const Header = () => {
     const handleLogout = () => {
         localStorage.removeItem("token") // Xóa token từ localStorage (điều này giả sử bạn lưu token trong localStorage)
 

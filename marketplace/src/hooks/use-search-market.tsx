@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export const useSearchMarket = () => {
+const useSearchMarket = () => {
     const [isRankOpen, setIsRankOpen] = useState(true)
     const [isClassOpen, setIsClassOpen] = useState(true)
     const [isRaceOpen, setIsRaceOpen] = useState(true)
@@ -88,3 +88,5 @@ export const useSearchMarket = () => {
         setIsRaceOpen,
     }
 }
+
+export default useSearchMarket

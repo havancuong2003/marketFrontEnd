@@ -17,30 +17,25 @@ export const useLoginForm = () => {
     setPassword(event.target.value);
   };
 
-<<<<<<< HEAD
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const response = await axios.post("http://localhost:3000/auth/login", {
-=======
-    const handleSubmit = async (event) => {
-        event.preventDefault()
-        try {
-            const response = await axios.post("http://localhost:3000/login", {
-                email,
-                password,
-            })
-            const token = response.data.access_token
-            localStorage.setItem("token", token) // Lưu token vào Local Storage
-            navigate("/")
-        } catch (error) {
-            console.error("Login failed: ", error)
-            setError("Email or password wrong!!!")
-        }
+        email,
+        password,
+      });
+      const token = response.data.tokens.accessToken;
+      console.log(response);
+      console.log(response.data.tokens.accessToken);
+      localStorage.setItem("token", token); // Lưu token vào Local Storage
+      navigate("/");
+    } catch (error) {
+      console.error("Login failed: ", error);
+      setError("Email or password wrong!!!");
     }
+  };
 
     return {
->>>>>>> parent of c09efe0 (add:add responsive)
         email,
         password,
       });

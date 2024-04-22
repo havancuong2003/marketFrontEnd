@@ -7,7 +7,7 @@ import { DetailHero } from "../common/Detail-hero"
 import button from "../../assets/img/button.png"
 >>>>>>> parent of c09efe0 (add:add responsive)
 
-export const MainMarkerr = ({
+const MainMarkerr = ({
     heros,
     dataSize,
     totalPages,
@@ -40,7 +40,6 @@ export const MainMarkerr = ({
             </div>
             <div className="grid grid-cols-3 gap-4 ml-32 mt-20 mb-14">
                 {heros.map((hero) => (
-<<<<<<< HEAD
                     <div
                         onClick={() => navigate("/hero/" + hero.id + "/detail")}
                     >
@@ -55,18 +54,6 @@ export const MainMarkerr = ({
                             classes={hero.class}
                         />
                     </div>
-=======
-                    <DetailHero
-                        key={hero.id}
-                        price={hero.price}
-                        hp={hero.hp}
-                        speed={hero.speed}
-                        dps={hero.dps}
-                        atk={hero.power}
-                        race={hero.race}
-                        classes={hero.class}
-                    />
->>>>>>> parent of c09efe0 (add:add responsive)
                 ))}
             </div>
 
@@ -97,3 +84,5 @@ export const MainMarkerr = ({
         </div>
     )
 }
+
+export default MainMarkerr

@@ -1,8 +1,8 @@
 // components/LoginForm.js
-import { useLoginForm } from "../hooks/use-login-form"
-import { Input } from "./common/Input"
+import useLoginForm from "../hooks/use-login-form"
+import Input from "./common/Input"
 
-export const LoginForm = () => {
+const LoginForm = () => {
     const {
         email,
         handleEmailChange,
@@ -51,3 +51,5 @@ export const LoginForm = () => {
         </div>
     )
 }
+
+export default LoginForm

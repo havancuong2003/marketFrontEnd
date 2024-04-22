@@ -1,3 +1,3 @@
 export * from "./Filter"
-export * from "./Side-bar-market"
-export * from "./Main-markerr"
+export * from "./SideBar-market"
+export * from "./Main-market"

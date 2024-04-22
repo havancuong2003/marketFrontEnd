@@ -1,12 +1,11 @@
 // Market.js
 
-<<<<<<< HEAD
-import { useState } from "react";
-import { Header } from "../components/common/header";
-import { MainMarkerr } from "../components/market/Main-markerr";
-import { SideBar } from "../components/market/side-bar-market";
-import { useHeroMarket } from "../hooks/use-hero-market";
-import { useSearchMarket } from "../hooks/use-search-market";
+import { useState } from "react"
+import { Header } from "../components/common/Header"
+import { MainMarkerr } from "../components/market/Main-markerr"
+import { SideBar } from "../components/market/Side-bar-market"
+import { useHeroMarket } from "../hooks/use-hero-market"
+import { useSearchMarket } from "../hooks/use-search-market"
 
 export const Market = () => {
   const { heros, setHeros, dataSize, heroBackup } = useHeroMarket();
@@ -111,13 +110,13 @@ export const Market = () => {
 };
 =======
 import { useState } from "react"
-import { Header } from "../components/common/Header"
-import { MainMarkerr } from "../components/market/Main-markerr"
-import { SideBar } from "../components/market/Side-bar-market"
-import { useHeroMarket } from "../hooks/use-hero-market"
-import { useSearchMarket } from "../hooks/use-search-market"
+import Header from "../components/common/Header"
+import MainMarkerr from "../components/market/Main-markerr"
+import SideBar from "../components/market/Side-bar-market"
+import useHeroMarket from "../hooks/use-hero-market"
+import useSearchMarket from "../hooks/use-search-market"
 
-export const Market = () => {
+const Market = () => {
     const { heros, setHeros, dataSize, heroBackup } = useHeroMarket()
 
     const {
