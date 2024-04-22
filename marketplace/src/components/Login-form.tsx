@@ -1,14 +1,8 @@
 // components/LoginForm.js
-import clsx from "clsx"
-import { useLoginForm } from "../../hooks/use-login-form"
-import { Input } from "../common/input"
+import { useLoginForm } from "../hooks/use-login-form"
+import { Input } from "./common/input"
 
-type LoginFormProps = {
-    classes?: {
-        [key: string]: string
-    }
-}
-export const LoginForm: React.FC<LoginFormProps> = ({ classes }) => {
+export const LoginForm = () => {
     const {
         email,
         handleEmailChange,
@@ -21,7 +15,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ classes }) => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <div className=" my-3 lg:my-12 ">
+                <div className="my-12">
                     <label htmlFor="email">
                         <span className="text-white">My Email:</span>
                         {error && <p className="text-red-500">{error}</p>}
@@ -32,10 +26,10 @@ export const LoginForm: React.FC<LoginFormProps> = ({ classes }) => {
                         value={email}
                         id="email"
                         onChange={handleEmailChange}
-                        placeholder="cuong123@example.com"
+                        placeholder="Enter your email"
                     />
                 </div>
-                <div className="my-6 lg:my-10 ">
+                <div className="my-10">
                     <label htmlFor="password">
                         <span className="text-white ">Pass word:</span>
                     </label>
@@ -49,11 +43,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ classes }) => {
                 </div>
                 <button
                     type="submit"
-                    className={clsx(
-                        classes?.posSubmit,
-                        classes?.bgloginform,
-                        " lg:text-2xl text-white  rounded-full cursor-pointer "
-                    )}
+                    className="absolute bottom-32 left-16 text-2xl text-white  px-5 py-3 rounded-full cursor-pointer w-[400px]"
                 >
                     Login
                 </button>

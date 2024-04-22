@@ -33,7 +33,13 @@ export const MainMarkerr: React.FC<MainMarkerrProps> = ({
     if (currentPage < totalPages) {
       onPageChange(currentPage + 1);
     }
+<<<<<<< HEAD
   };
+=======
+    const clickMe = () => {
+        console.log("aaaaa")
+    }
+>>>>>>> parent of 223ec22 (feat/cuong: update responsive login sign up)
 
   const navigate = useNavigate();
 
