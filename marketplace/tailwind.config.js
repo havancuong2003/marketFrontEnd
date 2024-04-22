@@ -22,6 +22,7 @@ export default {
                 '95%': '95%',
             },
             backgroundImage: {
+<<<<<<< HEAD
                 bglogin: "url('../src/assets/img/background.png')",
                 login: "url('../src/assets/img/bg-login.png')",
                 market: "url('../src/assets/img/bg-market.png')",
@@ -45,6 +46,15 @@ export default {
                 bginventory: "url('./assets/img/bginventory.png')",
                 bgprofile: "url('../src/assets/img/profile.png')"
                 
+=======
+                bglogin: "url('./src/assets/img/background.png')",
+                login: "url('./src/assets/img/bglogin.png')",
+                market: "url('./src/assets/img/bgmarket.png')",
+                herocard: "url('./src/assets/img/herocard.png')",
+                avarta: "url('./src/assets/img/avatar.png')",
+                pre: "url('./src/assets/img/pre.png')",
+                next: "url('./src/assets/img/next.png')",
+>>>>>>> parent of c09efe0 (add:add responsive)
             },
         },
     },

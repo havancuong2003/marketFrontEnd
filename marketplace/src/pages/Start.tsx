@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<< HEAD:marketplace/src/pages/start/start.tsx
 import { ButtonStart } from "../../components";
 import button from "../../assets/img/button.png";
@@ -30,6 +31,9 @@ export const Start = () => {
 };
 =======
 import { ButtonStart } from "../components/common/button-start"
+=======
+import { ButtonStart } from "../components/common/Button-start"
+>>>>>>> parent of c09efe0 (add:add responsive)
 import button from "../assets/img/button.png"
 export const Start = () => {
     return (

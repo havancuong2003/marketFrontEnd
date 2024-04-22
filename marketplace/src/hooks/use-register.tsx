@@ -48,7 +48,7 @@ export const useRegister = () => {
         event.preventDefault()
         try {
             const response = await axios.post(
-                "http://localhost:3000/auth/register",
+                "http://localhost:3000/register",
                 {
                     email,
                     password,

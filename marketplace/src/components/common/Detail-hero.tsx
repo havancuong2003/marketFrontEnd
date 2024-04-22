@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // interface DetailHeroProps {
 //   price: number;
 //   hp: number;
@@ -9,6 +10,17 @@
 // }
 
 import { DetailHeroProps } from "../../types"
+=======
+interface DetailHeroProps {
+    price: number
+    hp: number
+    speed: number
+    dps: number
+    atk: number
+    race: string
+    classes: string
+}
+>>>>>>> parent of c09efe0 (add:add responsive)
 export const DetailHero = ({
     price,
     hp,

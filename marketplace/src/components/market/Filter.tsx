@@ -1,23 +1,12 @@
 // Filter.js
-type FilterProps = {
-    toggle: () => void
-    component: string[]
-    isClick: boolean
-    headerFilter: string
-    onToggle: (item: string) => void
-    selectedItem: string
-    classes?: {
-        [key: string]: string
-    }
-}
-export const Filter: React.FC<FilterProps> = ({
+
+export const Filter = ({
     toggle,
     component,
     isClick,
     headerFilter,
     onToggle,
     selectedItem,
-    classes,
 }) => {
     return (
         <div className="border-t-4 border-white m-5">
