@@ -60,7 +60,7 @@ export const useSearchMarket = () => {
     return {
         genetic,
         rank,
-        classes,
+        classess: classes,
         race,
 
         isRankOpen,

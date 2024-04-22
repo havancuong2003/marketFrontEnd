@@ -38,6 +38,13 @@ export default {
                 framebuy: "url('../src/assets/img/frame_buy.png')",
                 rectangle2580:"url('../src/assets/img/Rectangle2580.png')",
                 yellow_m_button :"url('../src/assets/img/Yellow_M.png')",
+                carddetail: "url('./src/assets/img/carddetailhero.png')",
+                bgdetailhero: "url('./src/assets/img/detailhero.png')",
+                nav: "url('./src/assets/img/nav.png')",
+                bgconfirm: "url('../src/assets/img/confirm_listing.png)",
+                bginventory: "url('./assets/img/bginventory.png')",
+                bgprofile: "url('../src/assets/img/profile.png')"
+                
             },
         },
     },

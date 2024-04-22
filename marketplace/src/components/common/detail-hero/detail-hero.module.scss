@@ -1,0 +1,76 @@
+.size {
+    width: 240px;
+    height: 380px;
+}
+
+.sizeAvatar {
+    width: 223px;
+    height: 228px;
+}
+.posAva {
+    position: absolute;
+    top: 6px;
+    left: 9px;
+}
+.backgroundHeroCard {
+    background-image: url("../../../assets/img/hero-card.png");
+}
+.avat {
+    background-image: url("../../../assets/img/avatar.png");
+}
+.textsize {
+    font-size: 30px;
+}
+.info {
+    display: flex;
+}
+
+@media screen and (max-width: 768px) {
+    .sizeAvatar {
+        width: 100px;
+        height: 100px;
+    }
+    .size {
+        width: 120px;
+        height: 190px;
+    }
+    .info {
+        color: white;
+    }
+    .backgroundHeroCard {
+        background-size: 120px 190px;
+    }
+    .sizeInfo {
+        height: 15px;
+        width: 100px;
+    }
+    .textsize {
+        font-size: 8px;
+    }
+}
+.sizeInfo {
+    height: 50px;
+    width: 220px;
+}
+@media screen and (min-width: 1024px) {
+    .setPosSpd {
+        position: absolute;
+        bottom: 55px;
+        left: 22px;
+    }
+    .setPosDps {
+        position: absolute;
+        bottom: 54px;
+        left: 100px;
+    }
+    .setPosHp {
+        position: absolute;
+        bottom: 48px;
+        left: 27px;
+    }
+    .setPosAtk {
+        position: absolute;
+        bottom: 48px;
+        left: 100px;
+    }
+}

@@ -20,7 +20,7 @@ export const Header = () => {
         </div>
         <div
           className="cursor-pointer rounded-lg p-1 hover:bg-violet-600"
-          onClick={() => navigate("/inventory")}
+          onClick={() => navigate("/inventory/hero")}
         >
           Inventory
         </div>
