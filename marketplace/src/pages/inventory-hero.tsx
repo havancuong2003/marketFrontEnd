@@ -3,9 +3,15 @@ import herotext from "../assets/img/hero.png";
 import { ButtonInventory } from "../components";
 import Header from "../components/common/Header";
 import { FilterInventory } from "../components/inventory/Filter";
+import useInventory from "../hooks/use-inventory";
 import { Class, Race, Rank } from "../types";
 
+
+
 export const InventoryHero = () => {
+  const {heros,setHero} = useInventory();
+  console.log(heros)
+  
   return (
     <div>
       <div>

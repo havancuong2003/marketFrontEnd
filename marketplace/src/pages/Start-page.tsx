@@ -4,7 +4,7 @@ interface ButtonStartProps {
     component: React.ReactNode
     p: string
 }
-const StartPage = ({ component, p }: ButtonStartProps) => {
+export const StartPage = ({ component, p }: ButtonStartProps) => {
     const navigate = useNavigate()
     useEffect(() => {
         if (localStorage.getItem("token")) {
@@ -30,4 +30,3 @@ const StartPage = ({ component, p }: ButtonStartProps) => {
     )
 }
 
-export default StartPage

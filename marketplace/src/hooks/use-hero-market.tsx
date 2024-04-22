@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 
-const useHeroMarket = () => {
+export const useHeroMarket = () => {
     const [heros, setHeros] = useState([])
     const [heroBackup, setHeroBackup] = useState([])
     const [dataSize, setDataSize] = useState(0) // State để lưu kích thước của dữ liệu
@@ -30,4 +30,4 @@ const useHeroMarket = () => {
     }
 }
 
-export default useHeroMarket
+

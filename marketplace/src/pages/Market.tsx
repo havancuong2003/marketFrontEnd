@@ -3,9 +3,10 @@
 import { useState } from "react"
 import Header from "../components/common/Header"
 
-import useHeroMarket from "../hooks/use-hero-market"
+
 import useSearchMarket from "../hooks/use-search-market"
 import { MainMarkerr, SideBar } from "../components"
+import { useHeroMarket } from "../hooks"
 
 const Market = () => {
     const { heros, setHeros, dataSize, heroBackup } = useHeroMarket()
