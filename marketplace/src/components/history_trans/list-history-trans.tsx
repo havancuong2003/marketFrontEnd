@@ -14,10 +14,10 @@ export const HistoryTrans = () => {
 
   return (
     <div className="flex justify-center ">
-      <div className="w-7/12 h-[421px] bg-[#170A02] mt-2 overflow-y-scroll custom-scrollbar">
-        <table className="table">
+      <div className="w-7/12 h-[421px] bg-[#170A02] mt-2 overflow-y-scroll custom-scrollbar flex justify-center ">
+        <table className="text-white">
           <thead className="text-[#968469] ">
-            <tr>
+            <tr className="">
               <th className="px-6 py-4 ">
                 <span>Time</span>
               </th>
@@ -34,8 +34,8 @@ export const HistoryTrans = () => {
           </thead>
           <tbody className="text-white ">
             {historyTrans.map((item) => (
-              <tr key={item.id} className="px-6 py-4 flex justify-between ">
-                <td className="px-6 py-4">
+              <tr key={item.id} className="px-6 py-4 ">
+                <td className="px-6 py-4 ">
                   <span>{formatDate(item.time)}</span>
                 </td>
                 <td className="px-6 py-4">

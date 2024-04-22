@@ -6,123 +6,24 @@ import hp from "../../assets/img/HP.png";
 import dps from "../../assets/img/DPS.png";
 import { useNavigate } from "react-router-dom";
 import { ShortId } from "../../services";
+import { jwtDecode } from "jwt-decode";
+import { useDelistHero } from "../../hooks/use-delist-hero";
 
 export const DetailInfor = ({ hero }) => {
-  const token = localStorage.getItem("token") || false;
+  const { delist } = useDelistHero();
+  const token = localStorage.getItem("token");
+  console.log(token);
   const navigate = useNavigate();
+  const handeLeDelist = () => {
+    if (isAuthenticated()) {
+      delist();
+    } else {
+      navigate("/login");
+    }
+  };
+  const decode = token ? jwtDecode(token) : undefined;
 
   return (
-    // <div className="container">
-    //   <div className="text-white">
-    //     <div className="bg-group36885 bg-cover w-[830px] h-[56px] flex items-center">
-    //       <span className="ml-4 font-bold text-2xl"> {hero.name}</span>
-    //     </div>
-    //     <div className="flex w-[830px] h-[39px] justify-between mt-5 ">
-    //       <div className="bg-frame36889 bg-cover w-[408px] h-full flex items-center">
-    //         <div className="ml-4">
-    //           <span>ID:</span>
-    //           <span>{hero.id}</span>
-    //         </div>
-    //       </div>
-    //       <div className="bg-frame36889 bg-cover w-[408px] h-full flex items-center">
-    //         <div className="ml-4">
-    //           <span>Owner:</span>
-    //           <span> {hero.account_id}</span>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-
-    //   <div className="my-10">
-    //     {isAuthenticated() ? (
-    //       <div className="flex relative">
-    //         <div className="bg-framebuy bg-cover w-[615px] h-[60px] flex items-center">
-    //           <div className="ml-4 text-white flex items-center">
-    //             <img src={okg_token} alt=""></img>
-    //             <span className="ml-2 font-medium text-2xl"> {hero.price}</span>
-    //           </div>
-    //         </div>
-    //         <div className="absolute top-0 right-0">
-    //           <img src={button_buy} alt=""></img>
-    //         </div>
-    //       </div>
-    //     ) : (
-    //       <div></div>
-    //     )}
-    //   </div>
-
-    //   <div className="bg-rectangle2580 bg-cover w-[830px] h-[125px] my-10">
-    //     <div className="text-white p-3">
-    //       <div className="mb-3">
-    //         <span className="text-[20px] font-semibold">HERO STATS</span>
-    //       </div>
-    //       <div className="flex justify-between">
-    //         <div className="">
-    //           <span className="text-[15px]  text-[#B7A284]">
-    //             Combat power (CP)
-    //           </span>
-    //           <br />
-    //           <span className="text-xl font-bold">{hero.power}</span>
-    //         </div>
-    //         <div className="flex mx-10">
-    //           <div className="mx-5">
-    //             <div>
-    //               <span className="text-[15px]  text-[#B7A284]">
-    //                 Health (HP)
-    //               </span>
-    //             </div>
-    //             <div className="flex">
-    //               <div>
-    //                 <img src={hp} />
-    //               </div>
-    //               <span className="text-xl font-semibold"> {hero.hp}</span>
-    //             </div>
-    //           </div>
-
-    //           <div className="mx-5">
-    //             <div>
-    //               <span className="text-[15px]  text-[#B7A284]">
-    //                 Attack (ATK)
-    //               </span>
-    //             </div>
-    //             <div className="flex ">
-    //               <div>
-    //                 <img src={atk} />
-    //               </div>
-    //               <span className="text-xl font-semibold">{hero.power}</span>
-    //             </div>
-    //           </div>
-
-    //           <div className="mx-5">
-    //             <div>
-    //               <span className="text-[15px]  text-[#B7A284]">
-    //                 Speed (SPD)
-    //               </span>
-    //             </div>
-    //             <div className="flex ">
-    //               <div>
-    //                 <img src={atk_speed} />
-    //               </div>
-    //               <span className="text-xl font-semibold">{hero.speed}</span>
-    //             </div>
-    //           </div>
-
-    //           <div className="mx-5">
-    //             <div>
-    //               <span className="text-[15px]  text-[#B7A284]">DPS</span>
-    //             </div>
-    //             <div className="flex ">
-    //               <div>
-    //                 <img src={dps} />
-    //               </div>
-    //               <span className="text-xl font-semibold">{hero.dps}</span>
-    //             </div>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
     <div className="container ">
       <div className="text-white h-1/6">
         <div className="bg-[#423429] rounded-xl bg-cover h-43% flex items-center">
@@ -146,7 +47,7 @@ export const DetailInfor = ({ hero }) => {
 
       <div className="my-5 h-11%">
         <div className="flex relative h-full ">
-          <div className="bg-[#170A02] rounded-2xl opacity-80  bg-cover w-4/5 h-90%  flex items-center">
+          <div className="bg-[#170A02] rounded-2xl opacity-80  bg-cover w-full h-90%  flex items-center">
             <div className="ml-4 text-white flex items-center">
               <img src={okg_token} alt=""></img>
               <span className="ml-2 font-medium text-3xl"> {hero.price}</span>
@@ -154,12 +55,25 @@ export const DetailInfor = ({ hero }) => {
           </div>
           <div className="absolute right-0 w-1/3 h-90% ">
             {isAuthenticated() ? (
-              <div className="bg-yellow_m_button bg-cover h-full flex items-center justify-center">
-                <span className="text-white text-3xl font-medium ">Buy</span>
-              </div>
+              decode.id === hero.account_id ? (
+                <div className=" w-2/3 h-2/3 pt-4 ">
+                  <div
+                    className="bg-[#170A02] bg-cover flex items-center justify-center cursor-pointer border-solid border-2 border-lime-50 rounded-xl "
+                    onClick={handeLeDelist}
+                  >
+                    <span className="text-white text-2xl font-medium ">
+                      Delist
+                    </span>
+                  </div>
+                </div>
+              ) : (
+                <div className="bg-yellow_m_button bg-cover h-full flex items-center justify-center cursor-pointer ">
+                  <span className="text-white text-3xl font-medium ">Buy</span>
+                </div>
+              )
             ) : (
               <div
-                className="bg-yellow_m_button bg-cover h-full flex items-center justify-center  "
+                className="bg-yellow_m_button bg-cover h-full flex items-center justify-center cursor-pointer "
                 onClick={() =>
                   navigate(isAuthenticated() ? "/profile" : "/login")
                 }

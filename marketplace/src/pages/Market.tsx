@@ -1,9 +1,9 @@
 // Market.js
 
 import { useState } from "react";
-import { Header } from "../components/common/Header";
+import { Header } from "../components/common/header";
 import { MainMarkerr } from "../components/market/Main-markerr";
-import { SideBar } from "../components/market/Side-bar-market";
+import { SideBar } from "../components/market/side-bar-market";
 import { useHeroMarket } from "../hooks/use-hero-market";
 import { useSearchMarket } from "../hooks/use-search-market";
 

@@ -24,7 +24,9 @@ export const useLoginForm = () => {
         email,
         password,
       });
-      const token = response.data.access_token;
+      const token = response.data.tokens.accessToken;
+      console.log(response);
+      console.log(response.data.tokens.accessToken);
       localStorage.setItem("token", token); // Lưu token vào Local Storage
       navigate("/");
     } catch (error) {
