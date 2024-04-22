@@ -5,7 +5,7 @@ interface ButtonStartProps {
     className?: string
 }
 import input from "../../assets/img/input.png"
-const ButtonStart = ({ data, to, className }: ButtonStartProps) => {
+export const ButtonStart = ({ data, to, className }: ButtonStartProps) => {
     return (
         <div className="text-white flex relative">
             <Link to={to}>
@@ -15,5 +15,3 @@ const ButtonStart = ({ data, to, className }: ButtonStartProps) => {
         </div>
     )
 }
-
-export default ButtonStart

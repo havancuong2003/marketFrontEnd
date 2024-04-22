@@ -1,13 +1,29 @@
 // Filter.js
+<<<<<<< HEAD:marketplace/src/components/market/Filter.tsx
 
 
 const Filter = ({
+=======
+type FilterProps = {
+    toggle: () => void
+    component: string[]
+    isClick: boolean
+    headerFilter: string
+    onToggle: (item: string) => void
+    selectedItem: string
+    classes?: {
+        [key: string]: string
+    }
+}
+export const Filter: React.FC<FilterProps> = ({
+>>>>>>> cuonghv:marketplace/src/components/market/filter/filter.tsx
     toggle,
     component,
     isClick,
     headerFilter,
     onToggle,
     selectedItem,
+    classes,
 }) => {
     return (
         <div className="border-t-4 border-white m-5">
@@ -39,5 +55,3 @@ const Filter = ({
         </div>
     )
 }
-
-export default Filter

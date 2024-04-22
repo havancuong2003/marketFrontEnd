@@ -30,4 +30,4 @@ export const useHeroMarket = () => {
     }
 }
 
-
+export default useHeroMarket

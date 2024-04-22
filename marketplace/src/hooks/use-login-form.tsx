@@ -2,7 +2,7 @@ import { useState } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 
-const useLoginForm = () => {
+export const useLoginForm = () => {
     const navigate = useNavigate()
     const [error, setError] = useState("")
 
@@ -20,10 +20,20 @@ const useLoginForm = () => {
     const handleSubmit = async (event) => {
         event.preventDefault()
         try {
+<<<<<<< HEAD
             const response = await axios.post("http://localhost:3000/auth/login", {
                 email,
                 password,
             })
+=======
+            const response = await axios.post(
+                "http://localhost:3000/auth/login",
+                {
+                    email,
+                    password,
+                }
+            )
+>>>>>>> cuonghv
             const token = response.data.access_token
             localStorage.setItem("token", token) // Lưu token vào Local Storage
             navigate("/")
@@ -42,5 +52,3 @@ const useLoginForm = () => {
         error,
     }
 }
-
-export default useLoginForm
