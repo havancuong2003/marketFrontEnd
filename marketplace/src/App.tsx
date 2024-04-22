@@ -6,7 +6,7 @@ import Start from "./pages/Start";
 import SignUpForm from "./components/Sign-up-form";
 import LoginForm from "./components/Login-form";
 import Market from "./pages/Market";
-import { Activity } from "./pages";
+import { InventoryHero } from "./pages";
 
 
 
@@ -34,11 +34,11 @@ const App = () => {
             />
           }
         />
-        <Route element={<Priv}>
-        </Route>
+        
+        
         <Route
-          path="/inventory/activity"
-          element={<Activity/>}
+          path="/inventory/hero"
+          element={<InventoryHero/>}
         />
         <Route path="/" element={<Market />} />
       </Routes>

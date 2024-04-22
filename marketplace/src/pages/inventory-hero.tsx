@@ -5,7 +5,7 @@ import Header from "../components/common/Header";
 import { FilterInventory } from "../components/inventory/Filter";
 import { Class, Race, Rank } from "../types";
 
-export const Activity = () => {
+export const InventoryHero = () => {
   return (
     <div>
       <div>
@@ -33,7 +33,7 @@ export const Activity = () => {
             <div className="w-full ml-24 mr-24 mt-12">
               <div className="flex">
                 <img src={herotext} alt="" />
-                <div className="flex">
+                <div className="flex text-end">
                   <div>
                     <FilterInventory
                       component={[
@@ -63,6 +63,7 @@ export const Activity = () => {
                         Class.MELEE,
                         Class.RANGE,
                         Class.TANKER,
+                        
                       ]}
                     />
                   </div>
