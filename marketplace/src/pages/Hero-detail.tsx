@@ -1,5 +1,10 @@
-const HeroDetail = () => {
-    return <div></div>
-}
+import { Header, InfoHero } from "../components"
 
-export default HeroDetail
+export const HeroDetail = () => {
+    return (
+        <div>
+            <Header />
+            <InfoHero />
+        </div>
+    )
+}
