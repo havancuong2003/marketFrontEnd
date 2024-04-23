@@ -1,4 +1,3 @@
-import { isAuthenticated } from "../../utils";
 import okg_token from "../../assets/img/OKGToken.png";
 import atk from "../../assets/img/ATK.png";
 import atk_speed from "../../assets/img/ATK Speed.png";
@@ -9,6 +8,7 @@ import { ShortId } from "../../services";
 import { jwtDecode } from "jwt-decode";
 import { useDelistHero } from "../../hooks/use-delist-hero";
 import { BuyHero } from "../trasnaction";
+import { isAuthenticated } from "../../utils";
 
 export const DetailInfor = ({ hero }) => {
   const { delist } = useDelistHero();
