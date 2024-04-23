@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 // Tạo custom hook dùng để delist hero

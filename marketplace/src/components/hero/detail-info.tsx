@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { ShortId } from "../../services";
 import { jwtDecode } from "jwt-decode";
 import { useDelistHero } from "../../hooks/use-delist-hero";
+import { Status } from "../../types";
 
 export const DetailInfor = ({ hero }) => {
   const { delist } = useDelistHero();
@@ -55,7 +56,7 @@ export const DetailInfor = ({ hero }) => {
           </div>
           <div className="absolute right-0 w-1/3 h-90% ">
             {isAuthenticated() ? (
-              decode.id === hero.account_id ? (
+              decode.id === hero.account_id && hero.status === Status.MARKET ? (
                 <div className=" w-2/3 h-2/3 pt-4 ">
                   <div
                     className="bg-[#170A02] bg-cover flex items-center justify-center cursor-pointer border-solid border-2 border-lime-50 rounded-xl "

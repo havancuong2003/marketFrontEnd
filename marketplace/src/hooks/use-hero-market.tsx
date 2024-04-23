@@ -11,8 +11,9 @@ export const useHeroMarket = () => {
     axios
       .get("http://localhost:3000/hero/show-market")
       .then((res) => {
-        setHeros(res.data);
-        setHeroBackup(res.data);
+        setHeros(res.data.data);
+        console.log(res.data);
+        setHeroBackup(res.data.data);
       })
       .catch((err) => {
         console.log(err);

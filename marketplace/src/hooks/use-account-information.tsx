@@ -1,29 +1,25 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export const useInventory = () => {
-  const [inventory, setInventory] = useState([]);
-  const [heros,setHeros] = useState([])
+export const useAccountInformation = () => {
+  const [account, setAccount] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:3000/hero/show-inventory", {
+      .get("http://localhost:3000/account/show-information", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((res) => {
-        setInventory(res.data);
-        setHeros(res.data.data)
+        setAccount(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-  
+  console.log(account)
   return {
-    heros,
-    setHeros,
-    inventory,
-    setInventory,
+    account,
+    setAccount,
   };
 };

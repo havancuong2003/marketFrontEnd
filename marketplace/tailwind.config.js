@@ -3,6 +3,9 @@ export default {
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
         extend: {
+            fontFamily:{
+                'home':["Montserrat", "sans-serif"]
+            },
             height:{
                 '17%':'17%',
                 '18':'18%',
@@ -43,7 +46,8 @@ export default {
                 nav: "url('./src/assets/img/nav.png')",
                 bgconfirm: "url('../src/assets/img/confirm_listing.png)",
                 bginventory: "url('./assets/img/bginventory.png')",
-                bgprofile: "url('../src/assets/img/profile.png')"
+                bgprofile: "url('../src/assets/img/profile.png')",
+                bgactivities: "url('../src/assets/img/bgactivities.png')"
                 
             },
         },

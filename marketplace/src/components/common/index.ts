@@ -1,4 +1,4 @@
-export * from "./header";
+export * from "./Button-start";
 export * from "./input/input";
-export * from "./button-start";
+export * from "./Header";
 export * from "./detail-hero/detail-hero";

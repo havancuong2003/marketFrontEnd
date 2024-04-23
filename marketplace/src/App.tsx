@@ -9,6 +9,7 @@ import { Market } from "./pages/market/market";
 import { HeroDetail } from "./pages/hero-infomation/hero-info";
 import { BuyHero } from "./components/trasnaction";
 import { InventoryHero } from "./pages/inventory/hero-inventory";
+import { Activities } from "./pages/activity/activity";
 
 const App = () => {
   return (
@@ -35,7 +36,8 @@ const App = () => {
             />
           }
         />
-        <Route path="/inventory/hero" element={<InventoryHero />} />
+        <Route path="/inventory" element={<InventoryHero />} />
+        <Route path="/activities" element={<Activities />} />
         <Route path="/dashboard" element={<WithAuth component={Test} />} />
         <Route path="hero/:id/detail" element={<HeroDetail />} />
         <Route path="/confirm" element={<BuyHero />} />

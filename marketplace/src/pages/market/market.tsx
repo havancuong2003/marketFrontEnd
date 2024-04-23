@@ -11,7 +11,7 @@ type MarketProps = {
 }
 export const Market: React.FC<MarketProps> = ({ classes }) => {
     const { heros, setHeros, dataSize, heroBackup } = useHeroMarket()
-
+    console.log("market", heros)
     const {
         isRankOpen,
         isClassOpen,
