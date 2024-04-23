@@ -43,7 +43,8 @@ export default {
                 nav: "url('./src/assets/img/nav.png')",
                 bgconfirm: "url('../src/assets/img/confirm_listing.png)",
                 bginventory: "url('./assets/img/bginventory.png')",
-                bgprofile: "url('../src/assets/img/profile.png')"
+                bgprofile: "url('../src/assets/img/profile.png')",
+                yellow_l: "url('../src/assets/img/Yellow_L.png')",
                 
             },
         },

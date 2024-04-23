@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { ShortId } from "../../services";
 import { jwtDecode } from "jwt-decode";
 import { useDelistHero } from "../../hooks/use-delist-hero";
+import { BuyHero } from "../trasnaction";
 
 export const DetailInfor = ({ hero }) => {
   const { delist } = useDelistHero();
@@ -102,7 +103,7 @@ export const DetailInfor = ({ hero }) => {
               <div className="flex ">
                 <div className="mx-10">
                   <div>
-                    <span className="text-[16px]  text-[#B7A284]">
+                    <span className="text-[14px]  text-[#B7A284]">
                       Health (HP)
                     </span>
                   </div>
@@ -116,7 +117,7 @@ export const DetailInfor = ({ hero }) => {
 
                 <div className="mx-10">
                   <div>
-                    <span className="text-[16px] text-[#B7A284]">
+                    <span className="text-[14px] text-[#B7A284]">
                       Attack (ATK)
                     </span>
                   </div>
@@ -130,7 +131,7 @@ export const DetailInfor = ({ hero }) => {
 
                 <div className="mx-10">
                   <div>
-                    <span className="text-[16px]  text-[#B7A284]">
+                    <span className="text-[14px]  text-[#B7A284]">
                       Speed (SPD)
                     </span>
                   </div>
@@ -144,7 +145,7 @@ export const DetailInfor = ({ hero }) => {
 
                 <div className="mx-10">
                   <div>
-                    <span className="text-[16px]  text-[#B7A284]">DPS</span>
+                    <span className="text-[14px]  text-[#B7A284]">DPS</span>
                   </div>
                   <div className="flex items-center">
                     <div>

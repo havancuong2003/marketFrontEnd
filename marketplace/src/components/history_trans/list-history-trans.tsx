@@ -15,10 +15,10 @@ export const HistoryTrans = () => {
   return (
     <div className="flex justify-center ">
       <div className="w-7/12 h-[421px] bg-[#170A02] mt-2 overflow-y-scroll custom-scrollbar flex justify-center ">
-        <table className="text-white">
+        <table className="text-white table-fixed">
           <thead className="text-[#968469] ">
             <tr className="">
-              <th className="px-6 py-4 ">
+              <th className=" px-6 py-4 ">
                 <span>Time</span>
               </th>
               <th className="px-6 py-4 ">
