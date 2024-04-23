@@ -16,12 +16,12 @@ export const useActivities = () => {
 
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err); 
       });
   }, []);
   console.log(activities)
   return {
     activities,
     setActivities,
-  };
+  }; 
 };

@@ -47,11 +47,7 @@ export default {
                 bgconfirm: "url('../src/assets/img/confirm_listing.png)",
                 bginventory: "url('./assets/img/bginventory.png')",
                 bgprofile: "url('../src/assets/img/profile.png')",
-<<<<<<< HEAD
                 bgactivities: "url('../src/assets/img/bgactivities.png')"
-=======
-                yellow_l: "url('../src/assets/img/Yellow_L.png')",
->>>>>>> 4b532e8b4be9c5e6c9984a94b003f2afb8724595
                 
             },
         },
