@@ -6,22 +6,15 @@ import dps from "../../assets/img/DPS.png";
 import { useNavigate } from "react-router-dom";
 import { ShortId } from "../../services";
 import { jwtDecode } from "jwt-decode";
-import { useDelistHero } from "../../hooks/use-delist-hero";
-import { BuyHero } from "../trasnaction";
+import { DelistHero } from "../common/activity-hero";
 import { isAuthenticated } from "../../utils";
 
-export const DetailInfor = ({ hero }) => {
-  const { delist } = useDelistHero();
+export const DetailInfor = ({ hero, onClickBuy }) => {
+  const { delist } = DelistHero();
   const token = localStorage.getItem("token");
   console.log(token);
   const navigate = useNavigate();
-  const handeLeDelist = () => {
-    if (isAuthenticated()) {
-      delist();
-    } else {
-      navigate("/login");
-    }
-  };
+
   const decode = token ? jwtDecode(token) : undefined;
 
   return (
@@ -60,7 +53,7 @@ export const DetailInfor = ({ hero }) => {
                 <div className=" w-2/3 h-2/3 pt-4 ">
                   <div
                     className="bg-[#170A02] bg-cover flex items-center justify-center cursor-pointer border-solid border-2 border-lime-50 rounded-xl "
-                    onClick={handeLeDelist}
+                    onClick={() => delist()}
                   >
                     <span className="text-white text-2xl font-medium ">
                       Delist
@@ -68,7 +61,10 @@ export const DetailInfor = ({ hero }) => {
                   </div>
                 </div>
               ) : (
-                <div className="bg-yellow_m_button bg-cover h-full flex items-center justify-center cursor-pointer ">
+                <div
+                  className="bg-yellow_m_button bg-cover h-full flex items-center justify-center cursor-pointer "
+                  onClick={onClickBuy}
+                >
                   <span className="text-white text-3xl font-medium ">Buy</span>
                 </div>
               )

@@ -12,21 +12,27 @@ export const HeroDetail = () => {
   const navigate = useNavigate();
 
   const [showHistory, setShowHistory] = useState(false);
+  const [showBuy, setShowBuy] = useState(false);
 
   const toggleHistory = () => {
     setShowHistory(!showHistory);
   };
 
-  const handleBuyHero = () => {};
+  const handleBuyHero = () => {
+    setShowBuy(!showBuy);
+  };
 
   return (
     <>
       <Header />
       <div className="bg-[#151515] bg-cover">
         <div className=" h-screen bg-bgdetail bg-cover">
-          <div className="border flex justify-center relative ">
-            <BuyHero hero={hero} />
-          </div>
+          {showBuy && (
+            <div className=" flex justify-center relative ">
+              <BuyHero hero={hero} onClickX={handleBuyHero} />
+            </div>
+          )}
+
           <div className="container w-screen">
             <div className="flex pt-28  w-screen h-5/6 relative">
               <div
@@ -42,7 +48,7 @@ export const HeroDetail = () => {
                 <InfoHero hero={hero} />
               </div>
               <div className="flex justify-center pr-28 w-1/2 pt-12">
-                <DetailInfor hero={hero} />
+                <DetailInfor hero={hero} onClickBuy={handleBuyHero} />
               </div>
             </div>
 

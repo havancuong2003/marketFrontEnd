@@ -9,7 +9,11 @@ type BuyHeroProps = {
     [key: string]: string;
   };
 };
-export const BuyHero: React.FC<BuyHeroProps> = ({ classes, hero }) => {
+export const BuyHero: React.FC<BuyHeroProps> = ({
+  classes,
+  hero,
+  onClickX,
+}) => {
   return (
     <div
       className={clsx(
@@ -18,7 +22,7 @@ export const BuyHero: React.FC<BuyHeroProps> = ({ classes, hero }) => {
       )}
     >
       <div className="absolute top-0 right-0">
-        <img src={x_button} alt="" onClick={() => window.close()}></img>
+        <img src={x_button} alt="" onClick={onClickX}></img>
       </div>
       <div className="flex justify-center text-3xl font-bold mb-8">
         <span>PURCHASING ITEM</span>
