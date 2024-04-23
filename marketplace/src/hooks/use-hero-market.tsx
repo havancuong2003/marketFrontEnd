@@ -1,11 +1,11 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
+import axios from "axios"
+import { useState, useEffect } from "react"
 
 export const useHeroMarket = () => {
-  const [heros, setHeros] = useState([]);
-  const [heroBackup, setHeroBackup] = useState([]);
-  const [dataSize, setDataSize] = useState(0); // State để lưu kích thước của dữ liệu
-  // const { selectedRank, selectedRace, selectedClass } = useSearchMarket()
+    const [heros, setHeros] = useState([])
+    const [heroBackup, setHeroBackup] = useState([])
+    const [dataSize, setDataSize] = useState(0) // State để lưu kích thước của dữ liệu
+    // const { selectedRank, selectedRace, selectedClass } = useSearchMarket()
 
   useEffect(() => {
     axios

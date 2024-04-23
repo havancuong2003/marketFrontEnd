@@ -1,0 +1,102 @@
+.container {
+    width: 395px;
+    height: 820px;
+
+    margin: 121px 20px 0 140px;
+}
+
+.profileSize {
+    width: 1225px;
+    height: 520px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    margin-top: 121px;
+}
+
+.profileInfo {
+    width: 886px;
+    height: 244px;
+    margin: 14px 277px 42px 62px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 37px;
+}
+.profileHeader {
+    width: 317px;
+    height: 47px;
+    margin-top: 29px;
+    margin-left: 62px;
+}
+@font-face {
+    font-family: Avenir;
+    src: url("../../font/avenir_ff/AvenirLTStd-Roman.otf");
+}
+.profilebg {
+    background-color: rgba(23, 10, 2, 0.8);
+}
+.profileFont {
+    font-family: Avenir;
+    color: #f1e9dc;
+
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+}
+
+.userName,
+.password,
+.email {
+    display: flex;
+    justify-content: space-between;
+    color: #f1e9dc;
+    font-variant-numeric: lining-nums tabular-nums;
+    font-feature-settings: "clig" off, "liga" off;
+
+    font-family: Avenir;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 25px;
+    width: 100%;
+}
+
+.edit {
+    display: flex;
+    width: 256px;
+    height: 36px;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+.editBtn {
+    border-radius: 10px;
+
+    background: var(--black-80, rgba(23, 10, 2, 0.8));
+    width: 238px;
+
+    padding: 7px 9px;
+    color: var(--Text_Beige_Default, #f1e9dc);
+    font-variant-numeric: lining-nums tabular-nums;
+    font-feature-settings: "clig" off, "liga" off;
+
+    /* Bodycopy */
+    font-family: Avenir;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 25px; /* 125% */
+}
+
+.sizeOfAtb {
+    width: 91px;
+    height: 25px;
+    margin-right: 121px;
+}
+.testbg {
+    background-image: url("https://png.pngtree.com/thumb_back/fw800/background/20201009/pngtree-soft-pastel-yellow-with-white-glitters-design-image_403267.jpg");
+}
