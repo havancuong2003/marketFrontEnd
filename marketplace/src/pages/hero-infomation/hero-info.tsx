@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useHistoryTrans } from "../../hooks/use-history-trans";
 import { useState } from "react";
 import footer from "../../assets/img/Footer.png";
+import { BuyHero } from "../../components/trasnaction";
 
 export const HeroDetail = () => {
   const hero = useHeroDetail();
@@ -16,11 +17,16 @@ export const HeroDetail = () => {
     setShowHistory(!showHistory);
   };
 
+  const handleBuyHero = () => {};
+
   return (
     <>
       <Header />
       <div className="bg-[#151515] bg-cover">
         <div className=" h-screen bg-bgdetail bg-cover">
+          <div className="border flex justify-center relative ">
+            <BuyHero hero={hero} />
+          </div>
           <div className="container w-screen">
             <div className="flex pt-28  w-screen h-5/6 relative">
               <div
