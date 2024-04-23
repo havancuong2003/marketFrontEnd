@@ -1,1 +1,1 @@
-export * from "./delist-hero";
+export * from "./unlist-hero";

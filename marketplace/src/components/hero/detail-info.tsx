@@ -6,14 +6,18 @@ import dps from "../../assets/img/DPS.png";
 import { useNavigate } from "react-router-dom";
 import { ShortId } from "../../services";
 import { jwtDecode } from "jwt-decode";
-import { DelistHero } from "../common/activity-hero";
+import { unListHero } from "../common/activity-hero";
 import { isAuthenticated } from "../../utils";
 
 export const DetailInfor = ({ hero, onClickBuy }) => {
-  const { delist } = DelistHero();
   const token = localStorage.getItem("token");
   console.log(token);
   const navigate = useNavigate();
+
+  const handelUnList = (id: number) => {
+    unListHero(id);
+    navigate("/");
+  };
 
   const decode = token ? jwtDecode(token) : undefined;
 
@@ -53,7 +57,7 @@ export const DetailInfor = ({ hero, onClickBuy }) => {
                 <div className=" w-2/3 h-2/3 pt-4 ">
                   <div
                     className="bg-[#170A02] bg-cover flex items-center justify-center cursor-pointer border-solid border-2 border-lime-50 rounded-xl "
-                    onClick={() => delist()}
+                    onClick={() => handelUnList(hero.id)}
                   >
                     <span className="text-white text-2xl font-medium ">
                       Delist

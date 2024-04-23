@@ -1,2 +1,2 @@
+export * from "./config-axios";
 export * from "./shortened-id";
-export * from "./axios-instrance";
