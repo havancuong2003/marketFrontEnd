@@ -44,7 +44,7 @@ export const Header = (props) => {
                     <div className={clsx(classes.navheader, "")}>
                         <button
                             className={clsx(classes.clickbutton, "")}
-                            onClick={() => navigate("/inventory/hero")}
+                            onClick={() => navigate("/inventory")}
                         >
                             Inventory
                         </button>

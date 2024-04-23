@@ -37,7 +37,8 @@ const App = () => {
                         />
                     }
                 />
-                <Route path="/inventory/hero" element={<InventoryHero />} />
+                <Route path="/inventory" element={<InventoryHero />} />
+                <Route path="/activities" element={<Activities />} />
                 <Route
                     path="/dashboard"
                     element={<WithAuth component={Test} />}
