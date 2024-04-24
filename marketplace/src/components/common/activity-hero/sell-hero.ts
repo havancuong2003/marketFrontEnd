@@ -1,9 +1,10 @@
 import axios from "axios";
+import { VITE_API_URL } from "../../../env";
 
 export const handleSelling = async (price, id) => {
   try {
     const response = await axios.patch(
-      `http://localhost:3000/hero/${id}/selling`,
+      VITE_API_URL + `/api/v1/hero/${id}/selling`,
       { price: price }
     );
     console.log(response);
