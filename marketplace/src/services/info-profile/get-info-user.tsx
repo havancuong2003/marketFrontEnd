@@ -1,8 +1,9 @@
 import axios from "axios"
+import { VITE_API_URL } from "../../env"
 export const getInfoUser = async () => {
     try {
         const response = await axios.get(
-            "http://localhost:3000/account/show-information"
+            VITE_API_URL+"/api/v1/account/show-information"
         )
 
         return response.data // Return data for further processing if needed
