@@ -100,3 +100,119 @@
 .testbg {
     background-image: url("https://png.pngtree.com/thumb_back/fw800/background/20201009/pngtree-soft-pastel-yellow-with-white-glitters-design-image_403267.jpg");
 }
+
+.balance {
+    width: 1225px;
+    height: 188px;
+
+    border-radius: 10px;
+    background: var(--black-80, rgba(23, 10, 2, 0.8));
+    margin-top: 24px;
+}
+
+.headerwallet {
+    width: 317px;
+    height: 47px;
+
+    color: var(--Text_Beige_Default, #f1e9dc);
+    font-family: Avenir;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    margin-left: 62px;
+    padding-top: 29px;
+    margin-bottom: 50px;
+}
+
+.walletLogo {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    background: url("../../assets/img/logomoney.png");
+    margin-right: 30px;
+}
+
+.containWallet {
+    width: 480px;
+    height: 48px;
+    margin-left: 62px;
+    margin-top: 20px;
+}
+
+.myHeros {
+    width: 1225px;
+    height: 368px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: var(--black-80, rgba(23, 10, 2, 0.8));
+    margin-top: 24px;
+}
+
+.headerHeros {
+    padding-top: 29px;
+    margin-left: 62px;
+    color: var(--Text_Beige_Default, #f1e9dc);
+    font-family: Avenir;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+}
+
+.heroLogo {
+    margin-left: 62px;
+    width: 48px;
+    height: 68px;
+    flex-shrink: 0;
+    background-image: url("../../assets/img/heroProfile.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: 30px;
+    box-shadow: 0px 0px 31px 0px rgba(255, 162, 95, 0.7);
+}
+
+.herosCount {
+    color: var(--Text_Beige_Default, #f1e9dc);
+    font-variant-numeric: lining-nums tabular-nums;
+    font-feature-settings: "clig" off, "liga" off;
+
+    /* Bodycopy */
+    font-family: Avenir;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 25px; /* 125% */
+    margin-bottom: 30px;
+    margin-left: 28px;
+    margin-top: 28px;
+}
+
+.headerAtb {
+    display: inline-block;
+    margin-right: 54px;
+    width: 100px;
+}
+.countAtb > span:nth-child(n + 2) {
+    display: inline-block;
+    margin-left: 30px;
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.walletBalance {
+    color: var(--Text_Beige_Default, #f1e9dc);
+    font-family: Avenir;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+}
+.headerWalletBalance {
+    color: var(--Subtle-Text, #b7a284);
+    font-family: Avenir;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+}

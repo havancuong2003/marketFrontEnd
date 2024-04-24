@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 import { ShortId } from "../../services"
 import { jwtDecode } from "jwt-decode"
 import { useDelistHero } from "../../hooks/use-delist-hero"
-import { BuyHero } from "../trasnaction"
+
 import { isAuthenticated } from "../../utils"
 
 export const DetailInfor = ({ hero }) => {
