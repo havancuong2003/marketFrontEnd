@@ -7,7 +7,7 @@ interface DetailHeroProps {
     race: string
     classes: string
 }
-const DetailHero = ({
+export const DetailHero = ({
     price,
     hp,
     speed,
@@ -49,5 +49,3 @@ const DetailHero = ({
         </div>
     )
 }
-
-export default DetailHero

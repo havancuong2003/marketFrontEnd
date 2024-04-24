@@ -1,13 +1,13 @@
 // Market.js
 
 import { useState } from "react"
-import Header from "../components/common/Header"
-import MainMarkerr from "../components/market/Main-markerr"
-import SideBar from "../components/market/Side-bar-market"
-import useHeroMarket from "../hooks/use-hero-market"
-import useSearchMarket from "../hooks/use-search-market"
+import { Header } from "../components/common/Header"
+import { MainMarkerr } from "../components/market/Main-markerr"
+import { SideBar } from "../components/market/Side-bar-market"
+import { useHeroMarket } from "../hooks/use-hero-market"
+import { useSearchMarket } from "../hooks/use-search-market"
 
-const Market = () => {
+export const Market = () => {
     const { heros, setHeros, dataSize, heroBackup } = useHeroMarket()
 
     const {
@@ -109,4 +109,3 @@ const Market = () => {
         </div>
     )
 }
-export default Market

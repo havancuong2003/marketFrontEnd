@@ -2,7 +2,7 @@ import { useState } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 
-const useLoginForm = () => {
+export const useLoginForm = () => {
     const navigate = useNavigate()
     const [error, setError] = useState("")
 
@@ -42,5 +42,3 @@ const useLoginForm = () => {
         error,
     }
 }
-
-export default useLoginForm

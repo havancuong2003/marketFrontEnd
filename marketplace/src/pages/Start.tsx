@@ -1,6 +1,6 @@
-import ButtonStart from "../components/common/Button-start"
+import { ButtonStart } from "../components/common/Button-start"
 import button from "../assets/img/button.png"
-const Start = () => {
+export const Start = () => {
     return (
         <div className="flex justify-center items-center bg-bglogin h-screen relative">
             <div className="text-white absolute top-32 left-28">
@@ -27,5 +27,3 @@ const Start = () => {
         </div>
     )
 }
-
-export default Start

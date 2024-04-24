@@ -1,7 +1,7 @@
-import useRegister from "../hooks/use-register"
-import Input from "./common/Input"
+import { useRegister } from "../hooks/use-register"
+import { Input } from "./common/Input"
 
-const SignUpForm = () => {
+export const SignUpForm = () => {
     const {
         handleEmailChange,
         handlePasswordChange,
@@ -65,5 +65,3 @@ const SignUpForm = () => {
         </div>
     )
 }
-
-export default SignUpForm

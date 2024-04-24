@@ -1,8 +1,6 @@
 // Filter.js
 
-import React from "react"
-
-const Filter = ({
+export const Filter = ({
     toggle,
     component,
     isClick,
@@ -40,5 +38,3 @@ const Filter = ({
         </div>
     )
 }
-
-export default Filter
