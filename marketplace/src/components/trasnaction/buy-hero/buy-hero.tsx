@@ -1,37 +1,48 @@
-import React from "react";
-import { bg } from "../../../assets/img/confirm_listing.png";
+import React, { useState } from "react";
 import clsx from "clsx";
 import avatar from "../../../assets/img/avatar.png";
 import okg_token from "../../../assets/img/OKGToken.png";
 import x_button from "../../../assets/img/xbutton.png";
+import { Hero } from "../../../models/hero";
+import { buyHero } from "../../common";
 type BuyHeroProps = {
   classes?: {
     [key: string]: string;
   };
+  hero: Hero;
+  onClickX: () => void;
+  onClickPay: () => void;
 };
 export const BuyHero: React.FC<BuyHeroProps> = ({
   classes,
   hero,
   onClickX,
+  onClickPay,
 }) => {
+  const [error, setError] = useState("");
+  const handleCheckOut = async (id: number) => {
+    const { error } = await buyHero(id);
+    setError(error);
+    if (!error) {
+      onClickPay();
+    }
+  };
+
   return (
     <div
-      className={clsx(
-        classes?.container,
-        "bg-cover bg-center absolute top-14 "
-      )}
+      className={clsx(classes?.container, "bg-cover bg-center absolute top-14")}
     >
-      <div className="absolute top-0 right-0">
+      <div className="absolute top-0 right-0 cursor-pointer">
         <img src={x_button} alt="" onClick={onClickX}></img>
       </div>
       <div className="flex justify-center text-3xl font-bold mb-8">
         <span>PURCHASING ITEM</span>
       </div>
-      <div className="bg-[#170A02CC] rounded-lg w-[875px] h-[413px] flex ">
+      <div className={clsx(classes?.center, "bg-brown-op rounded-lg  flex ")}>
         <div className="w-1/2 flex justify-center items-center">
           <img
             src={avatar}
-            className=" w-[352px] h-[352px] rounded-md"
+            className={clsx(classes?.avatar, "rounded-md")}
             alt=""
           />
         </div>
@@ -47,8 +58,12 @@ export const BuyHero: React.FC<BuyHeroProps> = ({
             </div>
             <br />
           </div>
-          <div className="my-10 row-span-1">
-            <span>Total amount</span>
+          <div className="my-10 row-span-1 ">
+            <div className="flex justify-between">
+              <span>Total amount</span>
+              {error && <span className="text-red-500">{error}</span>}
+            </div>
+
             <hr className="my-2" />
             <div className="flex justify-between items-center ">
               <span className="font-bold text-xl ">{hero.price}</span>
@@ -61,8 +76,14 @@ export const BuyHero: React.FC<BuyHeroProps> = ({
         </div>
       </div>
       <div className="flex justify-center items-center h-1/4">
-        <div className="bg-yellow_l w-[400px] h-[58px] flex justify-center items-center text-xl font-bold  ">
-          <span>CHECK OUT</span>
+        <div
+          className={clsx(
+            classes?.button,
+            "bg-yellow_l flex justify-center items-center text-xl font-bold"
+          )}
+          onClick={() => handleCheckOut(hero.id)}
+        >
+          <span>CHECK OUT </span>
         </div>
       </div>
     </div>

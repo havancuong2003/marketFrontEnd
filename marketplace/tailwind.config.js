@@ -3,6 +3,18 @@ export default {
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
         extend: {
+            textColor:{
+                'my-brown': '#423429',
+
+            },
+            backgroundColor:{
+                'brown-op':'#170A02CC',
+                'light-brown':'#B7A284',
+            },
+            fontFamily: {
+            'Skranji': ['Skranji', 'sans-serif'],
+            'Nunito': ['Nunito Sans', 'sans-serif'],
+            },
             height:{
                 '17%':'17%',
                 '18':'18%',
@@ -45,6 +57,7 @@ export default {
                 bginventory: "url('./assets/img/bginventory.png')",
                 bgprofile: "url('../src/assets/img/profile.png')",
                 yellow_l: "url('../src/assets/img/Yellow_L.png')",
+                group37032: "url('../src/assets/img/Group37032.png')",
                 
             },
         },
