@@ -1,7 +1,9 @@
 .container {
     @apply flex justify-center items-center;
 }
-
+.clickbutton {
+    @apply cursor-pointer hover:bg-violet-600 rounded-lg p-2 active:bg-violet-700  mx-3;
+}
 @media screen and (max-width: 768px) {
     .navheader,
     .clickbutton {
@@ -20,10 +22,6 @@
     body {
         width: 450px;
     }
-}
-
-.clickbutton {
-    @apply cursor-pointer hover:bg-violet-600 rounded-lg p-2 active:bg-violet-700  mx-3;
 }
 
 .buttonProf {

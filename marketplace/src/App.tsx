@@ -1,16 +1,16 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Test from "./components/Test";
-import { StartPage } from "./pages/start-page";
-import { WithAuth } from "./utils/with-auth";
-import { Start } from "./pages/start";
-import { SignUpForm } from "./components/sign-up-form";
-import { LoginForm } from "./components/login-form";
-import { Market } from "./pages/market/market";
-import { HeroDetail } from "./pages/hero-infomation/hero-info";
-import { BuyHero } from "./components/trasnaction";
-import { InventoryHero } from "./pages/inventory/hero-inventory";
-import { Activities } from "./pages/activity/activity";
-import { Profile } from "./pages/profile";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import Test from "./components/Test"
+import { StartPage } from "./pages/start-page"
+import { WithAuth } from "./utils/with-auth"
+import { Start } from "./pages/start"
+import { SignUpForm } from "./components/sign-up-form"
+import { LoginForm } from "./components/login-form"
+import { Market } from "./pages/market/market"
+import { HeroDetail } from "./pages/hero-infomation/hero-info"
+import { BuyHero } from "./components/trasnaction"
+import { InventoryHero } from "./pages/inventory"
+import { Activities } from "./pages/activity/activity"
+import { Profile } from "./pages/profile"
 
 const App = () => {
     return (

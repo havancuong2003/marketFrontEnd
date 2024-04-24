@@ -53,7 +53,10 @@ export const Header = (props) => {
                 <div className={clsx(classes.navheader, "")}>
                     {isAuthenticated() ? (
                         <button
-                            className={clsx(classes.clickbutton, "w-10 h-10")}
+                            className={clsx(
+                                classes.clickbutton,
+                                "w-52 h-10 cursor-pointer hover:bg-violet-600 rounded-lg  active:bg-violet-700   border  text-center"
+                            )}
                             onClick={() => navigate("/profile")}
                         >
                             Profile

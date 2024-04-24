@@ -1,161 +1,143 @@
-import clsx from "clsx";
-import { Header } from "../../components";
-import avatar from "../../assets/img/avatar-account.png";
-import { useEffect, useState } from "react";
-import { getInfoUser } from "../../services";
-import axios from "axios";
-import { useAccountInformation, useInventory } from "../../hooks";
-import { VITE_API_URL } from "../../env";
-import { ButtonInventory } from "../../components/common/inventory/button-inventory";
+
+import clsx from "clsx"
+import { Header } from "../../components"
+
+import { useEffect, useState } from "react"
+import { getInfoUser } from "../../services"
+import axios from "axios"
+import avatar from "../../assets/img/avatar-account.png"
+import { useAccountInformation } from "../../hooks"
+import { ButtonInventory } from "../../components/common/inventory/button-inventory"
+import { VITE_API_URL } from "../../env"
+
 type ProfileProps = {
-  classes?: {
-    [key: string]: string;
-  };
-};
+    classes?: {
+        [key: string]: string
+    }
+}
 export const Profile: React.FC<ProfileProps> = ({ classes }) => {
-  const { account } = useAccountInformation();
-  const [myHeros, setMyHeros] = useState<any>([]);
-  const { inventory } = useInventory();
 
-  useEffect(() => {
-    if (Array.isArray(inventory)) {
-      console.log("inventory arr", inventory);
-    } else if (typeof inventory === "object" && inventory !== null) {
-      setMyHeros(inventory.data);
-    }
-  }, [inventory]);
+    const { account, setAccount } = useAccountInformation()
+    const [errorChangeUserName, setErrorChangeUserName] = useState("")
+    const [userData, setUserData] = useState<any>(null)
+    const [isEditing, setIsEditing] = useState(false)
+    const [isEditingPass, setIsEditingPass] = useState(false)
+    const [newUsername, setNewUsername] = useState("")
+    const [username, setUsername] = useState(userData ? userData.username : "")
+    const [errorChangePassword, setErrorChangePassword] = useState([])
+    const [newPassword, setNewPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
 
-  console.log("myHeros", myHeros);
-  function countByAttribute(attribute, value) {
-    // Số lượng ban đầu là 0
-    let count = 0;
+    const [oldpassword, setOldPassword] = useState("")
 
-    // Duyệt qua từng đối tượng trong mảng inventory
-    myHeros.forEach((item) => {
-      // Kiểm tra xem giá trị của thuộc tính được truyền vào có trùng khớp không
-      if (item[attribute] === value) {
-        // Nếu trùng khớp, tăng số lượng lên 1
-        count++;
-      }
-    });
-
-    return count;
-  }
-
-  const [errorChangeUserName, setErrorChangeUserName] = useState("");
-  const [userData, setUserData] = useState<any>(null);
-  const [isEditing, setIsEditing] = useState(false);
-  const [isEditingPass, setIsEditingPass] = useState(false);
-  const [newUsername, setNewUsername] = useState("");
-  const [username, setUsername] = useState(userData ? userData.username : "");
-  const [errorChangePassword, setErrorChangePassword] = useState([]);
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [oldpassword, setOldPassword] = useState("");
-
-  const [erroDiff, setErroDiff] = useState("");
-  useEffect(() => {
-    if (userData && userData.username !== null) {
-      setUsername(userData.username);
-    }
-  }, [userData]);
-  const handleEditClick = () => {
-    setIsEditing(true);
-    setNewUsername(username);
-  };
-
-  const handlePassEditClick = () => {
-    setIsEditingPass(true);
-  };
-
-  const handleSaveClick = async () => {
-    try {
-      // Call API to update username
-      const response = await axios.post(
-        VITE_API_URL + "/api/v1/account/update-username",
-        {
-          username: newUsername,
+    const [erroDiff, setErroDiff] = useState("")
+    useEffect(() => {
+        if (userData && userData.username !== null) {
+            setUsername(userData.username)
         }
-      );
-
-      setErrorChangeUserName("");
-      // Update user data on UI
-      setUsername(newUsername);
-      setIsEditing(false);
-    } catch (error) {
-      console.error("Error updating username:", error);
-      setErrorChangePassword(error.response.data.message);
-      // Handle error here, maybe show a message to the user
+    }, [userData])
+    const handleEditClick = () => {
+        setIsEditing(true)
+        setNewUsername(username)
     }
-  };
 
-  const handleCancelClick = () => {
-    setIsEditing(false);
-  };
 
-  const handlePassCancelClick = () => {
-    setIsEditingPass(false);
-  };
+    const handlePassEditClick = () => {
+        setIsEditingPass(true)
+    }
 
-  const handleChange = (e) => {
-    setNewUsername(e.target.value);
-  };
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const data = await getInfoUser();
-        setUserData(data);
-      } catch (error) {
-        // Handle error
-      }
-    };
-    fetchUserData();
-  }, []);
+    const handleSaveClick = async () => {
+        try {
+            // Call API to update username
+            const response = await axios.post(
+                VITE_API_URL + "/api/v1/account/update-username",
+                {
+                    username: newUsername,
+                }
+            )
 
-  const handleChangePasswordClick = async () => {
-    try {
-      if (newPassword !== confirmPassword) {
-        setErroDiff("Passwords do not match");
-        return; // Stop further execution
-      }
-      setErroDiff("");
-      // Call API to change password
-      const response = await axios.post(
-        VITE_API_URL + "/api/v1/account/update-password",
-        {
-          curentpassword: oldpassword,
-          password: newPassword,
-          repassword: confirmPassword,
+
+            setErrorChangeUserName("")
+            // Update user data on UI
+            setUsername(newUsername)
+            setIsEditing(false)
+        } catch (error) {
+            console.error("Error updating username:", error)
+            setErrorChangePassword(error.response.data.message)
+            // Handle error here, maybe show a message to the user
         }
-      );
-      console.log(response.data, "data here");
-      console.log(response, " response here");
-      setErrorChangePassword([]);
-      // Reset password fields
-      setNewPassword("");
-      setConfirmPassword("");
-    } catch (error) {
-      console.error("Error changing password:", error);
-      setErrorChangePassword(error.response.data.message);
-      // Handle error here, maybe show a message to the user
     }
-  };
 
-  const handlePasswordChange = (e) => {
-    setNewPassword(e.target.value);
-    setErrorChangePassword([]);
-  };
-  const handleOldPasswordChange = (e) => {
-    setOldPassword(e.target.value);
-    setErrorChangePassword([]);
-  };
+    const handleCancelClick = () => {
+        setIsEditing(false)
+    }
 
-  const handleConfirmPasswordChange = (e) => {
-    if (newPassword !== e.target.value) {
-      setErroDiff("Password not match");
-      setErrorChangePassword([]);
-    } else {
-      setErroDiff("");
+    const handlePassCancelClick = () => {
+        setIsEditingPass(false)
+    }
+
+    const handleChange = (e) => {
+        setNewUsername(e.target.value)
+    }
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const data = await getInfoUser()
+                setUserData(data)
+            } catch (error) {
+                // Handle error
+            }
+        }
+        fetchUserData()
+    }, [])
+
+    const handleChangePasswordClick = async () => {
+        try {
+            if (newPassword !== confirmPassword) {
+                setErroDiff("Passwords do not match")
+                return // Stop further execution
+            }
+            setErroDiff("")
+            // Call API to change password
+            const response = await axios.post(
+                VITE_API_URL + "/api/v1/account/update-password",
+                {
+                    curentpassword: oldpassword,
+                    password: newPassword,
+                    repassword: confirmPassword,
+                }
+            )
+
+
+            setErrorChangePassword([])
+            // Reset password fields
+            setNewPassword("")
+            setConfirmPassword("")
+        } catch (error) {
+            console.error("Error changing password:", error)
+            setErrorChangePassword(error.response.data.message)
+            // Handle error here, maybe show a message to the user
+
+        }
+    }
+
+    const handlePasswordChange = (e) => {
+        setNewPassword(e.target.value)
+        setErrorChangePassword([])
+    }
+    const handleOldPasswordChange = (e) => {
+        setOldPassword(e.target.value)
+        setErrorChangePassword([])
+    }
+
+    const handleConfirmPasswordChange = (e) => {
+        if (newPassword !== e.target.value) {
+            setErroDiff("Password not match")
+            setErrorChangePassword([])
+        } else {
+            setErroDiff("")
+        }
+        setConfirmPassword(e.target.value)
     }
     setConfirmPassword(e.target.value);
   };
@@ -420,12 +402,9 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                     <span>Range: {countByAttribute("class", "RANGE")} </span>
                     <span>Tanker: {countByAttribute("class", "TANKER")} </span>
                   </div>
+
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  );
-};
+    )
+}

@@ -1,6 +1,7 @@
 import axios from "axios"
 import { Link, useNavigate } from "react-router-dom"
 import { useParams } from "react-router-dom"
+import { VITE_API_URL } from "../env"
 
 // Tạo custom hook dùng để delist hero
 export const useDelistHero = () => {
@@ -11,7 +12,7 @@ export const useDelistHero = () => {
     const delist = async () => {
         try {
             const response = await axios.patch(
-                import.meta.env.VITE_API_URL+"/api/v1/hero/${id}/delist",
+                VITE_API_URL + "/api/v1/hero/${id}/delist",
                 {},
                 {
                     headers: {
