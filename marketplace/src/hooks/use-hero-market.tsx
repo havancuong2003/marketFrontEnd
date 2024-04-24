@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { VITE_API_URL } from "../env";
 
 export const useHeroMarket = () => {
   const [heros, setHeros] = useState([]);
@@ -9,10 +10,11 @@ export const useHeroMarket = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/hero/show-market")
+      .get(VITE_API_URL + "/api/v1/hero/show-market")
       .then((res) => {
-        setHeros(res.data);
-        setHeroBackup(res.data);
+        setHeros(res.data.data);
+        console.log(res.data);
+        setHeroBackup(res.data.data);
       })
       .catch((err) => {
         console.log(err);

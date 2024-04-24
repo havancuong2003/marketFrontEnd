@@ -1,16 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { VITE_API_URL } from "../env";
 
 export const useHeroDetail = () => {
   const [hero, setHero] = useState([]);
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/hero/${id}/detail`)
+      .get(VITE_API_URL + `/api/v1/hero/${id}/detail`)
       .then((res) => {
         setHero(res.data);
-        // console.log(res.data);
       })
       .catch((err) => {
         console.log(err);

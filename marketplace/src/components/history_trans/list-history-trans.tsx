@@ -2,7 +2,6 @@ import { enUS } from "date-fns/locale";
 import { useHistoryTrans } from "../../hooks/use-history-trans";
 import { format } from "date-fns";
 import { ShortId } from "../../services";
-import DataTable from "react-data-table-component";
 
 export const HistoryTrans = () => {
   const { historyTrans } = useHistoryTrans();

@@ -32,7 +32,7 @@ export const ListingSucceeded: React.FC<ListingProps> = ({ classes }) => {
         <div className="pt-10">
           <div
             className="bg-yellow_l w-[400px] h-[60px] flex justify-center items-center  text-[20px] font-bold"
-            onClick={() => navigate("/inventory/hero")}
+            onClick={() => navigate("/inventory")}
           >
             <span>VIEW ITEM</span>
           </div>

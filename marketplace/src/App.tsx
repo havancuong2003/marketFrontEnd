@@ -6,9 +6,11 @@ import { Start } from "./pages/start";
 import { SignUpForm } from "./components/sign-up-form";
 import { LoginForm } from "./components/login-form";
 import { Market } from "./pages/market/market";
-import { HeroDetail } from "./pages/hero-infomation";
+import { HeroDetail } from "./pages/hero-infomation/hero-info";
 import { BuyHero } from "./components/trasnaction";
-import { InventoryHero } from "./pages/inventory/hero-inventory";
+import { InventoryHero } from "./pages/inventory";
+import { Activities } from "./pages/activity/activity";
+import { Profile } from "./pages/profile";
 
 const App = () => {
   return (
@@ -35,10 +37,12 @@ const App = () => {
             />
           }
         />
-        <Route path="/inventory/hero" element={<InventoryHero />} />
+        <Route path="/inventory" element={<InventoryHero />} />
+        <Route path="/activities" element={<Activities />} />
         <Route path="/dashboard" element={<WithAuth component={Test} />} />
         <Route path="hero/:id/detail" element={<HeroDetail />} />
         <Route path="/confirm" element={<BuyHero />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </Router>
   );

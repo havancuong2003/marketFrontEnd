@@ -5,7 +5,6 @@ import { isAuthenticated } from "../../../utils/is-authenticated";
 import clsx from "clsx";
 
 export const Header = (props) => {
-  console.log("props", props);
   const { classes }: any = props;
   const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate();
@@ -45,7 +44,7 @@ export const Header = (props) => {
           <div className={clsx(classes.navheader, "")}>
             <button
               className={clsx(classes.clickbutton, "")}
-              onClick={() => navigate("/inventory/hero")}
+              onClick={() => navigate("/inventory")}
             >
               Inventory
             </button>
@@ -54,7 +53,10 @@ export const Header = (props) => {
         <div className={clsx(classes.navheader, "")}>
           {isAuthenticated() ? (
             <button
-              className={clsx(classes.clickbutton, "w-10 h-10")}
+              className={clsx(
+                classes.clickbutton,
+                "w-52 h-10 cursor-pointer hover:bg-violet-600 rounded-lg  active:bg-violet-700   border  text-center"
+              )}
               onClick={() => navigate("/profile")}
             >
               Profile
@@ -110,7 +112,7 @@ export const Header = (props) => {
               </button>
               <button
                 className="cursor-pointer  p-1 rounded-md active:bg-red-900 "
-                onClick={() => handleItemClick("inventory/hero")}
+                onClick={() => handleItemClick("inventory")}
               >
                 Inventory
               </button>
