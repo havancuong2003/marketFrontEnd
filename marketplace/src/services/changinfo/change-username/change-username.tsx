@@ -8,8 +8,6 @@ export const changeUserName = async (username) => {
                 username,
             }
         )
-        console.log(response.data, "data here")
-        console.log(response, " response here")
 
         return response.data
     } catch (error) {
