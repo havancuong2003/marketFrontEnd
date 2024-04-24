@@ -1,12 +1,5 @@
-.container {
-    width: 395px;
-    height: 820px;
-
-    margin: 121px 20px 0 140px;
-}
-
 .profileSize {
-    width: 1225px;
+    width: 700px;
     height: 520px;
     flex-shrink: 0;
     border-radius: 10px;
@@ -14,7 +7,7 @@
 }
 
 .profileInfo {
-    width: 886px;
+    width: 600px;
     height: 244px;
     margin: 14px 277px 42px 62px;
     display: inline-flex;
@@ -97,6 +90,4 @@
     height: 25px;
     margin-right: 121px;
 }
-.testbg {
-    background-image: url("https://png.pngtree.com/thumb_back/fw800/background/20201009/pngtree-soft-pastel-yellow-with-white-glitters-design-image_403267.jpg");
-}
+

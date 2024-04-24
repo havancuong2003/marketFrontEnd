@@ -9,7 +9,7 @@ export const useHeroMarket = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/hero/show-market")
+      .get(import.meta.env.VITE_API_URL+"/api/v1/hero/show-market")
       .then((res) => {
         setHeros(res.data.data);
         console.log(res.data);

@@ -8,7 +8,7 @@ export const useHistoryTrans = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/history-trans/${id}/top-trans`)
+      .get(import.meta.env.VITE_API_URL+"/api/v1/history-trans/${id}/top-trans")
       .then((res) => {
         setHistoryTrans(res.data);
         console.log(res.data);

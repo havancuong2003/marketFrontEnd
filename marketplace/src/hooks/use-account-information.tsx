@@ -5,7 +5,7 @@ export const useAccountInformation = () => {
   const [account, setAccount] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:3000/account/show-information", {
+      .get(import.meta.env.VITE_API_URL+"/api/v1/account/show-information", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

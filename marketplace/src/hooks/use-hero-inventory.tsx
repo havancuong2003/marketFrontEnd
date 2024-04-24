@@ -6,7 +6,7 @@ export const useInventory = () => {
   const [heros,setHeros] = useState([])
   useEffect(() => {
     axios
-      .get("http://localhost:3000/hero/show-inventory", {
+      .get(import.meta.env.VITE_API_URL+"/api/v1/hero/show-inventory", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

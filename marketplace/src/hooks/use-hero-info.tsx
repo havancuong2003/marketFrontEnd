@@ -7,7 +7,7 @@ export const useHeroDetail = () => {
     const { id } = useParams()
     useEffect(() => {
         axios
-            .get(`http://localhost:3000/hero/${id}/detail`)
+            .get(import.meta.env.VITE_API_URL+"/api/v1/hero/${id}/detail")
             .then((res) => {
                 setHero(res.data)
             })

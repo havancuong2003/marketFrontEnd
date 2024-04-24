@@ -45,7 +45,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
     try {
       // Call API to update username
       const response = await axios.post(
-        "http://localhost:3000/account/update-username",
+        import.meta.env.VITE_API_URL + "/api/v1/account/update-username",
         {
           username: newUsername,
         }
@@ -94,7 +94,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
       setErroDiff("");
       // Call API to change password
       const response = await axios.post(
-        "http://localhost:3000/account/update-password",
+        import.meta.env.VITE_API_URL + "/api/v1/account/update-password",
         {
           curentpassword: oldpassword,
           password: newPassword,
@@ -132,7 +132,8 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
     }
     setConfirmPassword(e.target.value);
   };
-
+  console.log(userData)
+  console.log("account",account.email)
   return (
     <div>
       <div>
@@ -149,19 +150,12 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
               <p className="text-sm font-semibold text-white pb-14">
                 #{account.id}
               </p>
-              <ButtonInventory selectedItem={"Activities"} />
+              <ButtonInventory selectedItem={"Profile settings"} />
             </div>
           </div>
-          <div className="bg-bgactivities w-full ml-24 mr-24 mt-24 justify-center">
-            <div
-              className={clsx(
-                classes?.profileSize,
-                classes?.profilebg,
-                classes?.profileFont,
-                ""
-              )}
-            >
-              <div className={clsx(classes?.profileHeader, "")}>
+          <div className="w-2/4 bg-bgactivities ml-24 mr-24 mt-24">
+            <div>
+              <div className={clsx(classes?.profileHeader, "text-2xl text-white pb-20")}>
                 Profile settings
               </div>
               <div className={clsx(classes?.profileInfo, "")}>
@@ -218,7 +212,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                   height="2"
                   viewBox="0 0 1131 2"
                   fill="none"
-                  className="border border-[#574239] h-0"
+                  className="border border-[#574239] h-0 w-[600px]"
                 >
                   <path d="M0 1H1130.43" stroke="#574239" />
                 </svg>
@@ -244,7 +238,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                   height="2"
                   viewBox="0 0 1131 2"
                   fill="none"
-                  className="border border-[#574239] h-0"
+                  className="border border-[#574239] h-0 w-[600px]"
                 >
                   <path d="M0 1H1130.43" stroke="#574239" />
                 </svg>
