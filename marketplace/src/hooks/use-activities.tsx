@@ -1,8 +1,10 @@
+
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { VITE_API_URL } from "../env"
 export const useActivities = () => {
     const [activities, setActivities] = useState([])
+
 
     useEffect(() => {
         axios

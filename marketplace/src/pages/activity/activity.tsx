@@ -14,7 +14,7 @@ export const Activities = () => {
         <Header />
       </div>
 
-      <div className="bg-bginventory w-full font-home">
+      <div className="bg-bginventory w-full h-full font-home">
         <div className="">
           <div className="flex">
             <div className=" w-1/4 bg-bgprofile flex justify-center text-center h-[800px] ml-24 mt-24">
