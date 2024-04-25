@@ -1,16 +1,27 @@
 // Market.js
 
 import { useState } from "react"
-import { Header, MainMarkerr, SideBar } from "../../components"
-import { useHeroMarket, useSearchMarket } from "../../hooks"
+import { Header } from "../../components/common/header"
+import { MainMarkerr } from "../../components/market/main-market"
+import { SideBar } from "../../components/market/side-bar-market"
+import { useHeroMarket } from "../../hooks/use-hero-market"
+import { useSearchMarket } from "../../hooks/use-search-market"
 import clsx from "clsx"
 type MarketProps = {
     classes?: {
         [key: string]: string
     }
 }
+interface Hero {
+    rank: string
+    class: string
+    race: string
+}
 export const Market: React.FC<MarketProps> = ({ classes }) => {
-    const { heros, setHeros, dataSize, heroBackup } = useHeroMarket()
+    const { heros, setHeros, dataSize } = useHeroMarket()
+    const { heroBackup } = useHeroMarket() as {
+        heroBackup: Hero[]
+    }
 
     const {
         isRankOpen,

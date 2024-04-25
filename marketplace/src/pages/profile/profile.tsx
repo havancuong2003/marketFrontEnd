@@ -3,12 +3,28 @@ import { Header } from "../../components"
 
 import { useEffect, useState } from "react"
 import { getInfoUser } from "../../services"
-import axios from "axios"
+import axios, { AxiosError } from "axios"
 import { useInventory } from "../../hooks"
+import { VITE_API_URL } from "../../env"
 type ProfileProps = {
     classes?: {
         [key: string]: string
     }
+}
+function countByAttribute(myHeros, attribute, value) {
+    // Số lượng ban đầu là 0
+    let count = 0
+
+    // Duyệt qua từng đối tượng trong mảng inventory
+    myHeros.forEach((item) => {
+        // Kiểm tra xem giá trị của thuộc tính được truyền vào có trùng khớp không
+        if (item[attribute] === value) {
+            // Nếu trùng khớp, tăng số lượng lên 1
+            count++
+        }
+    })
+
+    return count
 }
 export const Profile: React.FC<ProfileProps> = ({ classes }) => {
     const [myHeros, setMyHeros] = useState<any>([])
@@ -18,26 +34,11 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
         if (Array.isArray(inventory)) {
             console.log("inventory arr", inventory)
         } else if (typeof inventory === "object" && inventory !== null) {
-            setMyHeros(inventory.data)
+            // Xác định kiểu cho 'inventory' như là một đối tượng với kiểu dữ liệu cụ thể
+            const inventoryObject = inventory as { data: any[] }
+            setMyHeros(inventoryObject.data)
         }
     }, [inventory])
-
-    console.log("myHeros", myHeros)
-    function countByAttribute(attribute, value) {
-        // Số lượng ban đầu là 0
-        let count = 0
-
-        // Duyệt qua từng đối tượng trong mảng inventory
-        myHeros.forEach((item) => {
-            // Kiểm tra xem giá trị của thuộc tính được truyền vào có trùng khớp không
-            if (item[attribute] === value) {
-                // Nếu trùng khớp, tăng số lượng lên 1
-                count++
-            }
-        })
-
-        return count
-    }
 
     const [errorChangeUserName, setErrorChangeUserName] = useState("")
     const [userData, setUserData] = useState<any>(null)
@@ -69,19 +70,22 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
         try {
             // Call API to update username
             const response = await axios.post(
-                "http://localhost:3000/account/update-username",
+                VITE_API_URL + "/api/v1/account/update-username",
                 {
                     username: newUsername,
                 }
             )
+            console.log("Response:", response.data)
 
             setErrorChangeUserName("")
             // Update user data on UI
             setUsername(newUsername)
             setIsEditing(false)
-        } catch (error) {
-            console.error("Error updating username:", error)
-            setErrorChangePassword(error.response.data.message)
+        } catch (error: unknown) {
+            if (error instanceof AxiosError) {
+                console.error("Error updating username:", error)
+                setErrorChangePassword(error.response?.data.message)
+            }
             // Handle error here, maybe show a message to the user
         }
     }
@@ -118,7 +122,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
             setErroDiff("")
             // Call API to change password
             const response = await axios.post(
-                "http://localhost:3000/account/update-password",
+                VITE_API_URL + "/api/v1/account/update-password",
                 {
                     curentpassword: oldpassword,
                     password: newPassword,
@@ -131,9 +135,11 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
             // Reset password fields
             setNewPassword("")
             setConfirmPassword("")
-        } catch (error) {
-            console.error("Error changing password:", error)
-            setErrorChangePassword(error.response.data.message)
+        } catch (error: unknown) {
+            if (error instanceof AxiosError) {
+                console.error("Error changing password:", error)
+                setErrorChangePassword(error.response?.data.message)
+            }
             // Handle error here, maybe show a message to the user
         }
     }
@@ -464,6 +470,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                         <span>
                                             Warior:{" "}
                                             {countByAttribute(
+                                                myHeros,
                                                 "rank",
                                                 "WARRIOR"
                                             )}
@@ -471,6 +478,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                         <span>
                                             Warmonger:{" "}
                                             {countByAttribute(
+                                                myHeros,
                                                 "rank",
                                                 "WARMONGER"
                                             )}
@@ -478,6 +486,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                         <span>
                                             Overseer:{" "}
                                             {countByAttribute(
+                                                myHeros,
                                                 "rank",
                                                 "OVERSEER"
                                             )}{" "}
@@ -485,6 +494,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                         <span>
                                             Chieftan:{" "}
                                             {countByAttribute(
+                                                myHeros,
                                                 "rank",
                                                 "CHIEFTAN"
                                             )}{" "}
@@ -503,23 +513,43 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                         </span>
                                         <span>
                                             Antuk:{" "}
-                                            {countByAttribute("race", "ANTUK")}{" "}
+                                            {countByAttribute(
+                                                myHeros,
+                                                "race",
+                                                "ANTUK"
+                                            )}{" "}
                                         </span>
                                         <span>
                                             Krakee:{" "}
-                                            {countByAttribute("race", "KRAKEE")}{" "}
+                                            {countByAttribute(
+                                                myHeros,
+                                                "race",
+                                                "KRAKEE"
+                                            )}{" "}
                                         </span>
                                         <span>
                                             Krakee:{" "}
-                                            {countByAttribute("race", "MANTAH")}{" "}
+                                            {countByAttribute(
+                                                myHeros,
+                                                "race",
+                                                "MANTAH"
+                                            )}{" "}
                                         </span>
                                         <span>
                                             Montak:{" "}
-                                            {countByAttribute("race", "MONTAK")}{" "}
+                                            {countByAttribute(
+                                                myHeros,
+                                                "race",
+                                                "MONTAK"
+                                            )}{" "}
                                         </span>
                                         <span>
                                             Muu:{" "}
-                                            {countByAttribute("race", "MUU")}{" "}
+                                            {countByAttribute(
+                                                myHeros,
+                                                "race",
+                                                "MUU"
+                                            )}{" "}
                                         </span>
                                     </div>
                                     <div
@@ -535,23 +565,40 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                         </span>
                                         <span>
                                             Air:{" "}
-                                            {countByAttribute("class", "AIR")}{" "}
+                                            {countByAttribute(
+                                                myHeros,
+                                                "class",
+                                                "AIR"
+                                            )}{" "}
                                         </span>
                                         <span>
                                             Mage:{" "}
-                                            {countByAttribute("class", "MAGE")}{" "}
+                                            {countByAttribute(
+                                                myHeros,
+                                                "class",
+                                                "MAGE"
+                                            )}{" "}
                                         </span>
                                         <span>
                                             Melee:{" "}
-                                            {countByAttribute("class", "MELEE")}
+                                            {countByAttribute(
+                                                myHeros,
+                                                "class",
+                                                "MELEE"
+                                            )}
                                         </span>
                                         <span>
                                             Range:{" "}
-                                            {countByAttribute("class", "RANGE")}{" "}
+                                            {countByAttribute(
+                                                myHeros,
+                                                "class",
+                                                "RANGE"
+                                            )}{" "}
                                         </span>
                                         <span>
                                             Tanker:{" "}
                                             {countByAttribute(
+                                                myHeros,
                                                 "class",
                                                 "TANKER"
                                             )}{" "}

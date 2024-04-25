@@ -1,6 +1,6 @@
 // Filter.js
 type FilterProps = {
-    toggle: () => void
+    toggle: (item: any) => void
     component: string[]
     isClick: boolean
     headerFilter: string
@@ -17,7 +17,6 @@ export const Filter: React.FC<FilterProps> = ({
     headerFilter,
     onToggle,
     selectedItem,
-    classes,
 }) => {
     return (
         <div className="border-t-4 border-white m-5">

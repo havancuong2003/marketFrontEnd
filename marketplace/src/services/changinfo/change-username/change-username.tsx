@@ -1,9 +1,10 @@
 import axios from "axios"
+import { VITE_API_URL } from "../../../env"
 
 export const changeUserName = async (username) => {
     try {
         const response = await axios.post(
-            "http://localhost:3000/account/update-username",
+            VITE_API_URL + "/api/v1/account/update-username",
             {
                 username,
             }

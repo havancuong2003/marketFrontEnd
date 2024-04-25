@@ -8,20 +8,20 @@ type SideBarProps = {
     classes?: {
         [key: string]: string
     }
-    filterItems: string[]
+    filterItems: (filterParams: any) => void
     resetFilters: () => void
-    toggleRank: () => void
-    toggleClass: () => void
-    toggleRace: () => void
+    toggleRank: (item: any) => void
+    toggleClass: (item: any) => void
+    toggleRace: (item: any) => void
     isRankOpen: boolean
     isClassOpen: boolean
     isRaceOpen: boolean
     selectedRank: string
     selectedClass: string
     selectedRace: string
-    onToggleRank: () => void
-    onToggleClass: () => void
-    onToggleRace: () => void
+    onToggleRank: (item: any) => void
+    onToggleClass: (item: any) => void
+    onToggleRace: (item: any) => void
     filterStatus: (filterstt) => void
 }
 export const SideBar: React.FC<SideBarProps> = ({

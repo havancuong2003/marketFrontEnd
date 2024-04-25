@@ -15,7 +15,7 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ classes }) => {
         email,
         password,
         emailError,
-        passwordError,
+
         usernameError,
         username,
         handleUsernameChange,
