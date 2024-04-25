@@ -1,70 +1,70 @@
-import clsx from "clsx"
-import { Header } from "../../components"
+import clsx from "clsx";
+import { Header } from "../../components";
 
-import { useEffect, useState } from "react"
-import { getInfoUser } from "../../services"
-import axios, { AxiosError } from "axios"
-import { useInventory } from "../../hooks"
-import { VITE_API_URL } from "../../env"
+import { useEffect, useState } from "react";
+import { getInfoUser } from "../../services";
+import axios, { AxiosError } from "axios";
+import { useInventory } from "../../hooks";
+import { VITE_API_URL } from "../../env";
 type ProfileProps = {
     classes?: {
-        [key: string]: string
-    }
-}
+        [key: string]: string;
+    };
+};
 function countByAttribute(myHeros, attribute, value) {
     // Số lượng ban đầu là 0
-    let count = 0
+    let count = 0;
 
     // Duyệt qua từng đối tượng trong mảng inventory
     myHeros.forEach((item) => {
         // Kiểm tra xem giá trị của thuộc tính được truyền vào có trùng khớp không
         if (item[attribute] === value) {
             // Nếu trùng khớp, tăng số lượng lên 1
-            count++
+            count++;
         }
-    })
+    });
 
-    return count
+    return count;
 }
 export const Profile: React.FC<ProfileProps> = ({ classes }) => {
-    const [myHeros, setMyHeros] = useState<any>([])
-    const { inventory } = useInventory()
+    const [myHeros, setMyHeros] = useState<any>([]);
+    const { inventory } = useInventory();
 
     useEffect(() => {
         if (Array.isArray(inventory)) {
-            console.log("inventory arr", inventory)
+            console.log("inventory arr", inventory);
         } else if (typeof inventory === "object" && inventory !== null) {
             // Xác định kiểu cho 'inventory' như là một đối tượng với kiểu dữ liệu cụ thể
-            const inventoryObject = inventory as { data: any[] }
-            setMyHeros(inventoryObject.data)
+            const inventoryObject = inventory as { data: any[] };
+            setMyHeros(inventoryObject.data);
         }
-    }, [inventory])
+    }, [inventory]);
 
-    const [errorChangeUserName, setErrorChangeUserName] = useState("")
-    const [userData, setUserData] = useState<any>(null)
-    const [isEditing, setIsEditing] = useState(false)
-    const [isEditingPass, setIsEditingPass] = useState(false)
-    const [newUsername, setNewUsername] = useState("")
-    const [username, setUsername] = useState(userData ? userData.username : "")
-    const [errorChangePassword, setErrorChangePassword] = useState([])
-    const [newPassword, setNewPassword] = useState("")
-    const [confirmPassword, setConfirmPassword] = useState("")
-    const [oldpassword, setOldPassword] = useState("")
+    const [errorChangeUserName, setErrorChangeUserName] = useState("");
+    const [userData, setUserData] = useState<any>(null);
+    const [isEditing, setIsEditing] = useState(false);
+    const [isEditingPass, setIsEditingPass] = useState(false);
+    const [newUsername, setNewUsername] = useState("");
+    const [username, setUsername] = useState(userData ? userData.username : "");
+    const [errorChangePassword, setErrorChangePassword] = useState([]);
+    const [newPassword, setNewPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [oldpassword, setOldPassword] = useState("");
 
-    const [erroDiff, setErroDiff] = useState("")
+    const [erroDiff, setErroDiff] = useState("");
     useEffect(() => {
         if (userData && userData.username !== null) {
-            setUsername(userData.username)
+            setUsername(userData.username);
         }
-    }, [userData])
+    }, [userData]);
     const handleEditClick = () => {
-        setIsEditing(true)
-        setNewUsername(username)
-    }
+        setIsEditing(true);
+        setNewUsername(username);
+    };
 
     const handlePassEditClick = () => {
-        setIsEditingPass(true)
-    }
+        setIsEditingPass(true);
+    };
 
     const handleSaveClick = async () => {
         try {
@@ -74,52 +74,52 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                 {
                     username: newUsername,
                 }
-            )
-            console.log("Response:", response.data)
+            );
+            console.log("Response:", response.data);
 
-            setErrorChangeUserName("")
+            setErrorChangeUserName("");
             // Update user data on UI
-            setUsername(newUsername)
-            setIsEditing(false)
+            setUsername(newUsername);
+            setIsEditing(false);
         } catch (error: unknown) {
             if (error instanceof AxiosError) {
-                console.error("Error updating username:", error)
-                setErrorChangePassword(error.response?.data.message)
+                console.error("Error updating username:", error);
+                setErrorChangePassword(error.response?.data.message);
             }
             // Handle error here, maybe show a message to the user
         }
-    }
+    };
 
     const handleCancelClick = () => {
-        setIsEditing(false)
-    }
+        setIsEditing(false);
+    };
 
     const handlePassCancelClick = () => {
-        setIsEditingPass(false)
-    }
+        setIsEditingPass(false);
+    };
 
     const handleChange = (e) => {
-        setNewUsername(e.target.value)
-    }
+        setNewUsername(e.target.value);
+    };
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const data = await getInfoUser()
-                setUserData(data)
+                const data = await getInfoUser();
+                setUserData(data);
             } catch (error) {
                 // Handle error
             }
-        }
-        fetchUserData()
-    }, [])
+        };
+        fetchUserData();
+    }, []);
 
     const handleChangePasswordClick = async () => {
         try {
             if (newPassword !== confirmPassword) {
-                setErroDiff("Passwords do not match")
-                return // Stop further execution
+                setErroDiff("Passwords do not match");
+                return; // Stop further execution
             }
-            setErroDiff("")
+            setErroDiff("");
             // Call API to change password
             const response = await axios.post(
                 VITE_API_URL + "/api/v1/account/update-password",
@@ -128,40 +128,40 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                     password: newPassword,
                     repassword: confirmPassword,
                 }
-            )
-            console.log(response.data, "data here")
-            console.log(response, " response here")
-            setErrorChangePassword([])
+            );
+            console.log(response.data, "data here");
+            console.log(response, " response here");
+            setErrorChangePassword([]);
             // Reset password fields
-            setNewPassword("")
-            setConfirmPassword("")
+            setNewPassword("");
+            setConfirmPassword("");
         } catch (error: unknown) {
             if (error instanceof AxiosError) {
-                console.error("Error changing password:", error)
-                setErrorChangePassword(error.response?.data.message)
+                console.error("Error changing password:", error);
+                setErrorChangePassword(error.response?.data.message);
             }
             // Handle error here, maybe show a message to the user
         }
-    }
+    };
 
     const handlePasswordChange = (e) => {
-        setNewPassword(e.target.value)
-        setErrorChangePassword([])
-    }
+        setNewPassword(e.target.value);
+        setErrorChangePassword([]);
+    };
     const handleOldPasswordChange = (e) => {
-        setOldPassword(e.target.value)
-        setErrorChangePassword([])
-    }
+        setOldPassword(e.target.value);
+        setErrorChangePassword([]);
+    };
 
     const handleConfirmPasswordChange = (e) => {
         if (newPassword !== e.target.value) {
-            setErroDiff("Password not match")
-            setErrorChangePassword([])
+            setErroDiff("Password not match");
+            setErrorChangePassword([]);
         } else {
-            setErroDiff("")
+            setErroDiff("");
         }
-        setConfirmPassword(e.target.value)
-    }
+        setConfirmPassword(e.target.value);
+    };
 
     return (
         <div>
@@ -611,5 +611,5 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};

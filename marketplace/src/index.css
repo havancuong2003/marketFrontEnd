@@ -8,13 +8,14 @@
 }
 
 /* Track */
-.custom-scrollbar::-webkit-scrollbar-track {}
+.custom-scrollbar::-webkit-scrollbar-track {
+}
 
 /* Handle */
 .custom-scrollbar::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 5px;
-    overflow-y: auto
+    overflow-y: auto;
 }
 
 /* Handle on hover */

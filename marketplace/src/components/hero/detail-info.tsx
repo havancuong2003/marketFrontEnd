@@ -1,28 +1,28 @@
-import okg_token from "../../assets/img/OKGToken.png"
-import atk from "../../assets/img/ATK.png"
-import atk_speed from "../../assets/img/ATK Speed.png"
-import hp from "../../assets/img/HP.png"
-import dps from "../../assets/img/DPS.png"
-import { useNavigate } from "react-router-dom"
-import { ShortId } from "../../services"
-import { jwtDecode } from "jwt-decode"
-import { useDelistHero } from "../../hooks/use-delist-hero"
+import okg_token from "../../assets/img/OKGToken.png";
+import atk from "../../assets/img/ATK.png";
+import atk_speed from "../../assets/img/ATK Speed.png";
+import hp from "../../assets/img/HP.png";
+import dps from "../../assets/img/DPS.png";
+import { useNavigate } from "react-router-dom";
+import { ShortId } from "../../services";
+import { jwtDecode } from "jwt-decode";
+import { useDelistHero } from "../../hooks/use-delist-hero";
 
-import { isAuthenticated } from "../../utils"
+import { isAuthenticated } from "../../utils";
 
 export const DetailInfor = ({ hero }) => {
-    const { delist } = useDelistHero()
-    const token = localStorage.getItem("token")
+    const { delist } = useDelistHero();
+    const token = localStorage.getItem("token");
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const handeLeDelist = () => {
         if (isAuthenticated()) {
-            delist()
+            delist();
         } else {
-            navigate("/login")
+            navigate("/login");
         }
-    }
-    const decode = token ? jwtDecode(token) : undefined
+    };
+    const decode = token ? jwtDecode(token) : undefined;
 
     return (
         <div className="container ">
@@ -192,5 +192,5 @@ export const DetailInfor = ({ hero }) => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};

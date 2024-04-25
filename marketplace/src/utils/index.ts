@@ -1,2 +1,2 @@
-export * from "./is-authenticated"
-export * from "./with-auth"
+export * from "./is-authenticated";
+export * from "./with-auth";

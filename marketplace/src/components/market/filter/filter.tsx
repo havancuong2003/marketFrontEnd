@@ -1,15 +1,15 @@
 // Filter.js
 type FilterProps = {
-    toggle: (item: any) => void
-    component: string[]
-    isClick: boolean
-    headerFilter: string
-    onToggle: (item: string) => void
-    selectedItem: string
+    toggle: (item: any) => void;
+    component: string[];
+    isClick: boolean;
+    headerFilter: string;
+    onToggle: (item: string) => void;
+    selectedItem: string;
     classes?: {
-        [key: string]: string
-    }
-}
+        [key: string]: string;
+    };
+};
 export const Filter: React.FC<FilterProps> = ({
     toggle,
     component,
@@ -46,5 +46,5 @@ export const Filter: React.FC<FilterProps> = ({
                 </div>
             ))}
         </div>
-    )
-}
+    );
+};

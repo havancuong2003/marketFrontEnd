@@ -1,15 +1,15 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import { StartPage } from "./pages/start-page"
+import { StartPage } from "./pages/start-page";
 
-import { Start } from "./pages/start"
-import { SignUpForm } from "./components/sign-up-form"
-import { LoginForm } from "./components/login-form"
-import { Market } from "./pages/market/market"
-import { HeroDetail } from "./pages/hero-infomation/hero-info"
-import { BuyHero } from "./components/trasnaction"
-import { InventoryHero } from "./pages/inventory/hero-inventory"
-import { Profile } from "./pages/profile"
+import { Start } from "./pages/start";
+import { SignUpForm } from "./components/sign-up-form";
+import { LoginForm } from "./components/login-form";
+import { Market } from "./pages/market/market";
+import { HeroDetail } from "./pages/hero-infomation/hero-info";
+import { BuyHero } from "./components/trasnaction";
+import { InventoryHero } from "./pages/inventory/hero-inventory";
+import { Profile } from "./pages/profile";
 
 const App = () => {
     return (
@@ -43,7 +43,7 @@ const App = () => {
                 <Route path="/profile" element={<Profile />} />
             </Routes>
         </Router>
-    )
-}
+    );
+};
 
-export default App
+export default App;

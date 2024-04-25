@@ -1,20 +1,20 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
-import { VITE_API_URL } from "../env"
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { VITE_API_URL } from "../env";
 
 export const useHeroDetail = () => {
-    const [hero, setHero] = useState([])
-    const { id } = useParams()
+    const [hero, setHero] = useState([]);
+    const { id } = useParams();
     useEffect(() => {
         axios
             .get(VITE_API_URL + `/api/v1/hero/${id}/detail`)
             .then((res) => {
-                setHero(res.data)
+                setHero(res.data);
             })
             .catch((err) => {
-                console.log(err)
-            })
-    }, [])
-    return hero
-}
+                console.log(err);
+            });
+    }, []);
+    return hero;
+};

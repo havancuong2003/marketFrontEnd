@@ -1,1 +1,1 @@
-export * from "./change-username"
+export * from "./change-username";

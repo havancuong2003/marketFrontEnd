@@ -1,14 +1,14 @@
-import React from "react"
-import clsx from "clsx"
-import avatar from "../../../assets/img/avatar.png"
-import okg_token from "../../../assets/img/OKGToken.png"
-import x_button from "../../../assets/img/xbutton.png"
+import React from "react";
+import clsx from "clsx";
+import avatar from "../../../assets/img/avatar.png";
+import okg_token from "../../../assets/img/OKGToken.png";
+import x_button from "../../../assets/img/xbutton.png";
 type BuyHeroProps = {
     classes?: {
-        [key: string]: string
-    }
-    hero: any
-}
+        [key: string]: string;
+    };
+    hero: any;
+};
 export const BuyHero: React.FC<BuyHeroProps> = ({ classes, hero }) => {
     return (
         <div
@@ -64,5 +64,5 @@ export const BuyHero: React.FC<BuyHeroProps> = ({ classes, hero }) => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};

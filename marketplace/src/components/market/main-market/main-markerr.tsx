@@ -1,19 +1,19 @@
-import { DetailHero } from "../../common/detail-hero"
-import button from "../../../assets/img/button.png"
-import clsx from "clsx"
-import { useNavigate } from "react-router-dom"
+import { DetailHero } from "../../common/detail-hero";
+import button from "../../../assets/img/button.png";
+import clsx from "clsx";
+import { useNavigate } from "react-router-dom";
 
 type MainMarkerrProps = {
-    heros: any
-    dataSize: number
-    totalPages: number
-    currentPage: number
-    onPageChange: (page: number) => void
-    onFilterStatusChange: (filterstt) => void
+    heros: any;
+    dataSize: number;
+    totalPages: number;
+    currentPage: number;
+    onPageChange: (page: number) => void;
+    onFilterStatusChange: (filterstt) => void;
     classes?: {
-        [key: string]: string
-    }
-}
+        [key: string]: string;
+    };
+};
 export const MainMarkerr: React.FC<MainMarkerrProps> = ({
     heros,
     dataSize,
@@ -25,17 +25,17 @@ export const MainMarkerr: React.FC<MainMarkerrProps> = ({
 }) => {
     const goToPreviousPage = () => {
         if (currentPage > 1) {
-            onPageChange(currentPage - 1)
+            onPageChange(currentPage - 1);
         }
-    }
+    };
 
     const goToNextPage = () => {
         if (currentPage < totalPages) {
-            onPageChange(currentPage + 1)
+            onPageChange(currentPage + 1);
         }
-    }
+    };
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     return (
         <div className="flex w-[410px] lg:w-full h-full">
@@ -115,5 +115,5 @@ export const MainMarkerr: React.FC<MainMarkerrProps> = ({
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};

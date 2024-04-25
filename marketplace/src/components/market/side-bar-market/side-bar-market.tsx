@@ -1,29 +1,29 @@
 // SideBarMarket.js
 
-import clsx from "clsx"
-import { useSearchMarket } from "../../../hooks/use-search-market"
-import { Filter } from "../filter/filter"
+import clsx from "clsx";
+import { useSearchMarket } from "../../../hooks/use-search-market";
+import { Filter } from "../filter/filter";
 
 type SideBarProps = {
     classes?: {
-        [key: string]: string
-    }
-    filterItems: (filterParams: any) => void
-    resetFilters: () => void
-    toggleRank: (item: any) => void
-    toggleClass: (item: any) => void
-    toggleRace: (item: any) => void
-    isRankOpen: boolean
-    isClassOpen: boolean
-    isRaceOpen: boolean
-    selectedRank: string
-    selectedClass: string
-    selectedRace: string
-    onToggleRank: (item: any) => void
-    onToggleClass: (item: any) => void
-    onToggleRace: (item: any) => void
-    filterStatus: (filterstt) => void
-}
+        [key: string]: string;
+    };
+    filterItems: (filterParams: any) => void;
+    resetFilters: () => void;
+    toggleRank: (item: any) => void;
+    toggleClass: (item: any) => void;
+    toggleRace: (item: any) => void;
+    isRankOpen: boolean;
+    isClassOpen: boolean;
+    isRaceOpen: boolean;
+    selectedRank: string;
+    selectedClass: string;
+    selectedRace: string;
+    onToggleRank: (item: any) => void;
+    onToggleClass: (item: any) => void;
+    onToggleRace: (item: any) => void;
+    filterStatus: (filterstt) => void;
+};
 export const SideBar: React.FC<SideBarProps> = ({
     classes,
     filterItems,
@@ -42,7 +42,7 @@ export const SideBar: React.FC<SideBarProps> = ({
     onToggleRace,
     filterStatus,
 }) => {
-    const searchMarket = useSearchMarket()
+    const searchMarket = useSearchMarket();
     return (
         <div className="lg:block relative">
             <div className={clsx(classes?.showFilter, "h-auto")}>
@@ -75,21 +75,21 @@ export const SideBar: React.FC<SideBarProps> = ({
                         isClick={isRankOpen}
                         component={searchMarket.rank}
                         toggle={(item) => {
-                            toggleRank(item)
+                            toggleRank(item);
                             filterItems({
                                 selectedRank: "",
                                 selectedClass,
                                 selectedRace,
-                            })
+                            });
                         }}
                         headerFilter="Rank"
                         onToggle={(item) => {
-                            onToggleRank(item)
+                            onToggleRank(item);
                             filterItems({
                                 selectedRank: item,
                                 selectedClass,
                                 selectedRace,
-                            })
+                            });
                         }}
                         selectedItem={selectedRank}
                     />
@@ -98,21 +98,21 @@ export const SideBar: React.FC<SideBarProps> = ({
                         isClick={isClassOpen}
                         component={searchMarket.classess}
                         toggle={(item) => {
-                            toggleClass(item)
+                            toggleClass(item);
                             filterItems({
                                 selectedRank,
                                 selectedClass: "",
                                 selectedRace,
-                            })
+                            });
                         }}
                         headerFilter="Class"
                         onToggle={(item) => {
-                            onToggleClass(item)
+                            onToggleClass(item);
                             filterItems({
                                 selectedRank,
                                 selectedClass: item,
                                 selectedRace,
-                            })
+                            });
                         }}
                         selectedItem={selectedClass}
                     />
@@ -121,26 +121,26 @@ export const SideBar: React.FC<SideBarProps> = ({
                         isClick={isRaceOpen}
                         component={searchMarket.race}
                         toggle={(item) => {
-                            toggleRace(item)
+                            toggleRace(item);
                             filterItems({
                                 selectedRank,
                                 selectedClass,
                                 selectedRace: "",
-                            })
+                            });
                         }}
                         headerFilter="Race"
                         onToggle={(item) => {
-                            onToggleRace(item)
+                            onToggleRace(item);
                             filterItems({
                                 selectedRank,
                                 selectedClass,
                                 selectedRace: item,
-                            })
+                            });
                         }}
                         selectedItem={selectedRace}
                     />
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};

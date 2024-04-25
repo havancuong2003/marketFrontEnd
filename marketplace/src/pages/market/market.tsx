@@ -1,27 +1,27 @@
 // Market.js
 
-import { useState } from "react"
-import { Header } from "../../components/common/header"
-import { MainMarkerr } from "../../components/market/main-market"
-import { SideBar } from "../../components/market/side-bar-market"
-import { useHeroMarket } from "../../hooks/use-hero-market"
-import { useSearchMarket } from "../../hooks/use-search-market"
-import clsx from "clsx"
+import { useState } from "react";
+import { Header } from "../../components/common/header";
+import { MainMarkerr } from "../../components/market/main-market";
+import { SideBar } from "../../components/market/side-bar-market";
+import { useHeroMarket } from "../../hooks/use-hero-market";
+import { useSearchMarket } from "../../hooks/use-search-market";
+import clsx from "clsx";
 type MarketProps = {
     classes?: {
-        [key: string]: string
-    }
-}
+        [key: string]: string;
+    };
+};
 interface Hero {
-    rank: string
-    class: string
-    race: string
+    rank: string;
+    class: string;
+    race: string;
 }
 export const Market: React.FC<MarketProps> = ({ classes }) => {
-    const { heros, setHeros, dataSize } = useHeroMarket()
+    const { heros, setHeros, dataSize } = useHeroMarket();
     const { heroBackup } = useHeroMarket() as {
-        heroBackup: Hero[]
-    }
+        heroBackup: Hero[];
+    };
 
     const {
         isRankOpen,
@@ -47,53 +47,53 @@ export const Market: React.FC<MarketProps> = ({ classes }) => {
         onToggleClass,
         onToggleRank,
         onToggleRace,
-    } = useSearchMarket()
-    console.log(selectedClass, selectedRank, selectedRace)
-    const ITEMS_PER_PAGE = 5 // Số lượng hero mỗi trang
+    } = useSearchMarket();
+    console.log(selectedClass, selectedRank, selectedRace);
+    const ITEMS_PER_PAGE = 5; // Số lượng hero mỗi trang
 
-    const [currentPage, setCurrentPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState(1);
 
     // Tính số trang dựa trên số lượng hero
-    const totalPages = Math.ceil(heros.length / ITEMS_PER_PAGE)
+    const totalPages = Math.ceil(heros.length / ITEMS_PER_PAGE);
     const getHeroesForPage = () => {
-        const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
-        const endIndex = startIndex + ITEMS_PER_PAGE
-        return heros.slice(startIndex, endIndex)
-    }
+        const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+        const endIndex = startIndex + ITEMS_PER_PAGE;
+        return heros.slice(startIndex, endIndex);
+    };
     // Xử lý khi chuyển trang
     const handlePageChange = (page) => {
-        setCurrentPage(page)
-    }
+        setCurrentPage(page);
+    };
     const filterItems = (selectedFilter) => {
-        const { selectedRank, selectedClass, selectedRace } = selectedFilter
+        const { selectedRank, selectedClass, selectedRace } = selectedFilter;
         const filteredHeros = heroBackup.filter((hero) => {
             return (
                 (!selectedRank || hero.rank === selectedRank.toUpperCase()) &&
                 (!selectedClass ||
                     hero.class === selectedClass.toUpperCase()) &&
                 (!selectedRace || hero.race === selectedRace.toUpperCase())
-            )
-        })
-        setHeros(filteredHeros)
-    }
+            );
+        });
+        setHeros(filteredHeros);
+    };
 
     const resetFilters = () => {
-        setHeros(heroBackup)
+        setHeros(heroBackup);
 
-        setSelectedRank("")
-        setSelectedClass("")
-        setSelectedRace("")
+        setSelectedRank("");
+        setSelectedClass("");
+        setSelectedRace("");
 
-        setIsClassOpen(true)
-        setIsRankOpen(true)
-        setIsRaceOpen(true)
-    }
+        setIsClassOpen(true);
+        setIsRankOpen(true);
+        setIsRaceOpen(true);
+    };
 
-    const [filterOff, setFilterOff] = useState(true)
+    const [filterOff, setFilterOff] = useState(true);
     const handleClickFilter = (filterstt) => {
-        setFilterOff(filterstt)
-    }
-    console.log(filterOff)
+        setFilterOff(filterstt);
+    };
+    console.log(filterOff);
 
     return (
         <div className="bg-black h-auto">
@@ -138,5 +138,5 @@ export const Market: React.FC<MarketProps> = ({ classes }) => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};

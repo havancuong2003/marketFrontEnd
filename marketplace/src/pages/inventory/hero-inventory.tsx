@@ -1,23 +1,23 @@
-import { Header } from "../../components"
-import { ButtonInventory } from "../../components/common/inventory/button-inventory"
-import { useInventory } from "../../hooks/use-hero-inventory"
-import { Class, Race, Rank } from "../../types"
-import avatar from "../../assets/img/avatar-account.png"
-import herotext from "../../assets/img/hero.png"
-import { FilterInventory } from "../../components/common/inventory"
+import { Header } from "../../components";
+import { ButtonInventory } from "../../components/common/inventory/button-inventory";
+import { useInventory } from "../../hooks/use-hero-inventory";
+import { Class, Race, Rank } from "../../types";
+import avatar from "../../assets/img/avatar-account.png";
+import herotext from "../../assets/img/hero.png";
+import { FilterInventory } from "../../components/common/inventory";
 interface Inventory {
-    id: string
-    name: string
-    class: Class
-    race: Race
-    rank: Rank
-    level: number
-    image: string
+    id: string;
+    name: string;
+    class: Class;
+    race: Race;
+    rank: Rank;
+    level: number;
+    image: string;
 }
 export const InventoryHero = () => {
     const { inventory } = useInventory() as {
-        inventory: Inventory[]
-    }
+        inventory: Inventory[];
+    };
 
     return (
         <div>
@@ -97,5 +97,5 @@ export const InventoryHero = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};

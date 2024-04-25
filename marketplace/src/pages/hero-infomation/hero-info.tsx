@@ -1,21 +1,21 @@
-import { DetailInfor, Header, HistoryTrans, InfoHero } from "../../components"
-import { useHeroDetail } from "../../hooks/use-hero-info"
-import { useNavigate } from "react-router-dom"
+import { DetailInfor, Header, HistoryTrans, InfoHero } from "../../components";
+import { useHeroDetail } from "../../hooks/use-hero-info";
+import { useNavigate } from "react-router-dom";
 
-import { useState } from "react"
-import footer from "../../assets/img/Footer.png"
-import { BuyHero } from "../../components/trasnaction"
+import { useState } from "react";
+import footer from "../../assets/img/Footer.png";
+import { BuyHero } from "../../components/trasnaction";
 
 export const HeroDetail = () => {
-    const hero = useHeroDetail()
+    const hero = useHeroDetail();
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
-    const [showHistory, setShowHistory] = useState(false)
+    const [showHistory, setShowHistory] = useState(false);
 
     const toggleHistory = () => {
-        setShowHistory(!showHistory)
-    }
+        setShowHistory(!showHistory);
+    };
 
     return (
         <>
@@ -66,5 +66,5 @@ export const HeroDetail = () => {
                 </div>
             </div>
         </>
-    )
-}
+    );
+};

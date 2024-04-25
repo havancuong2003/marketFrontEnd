@@ -1,27 +1,27 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import logo from "../../../assets/img/logo.png"
-import { isAuthenticated } from "../../../utils/is-authenticated"
-import clsx from "clsx"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import logo from "../../../assets/img/logo.png";
+import { isAuthenticated } from "../../../utils/is-authenticated";
+import clsx from "clsx";
 
 export const Header = (props) => {
-    const { classes }: any = props
-    const [showMenu, setShowMenu] = useState(false)
-    const navigate = useNavigate()
+    const { classes }: any = props;
+    const [showMenu, setShowMenu] = useState(false);
+    const navigate = useNavigate();
 
     const handleLogout = () => {
-        localStorage.removeItem("token")
-        navigate("/login")
-    }
+        localStorage.removeItem("token");
+        navigate("/login");
+    };
 
     const toggleMenu = () => {
-        setShowMenu(!showMenu)
-    }
+        setShowMenu(!showMenu);
+    };
 
     const handleItemClick = (path) => {
-        navigate(path)
-        setShowMenu(false)
-    }
+        navigate(path);
+        setShowMenu(false);
+    };
 
     return (
         <>
@@ -151,5 +151,5 @@ export const Header = (props) => {
                 </div>
             )}
         </>
-    )
-}
+    );
+};

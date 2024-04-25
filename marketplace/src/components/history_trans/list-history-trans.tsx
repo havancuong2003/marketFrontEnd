@@ -1,24 +1,24 @@
-import { enUS } from "date-fns/locale"
-import { useHistoryTrans } from "../../hooks/use-history-trans"
-import { format } from "date-fns"
-import { ShortId } from "../../services"
+import { enUS } from "date-fns/locale";
+import { useHistoryTrans } from "../../hooks/use-history-trans";
+import { format } from "date-fns";
+import { ShortId } from "../../services";
 interface HistoryItem {
-    id: string
-    time: string
-    value: number
-    seller: string
-    buyer: string
+    id: string;
+    time: string;
+    value: number;
+    seller: string;
+    buyer: string;
 }
 
 export const HistoryTrans = () => {
     const { historyTrans } = useHistoryTrans() as {
-        historyTrans: HistoryItem[]
-    }
+        historyTrans: HistoryItem[];
+    };
     const formatDate = (dateString: string): string => {
-        const date = new Date(dateString)
-        const formattedDate = format(date, "dd MMM yyyy", { locale: enUS })
-        return formattedDate
-    }
+        const date = new Date(dateString);
+        const formattedDate = format(date, "dd MMM yyyy", { locale: enUS });
+        return formattedDate;
+    };
 
     return (
         <div className="flex justify-center ">
@@ -61,5 +61,5 @@ export const HistoryTrans = () => {
                 </table>
             </div>
         </div>
-    )
-}
+    );
+};

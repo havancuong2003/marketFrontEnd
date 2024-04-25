@@ -1,5 +1,5 @@
-import axios from "axios"
-import { VITE_API_URL } from "../../../env"
+import axios from "axios";
+import { VITE_API_URL } from "../../../env";
 
 export const changeUserName = async (username) => {
     try {
@@ -8,14 +8,14 @@ export const changeUserName = async (username) => {
             {
                 username,
             }
-        )
-        console.log(response.data, "data here")
-        console.log(response, " response here")
+        );
+        console.log(response.data, "data here");
+        console.log(response, " response here");
 
-        return response.data
+        return response.data;
     } catch (error) {
-        console.error("Error fetching user information:", error)
+        console.error("Error fetching user information:", error);
         // Handle error here, maybe show a message to the user
-        throw error // Rethrow the error to propagate it upwards
+        throw error; // Rethrow the error to propagate it upwards
     }
-}
+};

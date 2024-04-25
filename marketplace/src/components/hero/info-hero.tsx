@@ -1,5 +1,5 @@
-import avatar from "../../assets/img/avatar.png"
-import frame from "../../assets/img/grand-chief.png"
+import avatar from "../../assets/img/avatar.png";
+import frame from "../../assets/img/grand-chief.png";
 
 export const InfoHero = ({ hero }) => {
     return (
@@ -40,5 +40,5 @@ export const InfoHero = ({ hero }) => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
