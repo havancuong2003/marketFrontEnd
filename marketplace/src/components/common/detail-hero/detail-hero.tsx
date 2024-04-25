@@ -28,7 +28,7 @@ export const DetailHero: React.FC<DetailHeroProps> = ({
                 classes?.size,
                 classes?.backgroundHeroCard,
                 classes?.textsize,
-                "relative "
+                "relative"
             )}
         >
             <div className="">
@@ -79,11 +79,25 @@ export const DetailHero: React.FC<DetailHeroProps> = ({
                     <span>{price}</span>
                 </div>
                 <div className="flex absolute bottom-1 left-3 lg:bottom-1 lg:left-3 lg:text-xl ">
-                    <div className={clsx(classes?.info, " mr-8 lg:mr-16")}>
-                        <span>{race} </span>
+                    <div
+                        className={clsx(
+                            classes?.info,
+                            classes?.infoFooterLeft,
+                            "mr-8 lg:ml-2 text-center "
+                        )}
+                    >
+                        <span className="">{race} </span>
                     </div>
-                    <div className={clsx(classes?.info, "lg:ml-4 mb-1")}>
-                        <span>{classess}</span>
+                    <div
+                        className={clsx(
+                            classes?.info,
+                            classes?.infoFooterRight,
+                            "lg:ml-10 mb-1  "
+                        )}
+                    >
+                        <span className={clsx(classes?.posFooterRightt)}>
+                            {classess}
+                        </span>
                     </div>
                 </div>
             </div>

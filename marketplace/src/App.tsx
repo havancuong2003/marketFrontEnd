@@ -6,9 +6,9 @@ import { Start } from "./pages/start";
 import { SignUpForm } from "./components/sign-up-form";
 import { LoginForm } from "./components/login-form";
 import { Market } from "./pages/market/market";
-import { HeroDetail } from "./pages/hero-infomation/hero-info";
+import { HeroDetail } from "./pages/hero-infomation";
 import { BuyHero } from "./components/trasnaction";
-import { InventoryHero } from "./pages/inventory/hero-inventory";
+import { InventoryHero } from "./pages/inventory";
 import { Profile } from "./pages/profile";
 import { Activities } from "./pages/activity";
 

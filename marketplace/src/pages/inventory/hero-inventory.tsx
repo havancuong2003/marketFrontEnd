@@ -129,8 +129,8 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="  w-full h-full">
-                                <div className="grid grid-cols-2 lg:grid-cols-3 gap-10 my-10">
+                            <div className="">
+                                <div className="grid grid-cols-3 my-10">
                                     {heroInventory.map((hero) => (
                                         <div
                                             key={hero.id}

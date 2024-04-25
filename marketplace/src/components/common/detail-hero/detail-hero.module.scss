@@ -52,6 +52,10 @@
     height: 50px;
     width: 220px;
 }
+.posFooterRight {
+    position: absolute;
+    left: -15px;
+}
 @media screen and (min-width: 1024px) {
     .setPosSpd {
         position: absolute;
@@ -72,5 +76,23 @@
         position: absolute;
         bottom: 48px;
         left: 100px;
+    }
+    .infoFooterRight {
+        position: absolute;
+        left: 75px;
+        width: 110px;
+        bottom: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .infoFooterLeft {
+        position: absolute;
+        bottom: 5px;
+        left: -15px;
+        width: 110px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
