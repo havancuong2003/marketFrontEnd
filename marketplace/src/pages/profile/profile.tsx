@@ -2,30 +2,19 @@ import clsx from "clsx";
 import { Header } from "../../components";
 
 import { useEffect, useState } from "react";
+import { useInventory } from "../../hooks";
 import { getInfoUser } from "../../services";
 import axios, { AxiosError } from "axios";
-import { useInventory } from "../../hooks";
 import { VITE_API_URL } from "../../env";
+import avatar from "../../assets/img/avatar-account.png";
+import { useAccountInformation } from "../../hooks/";
+import { ButtonInventory } from "../../components/common/inventory/button-inventory";
 type ProfileProps = {
     classes?: {
         [key: string]: string;
     };
 };
-function countByAttribute(myHeros, attribute, value) {
-    // Số lượng ban đầu là 0
-    let count = 0;
 
-    // Duyệt qua từng đối tượng trong mảng inventory
-    myHeros.forEach((item) => {
-        // Kiểm tra xem giá trị của thuộc tính được truyền vào có trùng khớp không
-        if (item[attribute] === value) {
-            // Nếu trùng khớp, tăng số lượng lên 1
-            count++;
-        }
-    });
-
-    return count;
-}
 export const Profile: React.FC<ProfileProps> = ({ classes }) => {
     const [myHeros, setMyHeros] = useState<any>([]);
     const { inventory } = useInventory();
@@ -40,6 +29,24 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
         }
     }, [inventory]);
 
+    console.log("myHeros", myHeros);
+    function countByAttribute(attribute, value) {
+        // Số lượng ban đầu là 0
+        let count = 0;
+
+        // Duyệt qua từng đối tượng trong mảng inventory
+        myHeros.forEach((item) => {
+            // Kiểm tra xem giá trị của thuộc tính được truyền vào có trùng khớp không
+            if (item[attribute] === value) {
+                // Nếu trùng khớp, tăng số lượng lên 1
+                count++;
+            }
+        });
+
+        return count;
+    }
+
+    const { account } = useAccountInformation();
     const [errorChangeUserName, setErrorChangeUserName] = useState("");
     const [userData, setUserData] = useState<any>(null);
     const [isEditing, setIsEditing] = useState(false);
@@ -101,6 +108,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
     const handleChange = (e) => {
         setNewUsername(e.target.value);
     };
+
     useEffect(() => {
         const fetchUserData = async () => {
             try {
@@ -118,7 +126,10 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
             if (newPassword !== confirmPassword) {
                 setErroDiff("Passwords do not match");
                 return; // Stop further execution
+                setErroDiff("Passwords do not match");
+                return; // Stop further execution
             }
+            setErroDiff("");
             setErroDiff("");
             // Call API to change password
             const response = await axios.post(
@@ -148,6 +159,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
         setNewPassword(e.target.value);
         setErrorChangePassword([]);
     };
+
     const handleOldPasswordChange = (e) => {
         setOldPassword(e.target.value);
         setErrorChangePassword([]);
@@ -157,23 +169,39 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
         if (newPassword !== e.target.value) {
             setErroDiff("Password not match");
             setErrorChangePassword([]);
+            setErroDiff("Password not match");
+            setErrorChangePassword([]);
         } else {
+            setErroDiff("");
             setErroDiff("");
         }
         setConfirmPassword(e.target.value);
     };
 
     return (
-        <div>
+        <div className="">
             <div>
                 <Header />
             </div>
 
-            <div className="flex">
+            <div className="flex bg-bginventory">
                 <div className={clsx(classes?.container, "border")}>
-                    Khung chua 3 button inventory activities profile setting
+                    <div className=" w-full bg-bgprofile flex justify-center text-center">
+                        <div className="pt-10">
+                            <img src={avatar} alt="" className="pb-3 p-5" />
+                            <p className="text-4xl font-semibold text-white pb-3">
+                                {account["username"]}
+                            </p>
+                            <p className="text-sm font-semibold text-white pb-14">
+                                #{account["id"]}
+                            </p>
+                            <ButtonInventory
+                                selectedItem={"Profile settings"}
+                            />
+                        </div>
+                    </div>
                 </div>
-                <div className=" `">
+                <div className="w-full">
                     <div
                         className={clsx(
                             classes?.profileSize,
@@ -254,7 +282,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                 height="2"
                                 viewBox="0 0 1131 2"
                                 fill="none"
-                                className="border border-[#574239] h-0"
+                                className="border border-[#574239] h-0 w-full"
                             >
                                 <path d="M0 1H1130.43" stroke="#574239" />
                             </svg>
@@ -284,7 +312,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                 height="2"
                                 viewBox="0 0 1131 2"
                                 fill="none"
-                                className="border border-[#574239] h-0"
+                                className="border border-[#574239] h-0 w-full"
                             >
                                 <path d="M0 1H1130.43" stroke="#574239" />
                             </svg>
@@ -470,7 +498,6 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                         <span>
                                             Warior:{" "}
                                             {countByAttribute(
-                                                myHeros,
                                                 "rank",
                                                 "WARRIOR"
                                             )}
@@ -478,7 +505,6 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                         <span>
                                             Warmonger:{" "}
                                             {countByAttribute(
-                                                myHeros,
                                                 "rank",
                                                 "WARMONGER"
                                             )}
@@ -486,7 +512,6 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                         <span>
                                             Overseer:{" "}
                                             {countByAttribute(
-                                                myHeros,
                                                 "rank",
                                                 "OVERSEER"
                                             )}{" "}
@@ -494,7 +519,6 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                         <span>
                                             Chieftan:{" "}
                                             {countByAttribute(
-                                                myHeros,
                                                 "rank",
                                                 "CHIEFTAN"
                                             )}{" "}
@@ -513,43 +537,23 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                         </span>
                                         <span>
                                             Antuk:{" "}
-                                            {countByAttribute(
-                                                myHeros,
-                                                "race",
-                                                "ANTUK"
-                                            )}{" "}
+                                            {countByAttribute("race", "ANTUK")}{" "}
                                         </span>
                                         <span>
                                             Krakee:{" "}
-                                            {countByAttribute(
-                                                myHeros,
-                                                "race",
-                                                "KRAKEE"
-                                            )}{" "}
+                                            {countByAttribute("race", "KRAKEE")}{" "}
                                         </span>
                                         <span>
                                             Krakee:{" "}
-                                            {countByAttribute(
-                                                myHeros,
-                                                "race",
-                                                "MANTAH"
-                                            )}{" "}
+                                            {countByAttribute("race", "MANTAH")}{" "}
                                         </span>
                                         <span>
                                             Montak:{" "}
-                                            {countByAttribute(
-                                                myHeros,
-                                                "race",
-                                                "MONTAK"
-                                            )}{" "}
+                                            {countByAttribute("race", "MONTAK")}{" "}
                                         </span>
                                         <span>
                                             Muu:{" "}
-                                            {countByAttribute(
-                                                myHeros,
-                                                "race",
-                                                "MUU"
-                                            )}{" "}
+                                            {countByAttribute("race", "MUU")}{" "}
                                         </span>
                                     </div>
                                     <div
@@ -565,40 +569,23 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                         </span>
                                         <span>
                                             Air:{" "}
-                                            {countByAttribute(
-                                                myHeros,
-                                                "class",
-                                                "AIR"
-                                            )}{" "}
+                                            {countByAttribute("class", "AIR")}{" "}
                                         </span>
                                         <span>
                                             Mage:{" "}
-                                            {countByAttribute(
-                                                myHeros,
-                                                "class",
-                                                "MAGE"
-                                            )}{" "}
+                                            {countByAttribute("class", "MAGE")}{" "}
                                         </span>
                                         <span>
                                             Melee:{" "}
-                                            {countByAttribute(
-                                                myHeros,
-                                                "class",
-                                                "MELEE"
-                                            )}
+                                            {countByAttribute("class", "MELEE")}
                                         </span>
                                         <span>
                                             Range:{" "}
-                                            {countByAttribute(
-                                                myHeros,
-                                                "class",
-                                                "RANGE"
-                                            )}{" "}
+                                            {countByAttribute("class", "RANGE")}{" "}
                                         </span>
                                         <span>
                                             Tanker:{" "}
                                             {countByAttribute(
-                                                myHeros,
                                                 "class",
                                                 "TANKER"
                                             )}{" "}

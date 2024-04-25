@@ -3,6 +3,7 @@
 //   selectedItem: string;
 
 import clsx from "clsx";
+import { useNavigate } from "react-router-dom";
 
 //   classes?: {
 //     [key: string]: string;
@@ -16,12 +17,12 @@ type ButtonInventoryProps = {
         [key: string]: string;
     };
 };
-
+const component = ["Inventory", "Activities", "Profile settings"];
 export const ButtonInventory: React.FC<ButtonInventoryProps> = ({
-    component,
     selectedItem,
     classes,
 }) => {
+    const navigate = useNavigate();
     return (
         <div>
             {component.map((item, index) => (
@@ -34,6 +35,11 @@ export const ButtonInventory: React.FC<ButtonInventoryProps> = ({
                     } rounded-lg p-3`}
                 >
                     <button
+                        onClick={
+                            item === "Profile settings"
+                                ? () => navigate("/profile")
+                                : () => navigate("/" + item)
+                        }
                         className={clsx(
                             classes?.fonttext, // Lớp tùy chỉnh
                             item === selectedItem

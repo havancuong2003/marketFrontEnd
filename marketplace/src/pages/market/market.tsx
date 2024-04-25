@@ -13,16 +13,16 @@ type MarketProps = {
     };
 };
 interface Hero {
-    rank: string;
     class: string;
     race: string;
+    rank: string;
 }
 export const Market: React.FC<MarketProps> = ({ classes }) => {
     const { heros, setHeros, dataSize } = useHeroMarket();
     const { heroBackup } = useHeroMarket() as {
         heroBackup: Hero[];
     };
-
+    console.log("market", heros);
     const {
         isRankOpen,
         isClassOpen,
@@ -48,7 +48,8 @@ export const Market: React.FC<MarketProps> = ({ classes }) => {
         onToggleRank,
         onToggleRace,
     } = useSearchMarket();
-    console.log(selectedClass, selectedRank, selectedRace);
+    console.log("herroo", heros);
+
     const ITEMS_PER_PAGE = 5; // Số lượng hero mỗi trang
 
     const [currentPage, setCurrentPage] = useState(1);

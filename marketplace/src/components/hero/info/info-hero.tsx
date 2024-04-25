@@ -1,7 +1,19 @@
-import avatar from "../../assets/img/avatar.png";
-import frame from "../../assets/img/grand-chief.png";
-
-export const InfoHero = ({ hero }) => {
+import avatar from "../../../assets/img/avatar.png";
+import frame from "../../../assets/img/grand-chief.png";
+export const InfoHero = ({
+    hero,
+    // name,
+    // price,
+    // hp,
+    // speed,
+    // dps,
+    // atk,
+    // race,
+    // classes,
+    // avatar,
+    // rank,
+    // status,
+}) => {
     return (
         <div className="container flex p-12 justify-center">
             <div className="relative flex justify-center">

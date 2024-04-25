@@ -4,15 +4,23 @@ import { VITE_API_URL } from "../env";
 
 export const useInventory = () => {
     const [inventory, setInventory] = useState([]);
+    const [heros, setHeros] = useState([]);
     useEffect(() => {
         axios
-            .get(VITE_API_URL + "/api/v1/hero/show-inventory", {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                },
-            })
+            .get(
+                VITE_API_URL +
+                    "/api/v1/hero/show-inventory?items_per_page=100&page=1",
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
+                    },
+                }
+            )
             .then((res) => {
                 setInventory(res.data);
+                setHeros(res.data.data);
             })
             .catch((err) => {
                 console.log(err);
@@ -20,6 +28,8 @@ export const useInventory = () => {
     }, []);
 
     return {
+        heros,
+        setHeros,
         inventory,
         setInventory,
     };

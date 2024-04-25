@@ -6,15 +6,13 @@
 }
 
 .profileSize {
-    width: 1225px;
+    width: 90%;
     height: 520px;
-    flex-shrink: 0;
     border-radius: 10px;
     margin-top: 121px;
 }
 
 .profileInfo {
-    width: 886px;
     height: 244px;
     margin: 14px 277px 42px 62px;
     display: inline-flex;
@@ -102,9 +100,8 @@
 }
 
 .balance {
-    width: 1225px;
+    width: 90%;
     height: 188px;
-
     border-radius: 10px;
     background: var(--black-80, rgba(23, 10, 2, 0.8));
     margin-top: 24px;
@@ -141,7 +138,8 @@
 }
 
 .myHeros {
-    width: 1225px;
+    width: 90%;
+
     height: 368px;
     flex-shrink: 0;
     border-radius: 10px;
@@ -181,8 +179,10 @@
     font-family: Avenir;
     font-size: 20px;
     font-style: normal;
-    font-weight: 400;
-    line-height: 25px; /* 125% */
+
+    font-weight: 300;
+    line-height: 20px; /* 125% */
+
     margin-bottom: 30px;
     margin-left: 28px;
     margin-top: 28px;
@@ -196,8 +196,8 @@
 .countAtb > span:nth-child(n + 2) {
     display: inline-block;
     margin-left: 30px;
-    width: 150px;
-    margin-bottom: 20px;
+    width: 130px;
+    margin-bottom: 10px;
 }
 
 .walletBalance {
