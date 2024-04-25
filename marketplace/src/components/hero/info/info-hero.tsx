@@ -1,7 +1,5 @@
-import { DetailHeroProps } from "../../types";
-import avatar from "../../assets/img/avatar.png";
-import frame from "../../assets/img/grand-chief.png";
-import graytag from "../../assets/img/graytag.png";
+import avatar from "../../../assets/img/avatar.png";
+import frame from "../../../assets/img/grand-chief.png";
 export const InfoHero = ({
   hero,
   // name,

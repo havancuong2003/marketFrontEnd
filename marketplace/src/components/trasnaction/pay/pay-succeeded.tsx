@@ -23,15 +23,18 @@ export const PaySucceeded: React.FC<PayProps> = ({ classes }) => {
         <div className="flex justify-center py-5">
           <img src={arrow} alt="" className={classes?.arrow}></img>
         </div>
-        <div className="flex justify-center pt-5 text-[30px] font-bold">
+        <div className="flex justify-center pt-5 text-3xl font-bold">
           <span>PAYMENT SUCCEEDED</span>
         </div>
-        <div className="flex justify-center pt-4 text-[20px] ">
+        <div className="flex justify-center pt-4 text-xl ">
           <span>This awesome item is now yours!</span>
         </div>
         <div className="pt-10">
           <div
-            className="bg-yellow_l w-[400px] h-[60px] flex justify-center items-center  text-[20px] font-bold"
+            className={clsx(
+              classes?.view_item,
+              "bg-yellow_l  flex justify-center items-center  text-xl font-bold"
+            )}
             onClick={() => navigate("/inventory")}
           >
             <span>VIEW ITEM</span>

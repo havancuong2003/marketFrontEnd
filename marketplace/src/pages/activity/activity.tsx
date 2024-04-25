@@ -6,8 +6,8 @@ import { useAccountInformation, useActivities } from "../../hooks";
 import dayjs from "dayjs";
 
 export const Activities = () => {
-  const { account, setAccount } = useAccountInformation();
-  const { activities, setActivities } = useActivities();
+  const { account } = useAccountInformation();
+  const { activities } = useActivities();
   return (
     <div>
       <div>
@@ -21,10 +21,10 @@ export const Activities = () => {
               <div className="pt-10">
                 <img src={avatar} alt="" className="pb-3 p-5" />
                 <p className="text-4xl font-semibold text-white pb-3">
-                  {account.username}
+                  {account["username"]}
                 </p>
                 <p className="text-sm font-semibold text-white pb-14">
-                  #{account.id}
+                  #{account["id"]}
                 </p>
                 <ButtonInventory selectedItem={"Activities"} />
               </div>
@@ -49,20 +49,20 @@ export const Activities = () => {
                     {activities.map((item) => (
                       <tr className="border-b border-[#B7A284] border-opacity-20">
                         <td className="w-1/5 mt-5 mb-5">
-                          {item.event ? item.event : "-"}
+                          {item["event"] ? item["event"] : "-"}
                         </td>
                         <td className="w-1/5 mt-5 mb-5">
-                          ID:{item.hero_id ? item.hero_id : "-"}
+                          ID:{item["hero_id "] ? item["hero_id"] : "-"}
                         </td>
                         <td className="w-1/5 mt-5 mb-5">
-                          {item.value ? item.value + " OKG" : "-"}
+                          {item["value"] ? item["value "] + " OKG" : "-"}
                         </td>
                         <td className="w-1/5 mt-5 mb-5">
-                          {item.opposite_id ? item.opposite_id : "-"}
+                          {item["opposite_id"] ? item["opposite_id"] : "-"}
                         </td>
                         <td className="w-1/5 mt-5 mb-5">
-                          {item.time
-                            ? dayjs(item.time).format("DD MMM YYYY, HH:mm")
+                          {item["time"]
+                            ? dayjs(item["time"]).format("DD MMM YYYY, HH:mm")
                             : "-"}
                         </td>
                       </tr>

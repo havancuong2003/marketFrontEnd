@@ -33,18 +33,18 @@ export const HistoryTrans = () => {
           </thead>
           <tbody className="text-white ">
             {historyTrans.map((item) => (
-              <tr key={item.id} className="px-6 py-4 ">
+              <tr key={item["id"]} className="px-6 py-4 ">
                 <td className="px-6 py-4 ">
-                  <span>{formatDate(item.time)}</span>
+                  <span>{formatDate(item["time"])}</span>
                 </td>
                 <td className="px-6 py-4">
-                  <span>{item.value} OKG</span>
+                  <span>{item["value"]} OKG</span>
                 </td>
                 <td className="px-6 py-4">
-                  <span>{ShortId(item.seller)}</span>
+                  <span>{ShortId(item["seller"])}</span>
                 </td>
                 <td className="px-6 py-4">
-                  <span>{ShortId(item.buyer)}</span>
+                  <span>{ShortId(item["buyer"])}</span>
                 </td>
               </tr>
             ))}

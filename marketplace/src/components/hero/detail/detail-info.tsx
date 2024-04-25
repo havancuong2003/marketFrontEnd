@@ -5,22 +5,22 @@ import hp from "../../../assets/img/HP.png";
 import dps from "../../../assets/img/DPS.png";
 import { useNavigate } from "react-router-dom";
 import { ShortId } from "../../../services";
-import { jwtDecode } from "jwt-decode";
 import { unListHero } from "../../common/activity-hero";
 import { isAuthenticated } from "../../../utils";
 import { Hero } from "../../../models/hero";
 import clsx from "clsx";
+import { useAccountInformation } from "../../../hooks";
 
-type DetailInforProps = {
+type DetailInfoProps = {
   classes?: {
     [key: string]: string;
   };
   hero: Hero;
   onClickBuy: () => void;
-  onClickSell: () => void;
+  onClickSell: (id: number) => void;
 };
 
-export const DetailInfor: React.FC<DetailInforProps> = ({
+export const DetailInfo: React.FC<DetailInfoProps> = ({
   classes,
   hero,
   onClickBuy,
@@ -35,22 +35,22 @@ export const DetailInfor: React.FC<DetailInforProps> = ({
     navigate("/");
   };
 
-  const decode = token ? jwtDecode(token) : undefined;
+  const account = useAccountInformation();
 
   return (
     <div className="container ">
       <div className="text-white h-1/6">
-        <div className="bg-[#423429] rounded-xl bg-cover h-43% flex items-center">
+        <div className="bg-my-brown rounded-xl bg-cover h-43% flex items-center">
           <span className="ml-4 font-bold text-2xl"> {hero.name}</span>
         </div>
         <div className="flex h-29% justify-between mt-5 ">
-          <div className="bg-[#423429] rounded-xl bg-cover w-48%  flex items-center">
+          <div className="bg-my-brown rounded-xl bg-cover w-48%  flex items-center">
             <div className="ml-4">
               <span>ID:</span>
               <span>{hero.id}</span>
             </div>
           </div>
-          <div className="bg-[#423429] rounded-xl bg-cover w-48% flex items-center">
+          <div className="bg-my-brown rounded-xl bg-cover w-48% flex items-center">
             <div className="ml-4 text-s">
               <span>Owner: </span>
               <span className="truncate">{ShortId(hero.account_id)}</span>
@@ -70,7 +70,7 @@ export const DetailInfor: React.FC<DetailInforProps> = ({
           <div
             className={clsx(
               classes?.price,
-              "bg-[#170A02] rounded-2xl opacity-80  bg-cover w-full h-90%  flex items-center ",
+              "bg-brown-black rounded-2xl opacity-80  bg-cover w-full h-90%  flex items-center ",
               hero.status ? "" : "hidden"
             )}
           >
@@ -87,11 +87,11 @@ export const DetailInfor: React.FC<DetailInforProps> = ({
             )}
           >
             {isAuthenticated() ? (
-              decode.id === hero.account_id ? (
+              account["id"] === hero.account_id ? (
                 hero.status ? (
                   <div className=" w-2/3 h-2/3 pt-4 ">
                     <div
-                      className="bg-[#170A02] bg-cover flex items-center justify-center cursor-pointer border-solid border-2 border-lime-50 rounded-xl "
+                      className="bg-brown-black bg-cover flex items-center justify-center cursor-pointer border-solid border-2 border-lime-50 rounded-xl "
                       onClick={() => handelUnList(hero.id)}
                     >
                       <span className="text-white text-2xl font-medium ">
@@ -102,7 +102,10 @@ export const DetailInfor: React.FC<DetailInforProps> = ({
                 ) : (
                   <div className="">
                     <div
-                      className="bg-yellow_l bg-cover w-[400px] h-[58px] flex items-center justify-center cursor-pointer "
+                      className={clsx(
+                        classes?.sell_bt,
+                        "bg-yellow_l bg-cover flex items-center justify-center cursor-pointer "
+                      )}
                       onClick={() => onClickSell(hero.id)}
                     >
                       <span className="text-white text-2xl font-medium ">
@@ -133,7 +136,7 @@ export const DetailInfor: React.FC<DetailInforProps> = ({
         </div>
       </div>
 
-      <div className="bg-[#170A02] rounded-2xl opacity-80 bg-cover  relative">
+      <div className="bg-brown-black rounded-2xl opacity-80 bg-cover  relative">
         <div className="text-white p-2 ">
           <div className="mb-5">
             <span className="text-2xl font-medium">HERO STATS</span>
@@ -141,7 +144,7 @@ export const DetailInfor: React.FC<DetailInforProps> = ({
           <div className="">
             <div className="flex justify-between items-center pt-3.5">
               <div className="">
-                <span className="text-[16px]  text-[#B7A284]">
+                <span className="text-base  text-light-brown">
                   Combat power (CP)
                 </span>
                 <br />
@@ -150,7 +153,7 @@ export const DetailInfor: React.FC<DetailInforProps> = ({
               <div className="flex ">
                 <div className="mx-10">
                   <div>
-                    <span className="text-[14px]  text-[#B7A284]">
+                    <span className="text-sm  text-light-brown">
                       Health (HP)
                     </span>
                   </div>
@@ -166,7 +169,7 @@ export const DetailInfor: React.FC<DetailInforProps> = ({
 
                 <div className="mx-10">
                   <div>
-                    <span className="text-[14px] text-[#B7A284]">
+                    <span className="text-sm text-light-brown">
                       Attack (ATK)
                     </span>
                   </div>
@@ -184,7 +187,7 @@ export const DetailInfor: React.FC<DetailInforProps> = ({
 
                 <div className="mx-10">
                   <div>
-                    <span className="text-[14px]  text-[#B7A284]">
+                    <span className="text-sm  text-light-brown">
                       Speed (SPD)
                     </span>
                   </div>
@@ -201,7 +204,7 @@ export const DetailInfor: React.FC<DetailInforProps> = ({
                 </div>
                 <div className="mx-10">
                   <div>
-                    <span className="text-[14px]  text-[#B7A284]">DPS</span>
+                    <span className="text-sm  text-light-brown">DPS</span>
                   </div>
                   <div className="flex items-center">
                     <div className="mr-2">

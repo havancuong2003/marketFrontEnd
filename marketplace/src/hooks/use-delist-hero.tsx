@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { VITE_API_URL } from "../env";
 
@@ -20,7 +20,7 @@ export const useDelistHero = () => {
           },
         }
       );
-
+      console.log("Delist Success:", response.data);
       navigate("/");
     } catch (error) {
       console.error("Delist Error:", error);

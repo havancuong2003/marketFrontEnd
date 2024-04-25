@@ -9,8 +9,16 @@ type MarketProps = {
     [key: string]: string;
   };
 };
+interface Hero {
+  class: string;
+  race: string;
+  rank: string;
+}
 export const Market: React.FC<MarketProps> = ({ classes }) => {
-  const { heros, setHeros, dataSize, heroBackup } = useHeroMarket();
+  const { heros, setHeros, dataSize } = useHeroMarket();
+  const { heroBackup } = useHeroMarket() as {
+    heroBackup: Hero[];
+  };
   console.log("market", heros);
   const {
     isRankOpen,

@@ -5,11 +5,15 @@ export default {
         extend: {
             textColor:{
                 'my-brown': '#423429',
+                'light-brown':'#B7A284'
 
             },
             backgroundColor:{
                 'brown-op':'#170A02CC',
                 'light-brown':'#B7A284',
+                'bg-black':'#151515',
+                'my-brown': '#423429',
+                'brown-black':'#170A02'
             },
             fontFamily: {
             'Skranji': ['Skranji', 'sans-serif'],

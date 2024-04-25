@@ -1,4 +1,4 @@
 import { withClasses } from "../../common/with-classes";
-import { DetailInfor as DI } from "./detail-info";
+import { DetailInfo as DI } from "./detail-info";
 import classes from "./detail-info.module.scss";
-export const DetailInfor = withClasses(classes, DI);
+export const DetailInfo = withClasses(classes, DI);
