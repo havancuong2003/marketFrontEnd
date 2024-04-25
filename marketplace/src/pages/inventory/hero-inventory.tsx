@@ -1,46 +1,46 @@
-import { Header } from "../../components"
+import { Header } from "../../components";
 
-import { ButtonInventory } from "../../components/common/inventory/button-inventory"
-import { useInventory, useAccountInformation } from "../../hooks"
-import { Class, Race, Rank } from "../../types"
-import avatar from "../../assets/img/avatar-account.png"
-import herotext from "../../assets/img/hero.png"
-import { FilterInventory } from "../../components/common/inventory"
-import { useNavigate } from "react-router-dom"
-import clsx from "clsx"
-import { useEffect, useState } from "react"
-import { DetailHero } from "../../components/common/detail-hero"
+import { ButtonInventory } from "../../components/common/inventory/button-inventory";
+import { useInventory, useAccountInformation } from "../../hooks";
+import { Class, Race, Rank } from "../../types";
+import avatar from "../../assets/img/avatar-account.png";
+import herotext from "../../assets/img/hero.png";
+import { FilterInventory } from "../../components/common/inventory";
+import { useNavigate } from "react-router-dom";
+import clsx from "clsx";
+import { useEffect, useState } from "react";
+import { DetailHero } from "../../components/common/detail-hero";
 
 type InventoryHeroProps = {
     classes?: {
-        [key: string]: string
-    }
-}
+        [key: string]: string;
+    };
+};
 export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
-    const { heros, inventory } = useInventory()
-    console.log("iv", inventory)
+    const { heros, inventory } = useInventory();
+    console.log("iv", inventory);
 
     if (Array.isArray(heros)) {
-        console.log("arr", heros)
+        console.log("arr", heros);
     }
     if (typeof heros === "object" && heros !== null) {
-        console.log("obj", heros)
+        console.log("obj", heros);
     }
 
-    const [heroInventory, setHeroInventory] = useState([])
+    const [heroInventory, setHeroInventory] = useState([]);
     useEffect(() => {
-        setHeroInventory(heros)
-    }, [heros])
+        setHeroInventory(heros);
+    }, [heros]);
 
-    const { account } = useAccountInformation()
-    const navigate = useNavigate()
+    const { account } = useAccountInformation();
+    const navigate = useNavigate();
     return (
         <div>
             <div>
                 <Header />
             </div>
 
-            <div className={clsx(classes?.bgInventory, "w-full h-screen")}>
+            <div className={clsx(classes?.bgInventory, "w-full h-full")}>
                 <div className="flex">
                     <div
                         className={clsx(
@@ -112,7 +112,7 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
                                                         "/detail"
                                                 )
                                             }
-                                            className="cursor-pointer"
+                                            className=""
                                         >
                                             <DetailHero
                                                 key={hero.id}
@@ -133,5 +133,5 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};

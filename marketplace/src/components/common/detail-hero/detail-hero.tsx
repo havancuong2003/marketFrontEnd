@@ -1,17 +1,17 @@
-import clsx from "clsx"
+import clsx from "clsx";
 
 type DetailHeroProps = {
-    price: number
-    hp: number
-    speed: number
-    dps: number
-    atk: number
-    race: string
-    classess: string
+    price: number;
+    hp: number;
+    speed: number;
+    dps: number;
+    atk: number;
+    race: string;
+    classess: string;
     classes?: {
-        [key: string]: string
-    }
-}
+        [key: string]: string;
+    };
+};
 export const DetailHero: React.FC<DetailHeroProps> = ({
     price,
     hp,
@@ -28,7 +28,7 @@ export const DetailHero: React.FC<DetailHeroProps> = ({
                 classes?.size,
                 classes?.backgroundHeroCard,
                 classes?.textsize,
-                "relative "
+                "relative cursor-pointer "
             )}
         >
             <div className="">
@@ -88,5 +88,5 @@ export const DetailHero: React.FC<DetailHeroProps> = ({
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
