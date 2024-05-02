@@ -461,7 +461,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                             <div className={clsx(classes?.heroLogo, "")}></div>
                             <div>
                                 <div className={clsx(classes?.herosCount, "")}>
-                                    Hero Owner: 200
+                                    Hero Owner: {myHeros.length}
                                 </div>
                                 <div className={clsx(classes?.herosCount, "")}>
                                     <div

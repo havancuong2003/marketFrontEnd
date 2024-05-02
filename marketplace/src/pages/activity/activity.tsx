@@ -52,10 +52,10 @@ export const Activities = () => {
                           {item["event"] ? item["event"] : "-"}
                         </td>
                         <td className="w-1/5 mt-5 mb-5">
-                          ID:{item["hero_id "] ? item["hero_id"] : "-"}
+                          ID:{item.hero_id ? item.hero_id : "-"}
                         </td>
                         <td className="w-1/5 mt-5 mb-5">
-                          {item["value"] ? item["value "] + " OKG" : "-"}
+                          {item.value ? item.value + " OKG" : "-"}
                         </td>
                         <td className="w-1/5 mt-5 mb-5">
                           {item["opposite_id"] ? item["opposite_id"] : "-"}

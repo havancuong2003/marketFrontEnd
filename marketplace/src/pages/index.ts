@@ -1,4 +1,8 @@
-export * from "./market/market";
-export * from "./start/start";
+export * from "./market";
+export * from "./start";
 export * from "./start-page";
-export * from "./hero-infomation/hero-info";
+export * from "./hero-information";
+export * from "./activity"
+export * from "./inventory"
+export * from "./profile"
+
