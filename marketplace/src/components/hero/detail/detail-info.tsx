@@ -10,6 +10,13 @@ import { isAuthenticated } from "../../../utils";
 import { Hero } from "../../../models/hero";
 import clsx from "clsx";
 import { useAccountInformation } from "../../../hooks";
+import img_copy from "../../../assets/img/copy_1.png";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { useState } from "react";
+import { Button, Tooltip } from "@mui/material";
+import { NumericFormat } from "react-number-format";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 type DetailInfoProps = {
     classes?: {
@@ -26,39 +33,113 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
     onClickBuy,
     onClickSell,
 }) => {
+    const [copyAccount, setCopyAccount] = useState(false);
+    const [copyHero, setCopyHero] = useState(false);
+
     const token = localStorage.getItem("token");
     console.log(token);
     const navigate = useNavigate();
 
     const handelUnList = async (id: number) => {
-        await unListHero(id);
-        navigate("/");
+        Swal.fire({
+            title: "DELIST ITEM?",
+            text: "This item will be instantly REMOVED from Marketplace and return to your Inventory",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "DELISTED!",
+                    text: "Your hero had been delisted",
+                    icon: "success",
+                    timer: 2000,
+                    showConfirmButton: false,
+                });
+                unListHero(id);
+                navigate("/");
+            }
+        });
     };
 
     const { account } = useAccountInformation();
     console.log("acopunt", account);
     return (
         <div className="container ">
-            <div className="text-white h-1/6">
-                <div className="bg-my-brown rounded-xl bg-cover h-43% flex items-center">
+            <div className="text-main h-1/6">
+                <div className="bg-my-brown rounded-md bg-cover h-43% flex items-center">
                     <span className="ml-4 font-bold text-2xl">
                         {" "}
                         {hero.name}
                     </span>
                 </div>
                 <div className="flex h-29% justify-between mt-5 ">
-                    <div className="bg-my-brown rounded-xl bg-cover w-48%  flex items-center">
-                        <div className="ml-4">
-                            <span>ID:</span>
-                            <span>{hero.id}</span>
+                    <div className="bg-my-brown rounded-md bg-cover w-48% flex items-center relative">
+                        <div className="ml-4 text-s flex items-center ">
+                            <div>
+                                <span>ID: </span>
+                                <Tooltip title={hero.id} placement="top" arrow>
+                                    <span className="truncate">{hero.id}</span>
+                                </Tooltip>
+                            </div>
+                            <div className="right-0 rounded-md absolute">
+                                <CopyToClipboard
+                                    text={hero.id}
+                                    onCopy={() => {
+                                        setCopyHero(true);
+                                        setCopyAccount(false);
+                                    }}
+                                >
+                                    <Tooltip
+                                        title={copyHero ? "copied" : "copy"}
+                                        placement="top"
+                                    >
+                                        <Button>
+                                            <img
+                                                src={img_copy}
+                                                className=" w-2/5"
+                                            />
+                                        </Button>
+                                    </Tooltip>
+                                </CopyToClipboard>
+                            </div>
                         </div>
                     </div>
-                    <div className="bg-my-brown rounded-xl bg-cover w-48% flex items-center">
-                        <div className="ml-4 text-s">
-                            <span>Owner: </span>
-                            <span className="truncate">
-                                {ShortId(hero.account_id)}
-                            </span>
+                    <div className="bg-my-brown rounded-md bg-cover w-48% flex items-center relative">
+                        <div className="ml-4 text-s flex items-center ">
+                            <div>
+                                <span>Owner: </span>
+                                <Tooltip
+                                    title={hero.account_id}
+                                    placement="top"
+                                    arrow
+                                >
+                                    <span className="truncate">
+                                        {ShortId(hero.account_id)}
+                                    </span>
+                                </Tooltip>
+                            </div>
+                            <div className="right-0 rounded-md absolute">
+                                <CopyToClipboard
+                                    text={hero.account_id}
+                                    onCopy={() => {
+                                        setCopyAccount(true);
+                                        setCopyHero(false);
+                                    }}
+                                >
+                                    <Tooltip
+                                        title={copyAccount ? "copied" : "copy"}
+                                        placement="top"
+                                    >
+                                        <Button>
+                                            <img
+                                                src={img_copy}
+                                                className=" w-2/5"
+                                            />
+                                        </Button>
+                                    </Tooltip>
+                                </CopyToClipboard>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -75,15 +156,18 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
                     <div
                         className={clsx(
                             classes?.price,
-                            "bg-brown-black rounded-2xl opacity-80  bg-cover w-full h-90%  flex items-center ",
+                            "bg-brown-black rounded-md opacity-80  bg-cover w-full h-14  flex items-center",
                             hero.status ? "" : "hidden"
                         )}
                     >
-                        <div className="ml-4 text-white flex items-center">
+                        <div className="ml-4 text-main flex items-center">
                             <img src={okg_token} alt=""></img>
                             <span className="ml-2 font-medium text-3xl">
-                                {" "}
-                                {hero.price}
+                                <NumericFormat
+                                    value={hero.price}
+                                    displayType="text"
+                                    thousandSeparator={","}
+                                />
                             </span>
                         </div>
                     </div>
@@ -91,20 +175,20 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
                         className={clsx(
                             classes?.action,
                             "  w-1/3 h-90% ",
-                            hero.status ? "absolute right-0" : ""
+                            hero.status ? "absolute -right-10" : ""
                         )}
                     >
                         {isAuthenticated() ? (
                             account.id === hero.account_id ? (
                                 hero.status ? (
-                                    <div className=" w-2/3 h-2/3 pt-4 ">
+                                    <div className=" w-2/3 h-2/3 pt-3 ">
                                         <div
                                             className="bg-brown-black bg-cover flex items-center justify-center cursor-pointer border-solid border-2 border-lime-50 rounded-xl "
                                             onClick={() =>
                                                 handelUnList(hero.id)
                                             }
                                         >
-                                            <span className="text-white text-2xl font-medium ">
+                                            <span className="text-main text-2xl font-medium ">
                                                 Delist
                                             </span>
                                         </div>
@@ -118,7 +202,12 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
                                             )}
                                             onClick={() => onClickSell(hero.id)}
                                         >
-                                            <span className="text-white text-2xl font-medium ">
+                                            <span
+                                                className={clsx(
+                                                    classes?.action,
+                                                    "text-main text-2xl font-medium font-Skranji"
+                                                )}
+                                            >
                                                 SELL HERO
                                             </span>
                                         </div>
@@ -126,27 +215,31 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
                                 )
                             ) : (
                                 <div
-                                    className="bg-yellow_m_button bg-cover h-full flex items-center justify-center cursor-pointer "
+                                    className="bg-yellow_m_button bg-cover flex items-center justify-center cursor-pointer w-[250px] h-[60px] absolute left-0"
                                     onClick={onClickBuy}
                                 >
-                                    <span className="text-white text-3xl font-medium ">
-                                        Buy
+                                    <span
+                                        className={clsx(
+                                            classes?.action,
+                                            "text-main text-2xl font-medium font-Skranji"
+                                        )}
+                                    >
+                                        BUY NOW
                                     </span>
                                 </div>
                             )
                         ) : (
                             <div
                                 className="bg-yellow_m_button bg-cover h-full flex items-center justify-center cursor-pointer "
-                                onClick={() =>
-                                    navigate(
-                                        isAuthenticated()
-                                            ? "/profile"
-                                            : "/login"
-                                    )
-                                }
+                                onClick={() => navigate("/login")}
                             >
-                                <span className="text-white text-3xl font-medium ">
-                                    Buy
+                                <span
+                                    className={clsx(
+                                        classes?.action,
+                                        "text-main text-2xl font-medium font-Skranji"
+                                    )}
+                                >
+                                    BUY NOW
                                 </span>
                             </div>
                         )}
@@ -154,10 +247,10 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
                 </div>
             </div>
 
-            <div className="bg-brown-black rounded-2xl opacity-80 bg-cover  relative">
-                <div className="text-white p-2 ">
-                    <div className="mb-5">
-                        <span className="text-2xl font-medium">HERO STATS</span>
+            <div className="bg-brown-black rounded-xl opacity-80 bg-cover  relative">
+                <div className="text-main p-3 ">
+                    <div className="mb-5 ml">
+                        <span className="text-xl font-bold">HERO STATS</span>
                     </div>
                     <div className="">
                         <div className="flex justify-between items-center pt-3.5">
@@ -166,8 +259,12 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
                                     Combat power (CP)
                                 </span>
                                 <br />
-                                <span className="text-2xl font-bold">
-                                    {hero.power}
+                                <span className="text-xl font-bold">
+                                    <NumericFormat
+                                        value={hero.power}
+                                        thousandSeparator=","
+                                        displayType="text"
+                                    />
                                 </span>
                             </div>
                             <div className="flex ">
@@ -177,16 +274,15 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
                                             Health (HP)
                                         </span>
                                     </div>
-                                    <div className="flex ">
-                                        <div className="mr-2">
-                                            <img src={hp} className="" />
-                                        </div>
-                                        <div className="mb-1">
-                                            <span className="text-2xl font-semibold">
-                                                {" "}
-                                                {hero.hp}
-                                            </span>
-                                        </div>
+                                    <div className="flex items-center">
+                                        <img src={hp} className="mr-2" />
+                                        <span className="text-xl font-semibold">
+                                            <NumericFormat
+                                                value={hero.hp}
+                                                thousandSeparator=","
+                                                displayType="text"
+                                            />
+                                        </span>
                                     </div>
                                 </div>
 
@@ -196,15 +292,15 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
                                             Attack (ATK)
                                         </span>
                                     </div>
-                                    <div className="flex ">
-                                        <div className="mr-2">
-                                            <img src={atk} className="" />
-                                        </div>
-                                        <div className="mb-1">
-                                            <span className="text-2xl font-semibold">
-                                                {hero.power}
-                                            </span>
-                                        </div>
+                                    <div className="flex items-center">
+                                        <img src={atk} className="mr-2" />
+                                        <span className="text-xl font-semibold">
+                                            <NumericFormat
+                                                value={hero.power}
+                                                thousandSeparator=","
+                                                displayType="text"
+                                            />
+                                        </span>
                                     </div>
                                 </div>
 
@@ -215,14 +311,14 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
                                         </span>
                                     </div>
                                     <div className="flex  items-center">
-                                        <div className="mr-2">
-                                            <img src={atk_speed} className="" />
-                                        </div>
-                                        <div className="mb-1">
-                                            <span className="text-2xl font-semibold">
-                                                {hero.speed}
-                                            </span>
-                                        </div>
+                                        <img src={atk_speed} className="mr-2" />
+                                        <span className="text-xl font-semibold">
+                                            <NumericFormat
+                                                value={hero.speed}
+                                                thousandSeparator=","
+                                                displayType="text"
+                                            />
+                                        </span>
                                     </div>
                                 </div>
                                 <div className="mx-10">
@@ -232,14 +328,14 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
                                         </span>
                                     </div>
                                     <div className="flex items-center">
-                                        <div className="mr-2">
-                                            <img src={dps} className="" />
-                                        </div>
-                                        <div className="mb-1">
-                                            <span className="text-2xl font-semibold">
-                                                {hero.dps}
-                                            </span>
-                                        </div>
+                                        <img src={dps} className="mr-2" />
+                                        <span className="text-xl font-semibold">
+                                            <NumericFormat
+                                                value={hero.dps}
+                                                thousandSeparator=","
+                                                displayType="text"
+                                            />
+                                        </span>
                                     </div>
                                 </div>
                             </div>

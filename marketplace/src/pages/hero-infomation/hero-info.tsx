@@ -1,6 +1,6 @@
 import { DetailInfo, Header, HistoryTrans, InfoHero } from "../../components";
 import { useHeroDetail } from "../../hooks/use-hero-info";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import footer from "../../assets/img/Footer.png";
 import clsx from "clsx";
@@ -11,6 +11,8 @@ import {
     SellHero,
     ListingSucceeded,
 } from "../../components/trasnaction";
+import { ButtonBack } from "../../components/";
+import { Button, Tooltip } from "@mui/material";
 type HeroDetailProps = {
     classes?: {
         [key: string]: string;
@@ -54,9 +56,8 @@ export const HeroDetail: React.FC<HeroDetailProps> = ({ classes }) => {
 
     return (
         <>
-            <Header />
             {showBuy && !isPay && (
-                <div className=" flex justify-center relative ">
+                <div className=" flex justify-center relative">
                     <BuyHero
                         hero={hero}
                         onClickX={handleBuyHero}
@@ -87,59 +88,54 @@ export const HeroDetail: React.FC<HeroDetailProps> = ({ classes }) => {
                 </div>
             )}
 
-            <div className="bg-bg-black bg-cover">
+            <div className="bg-bg-black bg-cover text-main ">
                 <div
                     className={clsx(
                         classes?.container,
-                        "h-screen bg-bgdetail",
+                        "h-screen bg-bgdetail bg-cover  overflow-y-scroll custom-scrollbar",
                         isBlur()
                     )}
                 >
-                    <div className="container w-screen">
-                        <div className="flex pt-28  w-screen h-5/6 relative">
-                            <div
-                                className="absolute top-14 left-20 text-white font-medium cursor-pointer"
-                                onClick={() => navigate("/")}
-                            >
-                                <span>
-                                    {"< "}
-                                    Back
-                                </span>
-                            </div>
-                            <div className="flex justify-center px-20 w-1/2 ">
-                                <InfoHero hero={hero} />
-                            </div>
-                            <div className="flex justify-center pr-28 w-1/2 pt-12">
-                                <DetailInfo
-                                    hero={hero}
-                                    onClickBuy={handleBuyHero}
-                                    onClickSell={handleSellHero}
-                                />
-                            </div>
+                    <Header />
+                    <div className="flex pt-28  w-screen h-5/6 relative ">
+                        <ButtonBack />
+                        <div className="flex justify-center px-20 w-1/2 ">
+                            <InfoHero hero={hero} />
                         </div>
+                        <div className="flex justify-center pr-28 w-1/2 pt-12">
+                            <DetailInfo
+                                hero={hero}
+                                onClickBuy={handleBuyHero}
+                                onClickSell={handleSellHero}
+                            />
+                        </div>
+                    </div>
 
-                        <div className="flex justify-center w-screen mt-14">
+                    <div className="flex justify-center w-screen mt-14">
+                        <Tooltip
+                            open={showHistory}
+                            title="History"
+                            placement="top"
+                            arrow
+                        >
                             <div
                                 className={clsx(
                                     classes?.history,
-                                    "bg-yellow_m_button flex  bg-cover  justify-center items-center cursor-pointer"
+                                    "bg-yellow_m_button flex  bg-cover  justify-center items-center "
                                 )}
                                 onClick={toggleHistory}
                             >
-                                <span className="text-white text-2xl font-semibold pb-2">
-                                    History
-                                </span>
+                                <Button>
+                                    <span className=" text-2xl font-semibold pb-2 text-main">
+                                        History
+                                    </span>
+                                </Button>
                             </div>
-                        </div>
+                        </Tooltip>
                     </div>
-                </div>
-                {showHistory && (
-                    <div>
-                        <HistoryTrans />
-                    </div>
-                )}
-                <div>
-                    <img src={footer}></img>
+
+                    {showHistory && <HistoryTrans />}
+                    <img src={footer} className="mt-28"></img>
                 </div>
             </div>
         </>

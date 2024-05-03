@@ -5,7 +5,9 @@ export default {
         extend: {
             textColor:{
                 'my-brown': '#423429',
-                'light-brown':'#B7A284'
+                'light-brown':'#B7A284',
+                'dark-brown':'#2D1D11',
+                'main':'#F1E9DC'
 
             },
             backgroundColor:{
@@ -18,6 +20,7 @@ export default {
             fontFamily: {
             'Skranji': ['Skranji', 'sans-serif'],
             'Nunito': ['Nunito Sans', 'sans-serif'],
+            'Avenir':['Avenir', 'sans-serif']
             },
             height:{
                 '17%':'17%',
@@ -27,7 +30,8 @@ export default {
                 '29%':'29%',
                 '11%':'11%',
                 '95%': '95%',
-                '90%': '90%'
+                '90%': '90%',
+                 "99%": "99%",
             },
             width: {
                 "48%": "48%",
@@ -36,6 +40,7 @@ export default {
                 "53%": "53%",
                 "79%": "79%",
                 "95%": "95%",
+                "99%": "99%",
             },
             backgroundImage: {
                 bglogin: "url('../src/assets/img/background.png')",
