@@ -1,48 +1,48 @@
-import { useState } from "react"
+import { useState } from "react";
 
 export const useSearchMarket = () => {
-    const [isRankOpen, setIsRankOpen] = useState(true)
-    const [isClassOpen, setIsClassOpen] = useState(true)
-    const [isRaceOpen, setIsRaceOpen] = useState(true)
+    const [isRankOpen, setIsRankOpen] = useState(true);
+    const [isClassOpen, setIsClassOpen] = useState(true);
+    const [isRaceOpen, setIsRaceOpen] = useState(true);
 
-    const [selectedRank, setSelectedRank] = useState("")
-    const [selectedClass, setSelectedClass] = useState("")
-    const [selectedRace, setSelectedRace] = useState("")
+    const [selectedRank, setSelectedRank] = useState("");
+    const [selectedClass, setSelectedClass] = useState("");
+    const [selectedRace, setSelectedRace] = useState("");
 
     const onToggleRank = (rank: string) => {
-        setSelectedRank(rank)
-    }
+        setSelectedRank(rank);
+    };
 
     const onToggleClass = (classs: string) => {
-        setSelectedClass(classs)
-    }
+        setSelectedClass(classs);
+    };
 
     const onToggleRace = (race: string) => {
-        setSelectedRace(race)
-    }
+        setSelectedRace(race);
+    };
 
     const toggleRank = () => {
         if (!isRankOpen) {
-            setSelectedRank("")
+            setSelectedRank("");
         }
-        setIsRankOpen(!isRankOpen)
-    }
+        setIsRankOpen(!isRankOpen);
+    };
 
     const toggleClass = () => {
         if (!isClassOpen) {
-            setSelectedClass("")
+            setSelectedClass("");
         }
-        setIsClassOpen(!isClassOpen)
-    }
+        setIsClassOpen(!isClassOpen);
+    };
 
     const toggleRace = () => {
         if (!isRaceOpen) {
-            setSelectedRace("")
+            setSelectedRace("");
         }
-        setIsRaceOpen(!isRaceOpen)
-    }
+        setIsRaceOpen(!isRaceOpen);
+    };
 
-    const genetic = ["Genenetic", "Non-genetic"]
+    const genetic = ["Genenetic", "Non-genetic"];
     const rank = [
         "Warrior",
         "Warmonger",
@@ -53,14 +53,14 @@ export const useSearchMarket = () => {
         "War Chief",
         "High Chief",
         "Grand Chief",
-    ]
-    const classes = ["Air", "Melee", "Range", "Tanker", "Mage"]
-    const race = ["Antuk", "Muu", "Mantah", "Montak", "Krakee"]
+    ];
+    const classes = ["Air", "Melee", "Range", "Tanker", "Mage"];
+    const race = ["Antuk", "Muu", "Mantah", "Montak", "Krakee"];
 
     return {
         genetic,
         rank,
-        classes,
+        classess: classes,
         race,
 
         isRankOpen,
@@ -86,5 +86,5 @@ export const useSearchMarket = () => {
         setIsClassOpen,
         setIsRankOpen,
         setIsRaceOpen,
-    }
-}
+    };
+};
