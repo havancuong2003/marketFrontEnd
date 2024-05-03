@@ -5,19 +5,23 @@ import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import footer from "../../assets/img/Footer.png";
 import clsx from "clsx";
+
 import {
     BuyHero,
     PaySucceeded,
     SellHero,
     ListingSucceeded,
 } from "../../components/trasnaction";
+import { Hero } from "../../models";
 type HeroDetailProps = {
     classes?: {
         [key: string]: string;
     };
 };
 export const HeroDetail: React.FC<HeroDetailProps> = ({ classes }) => {
-    const hero = useHeroDetail();
+    const hero = useHeroDetail() as unknown as {
+        hero: Hero;
+    };
     const navigate = useNavigate();
 
     const [showHistory, setShowHistory] = useState(false);

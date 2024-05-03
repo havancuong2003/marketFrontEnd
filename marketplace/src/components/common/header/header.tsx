@@ -19,7 +19,7 @@ export const Header = (props) => {
     };
 
     const handleItemClick = (path) => {
-        navigate(path);
+        navigate("/" + path);
         setShowMenu(false);
     };
 
@@ -32,11 +32,15 @@ export const Header = (props) => {
                 )}
             >
                 <div className="flex items-center">
-                    <img className=" lg:mx-20" src={logo} alt="logo" />
+                    <img
+                        className={clsx(classes?.logoResponsive, " lg:ml-24")}
+                        src={logo}
+                        alt="logo"
+                    />
                     <div className={clsx(classes.navheader, "")}>
                         <button
                             className={clsx(classes.clickbutton, "")}
-                            onClick={() => navigate("/")}
+                            onClick={() => handleItemClick("")}
                         >
                             Market Place
                         </button>
@@ -53,7 +57,10 @@ export const Header = (props) => {
                 <div className={clsx(classes.navheader, "")}>
                     {isAuthenticated() ? (
                         <button
-                            className={clsx(classes.clickbutton, "w-10 h-10")}
+                            className={clsx(
+                                classes.clickbutton,
+                                "lg:w-52 h-10 cursor-pointer hover:bg-violet-600 rounded-lg  active:bg-violet-700   border  text-center"
+                            )}
                             onClick={() => navigate("/profile")}
                         >
                             Profile
@@ -89,7 +96,7 @@ export const Header = (props) => {
                     <button
                         className={clsx(
                             classes.sizenav,
-                            "cursor-pointer bg-nav mr-10"
+                            "cursor-pointer bg-nav"
                         )}
                         onClick={toggleMenu}
                     ></button>
@@ -112,15 +119,13 @@ export const Header = (props) => {
                         <div className="flex flex-col justify-center items-center text-white h-screen text-3xl space-y-4">
                             <button
                                 className="cursor-pointer block  p-1 rounded-md active:bg-red-900"
-                                onClick={() => handleItemClick("/")}
+                                onClick={() => handleItemClick("")}
                             >
                                 Market Place
                             </button>
                             <button
                                 className="cursor-pointer  p-1 rounded-md active:bg-red-900 "
-                                onClick={() =>
-                                    handleItemClick("inventory/hero")
-                                }
+                                onClick={() => handleItemClick("inventory")}
                             >
                                 Inventory
                             </button>

@@ -44,13 +44,6 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
         heros: Inventory[];
     };
 
-    if (Array.isArray(heros)) {
-        console.log("arr", heros);
-    }
-    if (typeof heros === "object" && heros !== null) {
-        console.log("obj", heros);
-    }
-
     const [heroInventory, setHeroInventory] = useState(heros);
     useEffect(() => {
         setHeroInventory(heros);
@@ -60,8 +53,6 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
         account: Account;
     };
 
-    console.log("account", account);
-
     const navigate = useNavigate();
     return (
         <div>
@@ -69,7 +60,7 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
                 <Header />
             </div>
 
-            <div className={clsx(classes?.bgInventory, "w-full h-screen")}>
+            <div className={clsx(classes?.bgInventory, "w-full h-full")}>
                 <div className="flex">
                     <div
                         className={clsx(
@@ -129,8 +120,8 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="">
-                                <div className="grid grid-cols-3 my-10">
+                            <div>
+                                <div className=" flex  gap-40 my-10">
                                     {heroInventory.map((hero) => (
                                         <div
                                             key={hero.id}
@@ -141,7 +132,6 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
                                                         "/detail"
                                                 )
                                             }
-                                            className="cursor-pointer"
                                         >
                                             <DetailHero
                                                 key={hero.id}

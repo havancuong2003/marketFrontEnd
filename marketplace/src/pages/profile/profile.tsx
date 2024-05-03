@@ -21,7 +21,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
 
     useEffect(() => {
         if (Array.isArray(inventory)) {
-            console.log("inventory arr", inventory);
+            console.log();
         } else if (typeof inventory === "object" && inventory !== null) {
             // Xác định kiểu cho 'inventory' như là một đối tượng với kiểu dữ liệu cụ thể
             const inventoryObject = inventory as { data: any[] };
@@ -29,7 +29,6 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
         }
     }, [inventory]);
 
-    console.log("myHeros", myHeros);
     function countByAttribute(attribute, value) {
         // Số lượng ban đầu là 0
         let count = 0;
@@ -76,13 +75,9 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
     const handleSaveClick = async () => {
         try {
             // Call API to update username
-            const response = await axios.post(
-                VITE_API_URL + "/api/v1/account/update-username",
-                {
-                    username: newUsername,
-                }
-            );
-            console.log("Response:", response.data);
+            await axios.post(VITE_API_URL + "/api/v1/account/update-username", {
+                username: newUsername,
+            });
 
             setErrorChangeUserName("");
             // Update user data on UI

@@ -44,9 +44,6 @@ export const useRegister = () => {
         } catch (error: unknown) {
             if (error instanceof AxiosError) {
                 console.error("Register failed: ", error);
-                console.log("username: ", username);
-                console.log("pass: ", password);
-                console.log("mail: ", email);
 
                 if (error.response) {
                     const { message } = error.response.data;

@@ -1,3 +1,5 @@
+import clsx from "clsx";
+
 // Filter.js
 type FilterProps = {
     toggle: (item: any) => void;
@@ -17,11 +19,12 @@ export const Filter: React.FC<FilterProps> = ({
     headerFilter,
     onToggle,
     selectedItem,
+    classes,
 }) => {
     return (
-        <div className="border-t-4 border-white m-5">
+        <div className={clsx(classes?.line, "")}>
             <span
-                className={`text-2xl cursor-pointer text-white  rounded-lg hover:bg-red-500 mx-5`}
+                className={`text-2xl cursor-pointer text-white  rounded-lg hover:bg-red-500 mx-3 inline-block mt-2`}
                 onClick={toggle}
             >
                 {headerFilter}

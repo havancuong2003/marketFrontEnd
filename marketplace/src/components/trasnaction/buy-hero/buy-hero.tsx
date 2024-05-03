@@ -4,7 +4,7 @@ import avatar from "../../../assets/img/avatar.png";
 import okg_token from "../../../assets/img/OKGToken.png";
 import x_button from "../../../assets/img/xbutton.png";
 import { Hero } from "../../../models/hero";
-import { buyHero } from "../../common/activity-hero";
+import { buyHero } from "../../common";
 type BuyHeroProps = {
     classes?: {
         [key: string]: string;

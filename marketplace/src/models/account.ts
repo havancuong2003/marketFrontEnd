@@ -1,5 +1,5 @@
 export interface Account {
-    id: number;
+    id: string;
     username: string;
     avatar: string;
     balance: number;

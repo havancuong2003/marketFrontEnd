@@ -1,37 +1,60 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { VITE_API_URL } from "../env";
 interface Hero {
     rank: string;
     class: string;
     race: string;
-    // Thêm các thuộc tính khác nếu cần
 }
 export const useHeroMarket = () => {
-    const [heros, setHeros] = useState<Hero[]>([]); // Chỉ định kiểu dữ liệu cho heros
-    const [heroBackup, setHeroBackup] = useState<Hero[]>([]); // Chỉ định kiểu dữ liệu cho heroBackup
-    const [dataSize, setDataSize] = useState<number>(0); // Chỉ định kiểu dữ liệu cho dataSize
+    const [heros, setHeros] = useState<Hero[]>([]);
+    const [dataSize, setDataSize] = useState<number>(0);
+    const [loading, setLoading] = useState(true);
+    const [totalPage, setTotalPage] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const herosMarket = (
+        page: number,
+        itemPerPage: number,
+        race: string,
+        classs: string,
+        rank: string
+    ) => {
+        setLoading(true);
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                axios
+                    .get(
+                        VITE_API_URL +
+                            `/api/v1/hero/show-market?page=${page}&items_per_page=${itemPerPage}&race=${race.toUpperCase()}&class=${classs.toUpperCase()}&rank=${rank.toUpperCase()}`
+                    )
+                    .then((res) => {
+                        setHeros(res.data.data);
+                        setDataSize(res.data.total);
+                        setTotalPage(res.data.lastPage);
+                        setLoading(false);
+                        setCurrentPage(res.data.currentPage);
+                        if (res.data.currentPage > res.data.lastPage) {
+                            setCurrentPage(1);
+                        }
+                        resolve(res.data);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        reject(err);
+                    });
+            }, 500);
+        });
+    };
 
-    useEffect(() => {
-        axios
-            .get(VITE_API_URL + "/api/v1/hero/show-market?items_per_page=17")
-            .then((res) => {
-                setHeros(res.data.data);
-                setHeroBackup(res.data.data);
-                console.log("daata heroo", res.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
-    useEffect(() => {
-        setDataSize(heros.length);
-    }, [heros]);
     return {
         heros,
         setHeros,
         dataSize,
-        heroBackup,
-        setHeroBackup,
+        currentPage,
+        setCurrentPage,
+        loading,
+        setLoading,
+        herosMarket,
+        totalPage,
     };
 };
