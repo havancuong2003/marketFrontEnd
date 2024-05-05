@@ -16,7 +16,7 @@ import { useState } from "react";
 import { Button, Tooltip } from "@mui/material";
 import { NumericFormat } from "react-number-format";
 import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
+import { CopyText } from "../../common";
 
 type DetailInfoProps = {
     classes?: {
@@ -83,7 +83,7 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
                                 </Tooltip>
                             </div>
                             <div className="right-0 rounded-md absolute">
-                                <CopyToClipboard
+                                {/* <CopyToClipboard
                                     text={hero.id}
                                     onCopy={() => {
                                         setCopyHero(true);
@@ -101,7 +101,8 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
                                             />
                                         </Button>
                                     </Tooltip>
-                                </CopyToClipboard>
+                                </CopyToClipboard> */}
+                                <CopyText text={hero.id} />
                             </div>
                         </div>
                     </div>
@@ -120,7 +121,7 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
                                 </Tooltip>
                             </div>
                             <div className="right-0 rounded-md absolute">
-                                <CopyToClipboard
+                                {/* <CopyToClipboard
                                     text={hero.account_id}
                                     onCopy={() => {
                                         setCopyAccount(true);
@@ -138,7 +139,8 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
                                             />
                                         </Button>
                                     </Tooltip>
-                                </CopyToClipboard>
+                                </CopyToClipboard> */}
+                                <CopyText text={hero.account_id} />
                             </div>
                         </div>
                     </div>

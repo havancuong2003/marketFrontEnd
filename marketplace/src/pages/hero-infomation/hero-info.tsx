@@ -54,6 +54,7 @@ export const HeroDetail: React.FC<HeroDetailProps> = ({ classes }) => {
         setIsSell(true);
     };
 
+    console.log("hero", hero.id);
     return (
         <>
             {showBuy && !isPay && (
@@ -110,7 +111,6 @@ export const HeroDetail: React.FC<HeroDetailProps> = ({ classes }) => {
                             />
                         </div>
                     </div>
-
                     <div className="flex justify-center w-screen mt-14">
                         <Tooltip
                             open={showHistory}
@@ -134,7 +134,7 @@ export const HeroDetail: React.FC<HeroDetailProps> = ({ classes }) => {
                         </Tooltip>
                     </div>
 
-                    {showHistory && <HistoryTrans />}
+                    {showHistory && <HistoryTrans heroId={hero.id} />}
                     <img src={footer} className="mt-28"></img>
                 </div>
             </div>

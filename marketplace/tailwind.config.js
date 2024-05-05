@@ -7,6 +7,7 @@ export default {
                 'my-brown': '#423429',
                 'light-brown':'#B7A284',
                 'dark-brown':'#2D1D11',
+                'dark-yellow': '#968469',
                 'main':'#F1E9DC'
 
             },
@@ -16,6 +17,9 @@ export default {
                 'bg-black':'#151515',
                 'my-brown': '#423429',
                 'brown-black':'#170A02'
+            },
+            borderColor:{
+                'light-brown':'#B7A284',
             },
             fontFamily: {
             'Skranji': ['Skranji', 'sans-serif'],
