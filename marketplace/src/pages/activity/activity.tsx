@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Event } from "../../types";
 import clsx from "clsx";
-
+import hero from '../../assets/img/HeroImage.png' 
 
 type ActivitiesProps = {
     classes?: {
@@ -97,8 +97,14 @@ export const Activities :React.FC<ActivitiesProps> = ({classes}) => {
                 <Header />
             </div>
 
-            <div className={clsx(classes?.container, "bg-bginventory w-full h-full font-home")}>
+            <div className={clsx(classes?.container, "font-home")}>
                 <div className="">
+                <div className={clsx(classes?.heroImage)}>
+                    <span className={clsx("text-4xl text-white")}>
+                        Activities
+                    </span>
+                    <img src={hero} alt="" />
+                </div>
                     <div className={clsx(classes?.containerActivities,"flex")}>
                         <div className={clsx(classes?.containerProfile,"")}>
                             <div className="pt-10">
@@ -112,10 +118,11 @@ export const Activities :React.FC<ActivitiesProps> = ({classes}) => {
                                 <ButtonInventory selectedItem={"Activities"} />
                             </div>
                         </div>
-                        <div className="bg-bgactivities w-full ml-24 mr-24 mt-24 justify-center  ">
-                            <div className="mt-5 ml-10 mr-10 h-[900px]">
+                        
+                        <div className={clsx(classes?.tableActivities)}>
+                            <div className="mt-5 ml-10 mr-10">
                                 <div>
-                                    <span className="text-2xl text-white">
+                                    <span className={clsx(classes?.title,"text-2xl text-white")}>
                                         Activities
                                     </span>
                                     <div className="flex items-end">
@@ -136,7 +143,7 @@ export const Activities :React.FC<ActivitiesProps> = ({classes}) => {
                                         </ul>
                                     </div>
                                 </div>
-                                <table className=" w-full table-auto border-collapse mt-20">
+                                <table className=" w-full table-auto border-collapse">
                                     <thead className="text-[#968469] text-2xl border-b-2 border-[#B7A284] border-opacity-20 mt-5 mb-5 flex w-full">
                                         <tr className="flex w-full">
                                             <td className="w-1/5">Event</td>
@@ -192,13 +199,13 @@ export const Activities :React.FC<ActivitiesProps> = ({classes}) => {
                                                     {item.opposite_user_id
                                                         ? item.opposite_user_id.substring(
                                                               0,
-                                                              5
+                                                              4
                                                           ) +
-                                                          "....." +
+                                                          "..." +
                                                           item.opposite_user_id.substring(
                                                               item
                                                                   .opposite_user_id
-                                                                  .length - 8
+                                                                  .length - 4
                                                           )
                                                         : "-"}
                                                 </td>
