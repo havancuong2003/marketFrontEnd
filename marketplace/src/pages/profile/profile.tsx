@@ -9,6 +9,8 @@ import { VITE_API_URL } from "../../env";
 import avatar from "../../assets/img/avatar-account.png";
 import { useAccountInformation } from "../../hooks/";
 import { ButtonInventory } from "../../components/common/inventory/button-inventory";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
 type ProfileProps = {
     classes?: {
         [key: string]: string;
@@ -223,12 +225,46 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                                 <p className="text-red-500">
                                                     {errorChangeUserName}
                                                 </p>
-                                                <input
-                                                    type="text"
-                                                    value={newUsername}
-                                                    onChange={handleChange}
-                                                    className="text-base text-black p-1"
-                                                />
+                                                <Box
+                                                    component="form"
+                                                    sx={{
+                                                        "& > :not(style)": {
+                                                            m: 1,
+                                                            width: "25ch",
+                                                        },
+                                                    }}
+                                                    noValidate
+                                                    autoComplete="off"
+                                                >
+                                                    <TextField
+                                                        id="outlined-basic"
+                                                        label="Username"
+                                                        variant="outlined"
+                                                        sx={{
+                                                            "& label": {
+                                                                color: "gray", // Màu chữ mặc định
+                                                            },
+                                                            "& fieldset": {
+                                                                borderColor:
+                                                                    "gray", // Màu border mặc định
+                                                            },
+                                                            "&:focus-within label":
+                                                                {
+                                                                    color: "white", // Thay đổi màu chữ thành màu xanh khi focus
+                                                                },
+                                                            "&:focus-within fieldset":
+                                                                {
+                                                                    borderColor:
+                                                                        "blue", // Thay đổi màu border thành màu xanh khi focus
+                                                                },
+                                                        }}
+                                                        InputProps={{
+                                                            sx: {
+                                                                color: "white", // Thay đổi màu chữ của input thành màu xanh
+                                                            },
+                                                        }}
+                                                    />
+                                                </Box>
                                             </>
                                         ) : (
                                             <span>{username}</span>
@@ -351,34 +387,88 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                                         {errorChangePassword}
                                                     </p>
                                                 )}
-                                                <label htmlFor="oldpassword">
-                                                    Old Password
-                                                    <input
+                                                <Box
+                                                    component="form"
+                                                    sx={{
+                                                        "& > :not(style)": {
+                                                            m: 1,
+                                                            width: "25ch",
+                                                        },
+                                                    }}
+                                                    noValidate
+                                                    autoComplete="off"
+                                                >
+                                                    <TextField
+                                                        id="outlined-basic"
+                                                        label="Old password"
+                                                        variant="outlined"
                                                         type="password"
-                                                        value={oldpassword}
-                                                        onChange={
-                                                            handleOldPasswordChange
-                                                        }
-                                                        id="oldpassword"
-                                                        className="text-base text-black p-1 my-2 ml-12"
+                                                        sx={{
+                                                            "& label": {
+                                                                color: "gray", // Màu chữ mặc định
+                                                            },
+                                                            "& fieldset": {
+                                                                borderColor:
+                                                                    "gray", // Màu border mặc định
+                                                            },
+                                                            "&:focus-within label":
+                                                                {
+                                                                    color: "white", // Thay đổi màu chữ thành màu xanh khi focus
+                                                                },
+                                                            "&:focus-within fieldset":
+                                                                {
+                                                                    borderColor:
+                                                                        "blue", // Thay đổi màu border thành màu xanh khi focus
+                                                                },
+                                                        }}
+                                                        InputProps={{
+                                                            sx: {
+                                                                color: "white", // Thay đổi màu chữ của input thành màu xanh
+                                                            },
+                                                        }}
                                                     />
-                                                </label>
-                                                <br />
-
-                                                <label htmlFor="password">
-                                                    New Password
-                                                    <input
+                                                </Box>
+                                                <Box
+                                                    component="form"
+                                                    sx={{
+                                                        "& > :not(style)": {
+                                                            m: 1,
+                                                            width: "25ch",
+                                                        },
+                                                    }}
+                                                    noValidate
+                                                    autoComplete="off"
+                                                >
+                                                    <TextField
+                                                        id="outlined-basic"
+                                                        label="New password"
                                                         type="password"
-                                                        value={newPassword}
-                                                        onChange={
-                                                            handlePasswordChange
-                                                        }
-                                                        id="password"
-                                                        className="text-base text-black p-1 my-2 ml-11"
+                                                        variant="outlined"
+                                                        sx={{
+                                                            "& label": {
+                                                                color: "gray", // Màu chữ mặc định
+                                                            },
+                                                            "& fieldset": {
+                                                                borderColor:
+                                                                    "gray", // Màu border mặc định
+                                                            },
+                                                            "&:focus-within label":
+                                                                {
+                                                                    color: "white", // Thay đổi màu chữ thành màu xanh khi focus
+                                                                },
+                                                            "&:focus-within fieldset":
+                                                                {
+                                                                    borderColor:
+                                                                        "blue", // Thay đổi màu border thành màu xanh khi focus
+                                                                },
+                                                        }}
+                                                        InputProps={{
+                                                            sx: {
+                                                                color: "white", // Thay đổi màu chữ của input thành màu xanh
+                                                            },
+                                                        }}
                                                     />
-                                                </label>
-
-                                                <br />
+                                                </Box>
                                                 <label htmlFor="confirm">
                                                     Confirm password
                                                     <input
@@ -388,7 +478,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                                         onChange={
                                                             handleConfirmPasswordChange
                                                         }
-                                                        className="text-base text-black p-1 my-2 ml-3"
+                                                        className="text-base text-black p-1 my-2"
                                                     />
                                                 </label>
                                             </>
@@ -428,6 +518,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                             <button
                                                 className={clsx(
                                                     classes?.editBtn,
+                                                    classes?.editspacing,
                                                     ""
                                                 )}
                                                 onClick={handlePassEditClick}
