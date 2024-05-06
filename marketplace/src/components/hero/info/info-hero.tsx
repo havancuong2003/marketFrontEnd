@@ -1,7 +1,17 @@
 import avatar from "../../../assets/img/avatar.png";
 import frame from "../../../assets/img/grand-chief.png";
-export const InfoHero = ({
+import { Hero } from "../../../models/hero";
+import clsx from "clsx";
+type InfoHeroProps = {
+    hero: Hero;
+    classes?: {
+        [key: string]: string;
+    };
+};
+
+export const InfoHero: React.FC<InfoHeroProps> = ({
     hero,
+    classes,
     // name,
     // price,
     // hp,
@@ -15,7 +25,7 @@ export const InfoHero = ({
     // status,
 }) => {
     return (
-        <div className="container flex p-12 justify-center">
+        <div className={clsx(classes?.container, " flex justify-center")}>
             <div className="relative flex justify-center">
                 <div className=" flex justify-center">
                     <img src={avatar} className="rounded-3xl " />
@@ -27,7 +37,12 @@ export const InfoHero = ({
                         className="w-full h-full absolute  bg-cover bg-center rounded-lg"
                     />
                 </div>
-                <div className=" w-full h-18 grid grid-cols-2 font-bold absolute -bottom-20 text-dark-brown ">
+                <div
+                    className={clsx(
+                        classes?.race_class,
+                        " w-full h-18 grid grid-cols-2 font-bold absolute  text-dark-brown "
+                    )}
+                >
                     <div className="bg-graytag bg-cover items-center flex">
                         <div className="ml-4">
                             <span>Race</span>

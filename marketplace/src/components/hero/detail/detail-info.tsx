@@ -33,9 +33,6 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
     onClickBuy,
     onClickSell,
 }) => {
-    const [copyAccount, setCopyAccount] = useState(false);
-    const [copyHero, setCopyHero] = useState(false);
-
     const token = localStorage.getItem("token");
     console.log(token);
     const navigate = useNavigate();
@@ -65,16 +62,21 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
     const { account } = useAccountInformation();
     console.log("acopunt", account);
     return (
-        <div className="container ">
-            <div className="text-main h-1/6">
-                <div className="bg-my-brown rounded-md bg-cover h-43% flex items-center">
+        <div className={clsx(classes?.container)}>
+            <div className={clsx(classes?.hero_info, "text-main ")}>
+                <div className={clsx(classes?.hero_name, "flex items-center ")}>
                     <span className="ml-4 font-bold text-2xl">
                         {" "}
                         {hero.name}
                     </span>
                 </div>
-                <div className="flex h-29% justify-between mt-5 ">
-                    <div className="bg-my-brown rounded-md bg-cover w-48% flex items-center relative">
+                <div className={clsx(classes?.heroId_onwner, "mt-5")}>
+                    <div
+                        className={clsx(
+                            classes?.heroId_onwner_detail,
+                            "flex items-center relative"
+                        )}
+                    >
                         <div className="ml-4 text-s flex items-center ">
                             <div>
                                 <span>ID: </span>
@@ -83,30 +85,16 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
                                 </Tooltip>
                             </div>
                             <div className="right-0 rounded-md absolute">
-                                {/* <CopyToClipboard
-                                    text={hero.id}
-                                    onCopy={() => {
-                                        setCopyHero(true);
-                                        setCopyAccount(false);
-                                    }}
-                                >
-                                    <Tooltip
-                                        title={copyHero ? "copied" : "copy"}
-                                        placement="top"
-                                    >
-                                        <Button>
-                                            <img
-                                                src={img_copy}
-                                                className=" w-2/5"
-                                            />
-                                        </Button>
-                                    </Tooltip>
-                                </CopyToClipboard> */}
                                 <CopyText text={hero.id} />
                             </div>
                         </div>
                     </div>
-                    <div className="bg-my-brown rounded-md bg-cover w-48% flex items-center relative">
+                    <div
+                        className={clsx(
+                            classes?.heroId_onwner_detail,
+                            "flex items-center relative"
+                        )}
+                    >
                         <div className="ml-4 text-s flex items-center ">
                             <div>
                                 <span>Owner: </span>
@@ -121,25 +109,6 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
                                 </Tooltip>
                             </div>
                             <div className="right-0 rounded-md absolute">
-                                {/* <CopyToClipboard
-                                    text={hero.account_id}
-                                    onCopy={() => {
-                                        setCopyAccount(true);
-                                        setCopyHero(false);
-                                    }}
-                                >
-                                    <Tooltip
-                                        title={copyAccount ? "copied" : "copy"}
-                                        placement="top"
-                                    >
-                                        <Button>
-                                            <img
-                                                src={img_copy}
-                                                className=" w-2/5"
-                                            />
-                                        </Button>
-                                    </Tooltip>
-                                </CopyToClipboard> */}
                                 <CopyText text={hero.account_id} />
                             </div>
                         </div>
@@ -151,14 +120,13 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
                 <div
                     className={clsx(
                         classes?.container_price,
-                        "flex h-full ",
                         hero.status ? "relative" : "justify-center mr-60"
                     )}
                 >
                     <div
                         className={clsx(
                             classes?.price,
-                            "bg-brown-black rounded-md opacity-80  bg-cover w-full h-14  flex items-center",
+                            "bg-brown-black rounded-md opacity-80  bg-cover h-14  flex items-center",
                             hero.status ? "" : "hidden"
                         )}
                     >
@@ -177,7 +145,7 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
                         className={clsx(
                             classes?.action,
                             "  w-1/3 h-90% ",
-                            hero.status ? "absolute -right-10" : ""
+                            hero.status ? " absolute right-0" : ""
                         )}
                     >
                         {isAuthenticated() ? (
@@ -217,7 +185,10 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
                                 )
                             ) : (
                                 <div
-                                    className="bg-yellow_m_button bg-cover flex items-center justify-center cursor-pointer w-[250px] h-[60px] absolute left-0"
+                                    className={clsx(
+                                        classes?.buy_bt,
+                                        " bg-cover flex items-center justify-center cursor-pointer "
+                                    )}
                                     onClick={onClickBuy}
                                 >
                                     <span
@@ -232,7 +203,7 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
                             )
                         ) : (
                             <div
-                                className="bg-yellow_m_button bg-cover h-full flex items-center justify-center cursor-pointer "
+                                className="bg-yellow_m_button bg-cover flex items-center justify-center cursor-pointer w-[250px] h-[60px] "
                                 onClick={() => navigate("/login")}
                             >
                                 <span
@@ -249,7 +220,7 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
                 </div>
             </div>
 
-            <div className="bg-brown-black rounded-xl opacity-80 bg-cover  relative">
+            <div className="bg-brown-black rounded-xl opacity-80 bg-cover  relative hidden">
                 <div className="text-main p-3 ">
                     <div className="mb-5 ml">
                         <span className="text-xl font-bold">HERO STATS</span>

@@ -15,6 +15,7 @@ import axios from "axios";
 import { VITE_API_URL } from "../../env";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { CopyText } from "../common";
+import dayjs from "dayjs";
 
 TimeAgo.addDefaultLocale(en);
 TimeAgo.addLocale(ru);
@@ -42,7 +43,7 @@ export const HistoryTrans: React.FC<HistoryTransProps> = ({
         const page = searchParams.get("page");
         const params = page ? { page } : {};
 
-        page ? setCurrPage(page) : null;
+        page ? setCurrPage(Number(page)) : null;
         axios
             .get(
                 VITE_API_URL + "/api/v1/history-trans/" + heroId + "/top-trans",
@@ -52,9 +53,6 @@ export const HistoryTrans: React.FC<HistoryTransProps> = ({
                 setHistoryTrans(res.data.data);
                 setLastPage(res.data.lastPage);
                 setTotal(res.data.total);
-                //setCurrPage(res.data.curPage);
-                // setNextPage(res.data.nextPage);
-                // setPrevPage(res.data.prevPage);
                 console.log(res);
             })
             .catch((err) => {
@@ -62,10 +60,10 @@ export const HistoryTrans: React.FC<HistoryTransProps> = ({
             });
     }, [searchParams]);
 
-    const handlePageChange = (event: any, page: number) => {
-        navigate("?page=" + page);
-        setCurrPage(page);
-    };
+    // const handlePageChange = (event: any, page: number) => {
+    //     navigate("?page=" + page);
+    //     setCurrPage(page);
+    // };
 
     const navigate = useNavigate();
     const formatDate = (dateString: string): string => {
@@ -80,26 +78,29 @@ export const HistoryTrans: React.FC<HistoryTransProps> = ({
         <div className="flex justify-center ">
             <div className="w-7/12  bg-[#170A02] mt-2 tex-sm ">
                 <table className=" w-full table-auto border-collapse ">
-                    <thead className="text-dark-yellow  border-light-brown border-opacity-20 mt-5 mb-5 flex ">
-                        <tr className="flex w-full justify-between mx-32">
-                            <th className="">
+                    <thead className="text-dark-yellow  border-light-brown border-opacity-20 mt-5 mb-5 flex mx-20 ">
+                        <tr className="flex w-full justify-between   ">
+                            <th className="w-1/4 text-left">
                                 <span>Time</span>
                             </th>
-                            <th className=" ">
+                            <th className="w-1/4  text-left">
                                 <span>Value</span>
                             </th>
-                            <th className="">
+                            <th className="w-1/4  text-left">
                                 <span>Seller</span>
                             </th>
-                            <th className=" ">
+                            <th className="w-1/4  text-left">
                                 <span>Buyer</span>
                             </th>
                         </tr>
                     </thead>
-                    <tbody className="text-[#CCC3B5] px-20 mt-5 mb-5 flex flex-col  overflow-y-scroll custom-scrollbar h-[421px]">
+                    <tbody className="text-main px-20 mt-5 mb-5 flex flex-col  overflow-y-scroll custom-scrollbar h-96">
                         {historyTrans.map((item) => (
-                            <tr className="border-b border-light-brown border-opacity-20 flex w-full justify-between">
-                                <td className=" mt-5 mb-5">
+                            <tr
+                                key={item.id}
+                                className="border-b border-light-brown border-opacity-20 flex w-full justify-between"
+                            >
+                                <td className=" my-5 w-1/4 text-left">
                                     {differenceInHours(time, item.time) > 24 ? (
                                         <span>{formatDate(item.time)}</span>
                                     ) : (
@@ -113,10 +114,10 @@ export const HistoryTrans: React.FC<HistoryTransProps> = ({
                                         </span>
                                     )}
                                 </td>
-                                <td className=" mt-5 mb-5">
+                                <td className=" my-5 w-1/4 text-left">
                                     <span>{item["value"]} OKG</span>
                                 </td>
-                                <td className=" mt-5 mb-5">
+                                <td className=" my-5 w-1/4 text-left">
                                     <Tooltip
                                         title={item["seller"]}
                                         placement="top"
@@ -126,7 +127,7 @@ export const HistoryTrans: React.FC<HistoryTransProps> = ({
                                     </Tooltip>
                                     <CopyText text={item["seller"]} />
                                 </td>
-                                <td className=" mt-5 mb-5">
+                                <td className=" my-5 w-1/4 text-left">
                                     <Tooltip
                                         title={item["buyer"]}
                                         placement="top"
@@ -166,8 +167,8 @@ export const HistoryTrans: React.FC<HistoryTransProps> = ({
                                         color="secondary"
                                         variant="outlined"
                                         onChange={(event, page) => {
-                                            handlePageChange(event, page);
-                                            //navigate("?page=" + page);
+                                            //handlePageChange(event, page);
+                                            navigate("?page=" + page);
                                         }}
                                         shape="rounded"
                                     />

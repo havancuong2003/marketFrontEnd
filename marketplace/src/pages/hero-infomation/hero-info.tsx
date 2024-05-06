@@ -98,12 +98,12 @@ export const HeroDetail: React.FC<HeroDetailProps> = ({ classes }) => {
                     )}
                 >
                     <Header />
-                    <div className="flex pt-28  w-screen h-5/6 relative ">
+                    <div className={clsx(classes?.content)}>
                         <ButtonBack />
-                        <div className="flex justify-center px-20 w-1/2 ">
+                        <div className={clsx(classes?.info_hero)}>
                             <InfoHero hero={hero} />
                         </div>
-                        <div className="flex justify-center pr-28 w-1/2 pt-12">
+                        <div className={clsx(classes?.detail_hero)}>
                             <DetailInfo
                                 hero={hero}
                                 onClickBuy={handleBuyHero}
@@ -111,7 +111,7 @@ export const HeroDetail: React.FC<HeroDetailProps> = ({ classes }) => {
                             />
                         </div>
                     </div>
-                    <div className="flex justify-center w-screen mt-14">
+                    <div className="flex justify-center w-screen mt-28">
                         <Tooltip
                             open={showHistory}
                             title="History"
