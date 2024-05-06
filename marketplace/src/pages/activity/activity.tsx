@@ -1,23 +1,106 @@
-import { Header } from "../../components";
+import { Header, PaginationActivity } from "../../components";
 import { ButtonInventory } from "../../components/common/inventory/button-inventory";
-
 import avatar from "../../assets/img/avatar-account.png";
-import { useAccountInformation, useActivities } from "../../hooks";
+import { useAccountInformation } from "../../hooks";
 import dayjs from "dayjs";
+import { TOKEN, VITE_API_URL } from "../../env";
+import TimeAgo from "javascript-time-ago";
+import en from "javascript-time-ago/locale/en";
+import ReactTimeAgo from "react-time-ago";
+import ru from "javascript-time-ago/locale/ru";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Event } from "../../types";
+import clsx from "clsx";
 
-export const Activities = () => {
+
+type ActivitiesProps = {
+    classes?: {
+        [key: string]: string;
+    };
+};
+
+TimeAgo.addDefaultLocale(en);
+TimeAgo.addLocale(ru);
+function LastSeen({ date }) {
+    const dateNow = new Date();
+    if (dayjs(dateNow).diff(dayjs(date), "hours") <= 24) {
+        return <ReactTimeAgo date={date} locale="en-US" />;
+    } else {
+        return date ? dayjs(date).format("DD MMM YYYY, HH:mm") : "-";
+    }
+}
+const mappingItemBackgroundColor = {
+    LIST: "text-red-500",
+    DELIST: "text-green-500",
+    SALE: "text-blue-500",
+    PURCHASE: "text-yellow-500",
+};
+
+const mappingActionDetail = {
+    LIST: "Viewing the list",
+    DELIST: "Removing from the list",
+    SALE: "On sale",
+    PURCHASE: "Making a purchase",
+};
+const items_per_page = 10;
+export const Activities :React.FC<ActivitiesProps> = ({classes}) => {
+    const [searchParams] = useSearchParams();
     const { account } = useAccountInformation();
-    const { activities } = useActivities();
+    const navigate = useNavigate();
+    const [totalPage, setTotalPage] = useState(0);
+    const [activities, setActivities] = useState([]);
+    const [currentPage, setCurrentPage] = useState(0);
+    const [totalRecords, setTotalRecords] = useState(0);
+    const actionValues = Object.values(Event);
+    useEffect(() => {
+        // todo: check page value
+        let page = Number(searchParams.get("page"));
+        if (!page) page = 1;
+        if (isNaN(page)) page = 1;
+        setCurrentPage(page);
+
+        // todo fetch data
+        axios
+            .get(VITE_API_URL + "/api/v1/activity", {
+                params: {
+                    page: page,
+                },
+                paramsSerializer: function customSerializer(params) {
+                    // Customize serialization logic here
+                    return Object.entries(params)
+                        .map(([key, value]) => `${key}=${value}`)
+                        .join("&");
+                },
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            })
+            // todo set records
+            .then((res) => {
+                setActivities(res.data.records);
+                setTotalRecords(res.data.totalRecords);
+                setTotalPage(Math.ceil(totalRecords/ items_per_page));
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+            
+    }, [searchParams, totalRecords]);
+    
+    
+    //console.log("total page",totalPage)
     return (
         <div>
             <div>
                 <Header />
             </div>
 
-            <div className="bg-bginventory w-full h-full font-home">
+            <div className={clsx(classes?.container, "bg-bginventory w-full h-full font-home")}>
                 <div className="">
-                    <div className="flex">
-                        <div className=" w-1/4 bg-bgprofile flex justify-center text-center h-[800px] ml-24 mt-24">
+                    <div className={clsx(classes?.containerActivities,"flex")}>
+                        <div className={clsx(classes?.containerProfile,"")}>
                             <div className="pt-10">
                                 <img src={avatar} alt="" className="pb-3 p-5" />
                                 <p className="text-4xl font-semibold text-white pb-3">
@@ -30,13 +113,30 @@ export const Activities = () => {
                             </div>
                         </div>
                         <div className="bg-bgactivities w-full ml-24 mr-24 mt-24 justify-center  ">
-                            <div className="mt-5 ml-10 mr-10 h-[700px]">
+                            <div className="mt-5 ml-10 mr-10 h-[900px]">
                                 <div>
                                     <span className="text-2xl text-white">
                                         Activities
                                     </span>
+                                    <div className="flex items-end">
+                                        <ul className="items-end">
+                                            {actionValues.map((item) => (
+                                                <li
+                                                    key={item}
+                                                    className={clsx(
+                                                        mappingItemBackgroundColor[
+                                                            item
+                                                        ]
+                                                    )}
+                                                >
+                                                    {item} :{" "}
+                                                    {mappingActionDetail[item]}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
                                 </div>
-                                <table className=" w-full table-auto border-collapse mt-20 ">
+                                <table className=" w-full table-auto border-collapse mt-20">
                                     <thead className="text-[#968469] text-2xl border-b-2 border-[#B7A284] border-opacity-20 mt-5 mb-5 flex w-full">
                                         <tr className="flex w-full">
                                             <td className="w-1/5">Event</td>
@@ -49,21 +149,43 @@ export const Activities = () => {
 
                                     <tbody className="text-[#CCC3B5] text-sm mt-5 mb-5 flex flex-col  justify-between overflow-y-scroll w-full h-[500px]">
                                         {activities.map((item) => (
-                                            <tr className="border-b border-[#B7A284] border-opacity-20 flex w-full">
-                                                <td className="w-1/5 mt-5 mb-5">
+                                            <tr
+                                                className={clsx(
+                                                    "border-b border-[#B7A284] border-opacity-20 flex w-full"
+                                                )}
+                                            >
+                                                <td
+                                                    className={clsx(
+                                                        mappingItemBackgroundColor[
+                                                            item.event
+                                                        ],
+                                                        "w-1/5 mt-5 mb-5"
+                                                    )}
+                                                >
                                                     {item["event"]
                                                         ? item["event"]
                                                         : "-"}
                                                 </td>
-                                                <td className="w-1/5 mt-5 mb-5">
+                                                <td
+                                                    onClick={() => {
+                                                        navigate(
+                                                            "../hero/" +
+                                                                item.hero_id +
+                                                                "/detail"
+                                                        );
+                                                    }}
+                                                    className="w-1/5 mt-5 mb- cursor-pointer"
+                                                >
                                                     ID:
                                                     {item.hero_id
                                                         ? item.hero_id
                                                         : "-"}
                                                 </td>
-                                                <td className="w-1/5 mt-5 mb-5">
+                                                <td className="w-1/5 mt-5 mb-5 text-end pr-20">
                                                     {item.value
-                                                        ? item.value + " OKG"
+                                                        ? item.value +
+                                                          " " +
+                                                          TOKEN
                                                         : "-"}
                                                 </td>
                                                 <td className="w-1/5 mt-5 mb-5">
@@ -81,18 +203,22 @@ export const Activities = () => {
                                                         : "-"}
                                                 </td>
                                                 <td className="w-1/5 mt-5 mb-5">
-                                                    {item["time"]
-                                                        ? dayjs(
-                                                              item["time"]
-                                                          ).format(
-                                                              "DD MMM YYYY, HH:mm"
-                                                          )
-                                                        : "-"}
+                                                    {LastSeen({
+                                                        date: item["time"],
+                                                    })}
                                                 </td>
                                             </tr>
                                         ))}
                                     </tbody>
                                 </table>
+                                <div>
+                                    <PaginationActivity
+                                    currentPage={currentPage}
+                                    totalPage={totalPage}
+                                    totalRecords={totalRecords}
+                                    />
+                                </div>
+                                
                             </div>
                         </div>
                     </div>

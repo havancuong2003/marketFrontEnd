@@ -1,6 +1,12 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Route,
+    Routes,
+    Navigate,
+} from "react-router-dom";
 import React, { Suspense } from "react";
 import { LoginForm, SignUpForm } from "./components";
+import { isAuthenticated } from "./utils";
 
 const LazyMarket = React.lazy(() =>
     import("./pages").then(({ Market }) => ({ default: Market }))
@@ -34,11 +40,21 @@ const LazyHeroDetail = React.lazy(() =>
         default: HeroDetail,
     }))
 );
+
+const PrivateRoute = ({ children }) => {
+    const isAuth = isAuthenticated();
+    if (!isAuth) {
+        return <Navigate to="/auth" replace />;
+    }
+    return children;
+};
+
 const App: React.FC = () => {
     return (
         <Router>
             <Suspense fallback={<div>Loading...</div>}>
                 <Routes>
+                    {/* PUBLIC ROUTE */}
                     <Route index element={<LazyMarket />} />
 
                     <Route
@@ -60,14 +76,43 @@ const App: React.FC = () => {
                             />
                         }
                     />
-                    <Route path="/inventory" element={<LazyInventory />} />
-                    <Route path="/activities" element={<LazyActivities />} />
                     <Route
                         path="hero/:id/detail"
                         element={<LazyHeroDetail />}
                     />
-                    <Route path="/confirm" element={<LazyBuyHero />} />
-                    <Route path="/profile" element={<LazyProfile />} />
+                    {/* PRIVATE ROUTE */}
+                    <Route
+                        path="/inventory"
+                        element={
+                            <PrivateRoute>
+                                <LazyInventory />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="/activities"
+                        element={
+                            <PrivateRoute>
+                                <LazyActivities />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="/confirm"
+                        element={
+                            <PrivateRoute>
+                                <LazyBuyHero />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="/profile"
+                        element={
+                            <PrivateRoute>
+                                <LazyProfile />
+                            </PrivateRoute>
+                        }
+                    />
                 </Routes>
             </Suspense>
         </Router>

@@ -5,4 +5,5 @@ export * from "./sign-up-form";
 export * from "./Test";
 export * from "./hero";
 export * from "./history_trans";
+export * from './'
 //export * from "./detail-hero-unique";
