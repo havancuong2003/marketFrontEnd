@@ -1,10 +1,10 @@
-import clsx from "clsx"
+import clsx from "clsx";
 
 type InputProps = {
     classes?: {
-        [key: string]: string
-    }
-}
+        [key: string]: string;
+    };
+};
 
 export const Input: React.FC<InputProps> = ({ classes, ...inputProps }) => {
     return (
@@ -17,5 +17,5 @@ export const Input: React.FC<InputProps> = ({ classes, ...inputProps }) => {
                 )}
             />
         </div>
-    )
-}
+    );
+};

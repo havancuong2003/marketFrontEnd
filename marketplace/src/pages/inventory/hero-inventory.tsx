@@ -11,28 +11,48 @@ import clsx from "clsx";
 import { useEffect, useState } from "react";
 import { DetailHero } from "../../components/common/detail-hero";
 
+interface Inventory {
+    id: string;
+    name: string;
+    class: Class;
+    race: Race;
+    rank: Rank;
+    level: number;
+    image: string;
+    price: number;
+    hp: number;
+    speed: number;
+    dps: number;
+    atk: number;
+    power: number;
+}
+interface Account {
+    id: string;
+    username: string;
+    email: string;
+    balance: number;
+    avatar: string;
+}
+
 type InventoryHeroProps = {
     classes?: {
         [key: string]: string;
     };
 };
 export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
-    const { heros, inventory } = useInventory();
-    console.log("iv", inventory);
+    const { heros } = useInventory() as {
+        heros: Inventory[];
+    };
 
-    if (Array.isArray(heros)) {
-        console.log("arr", heros);
-    }
-    if (typeof heros === "object" && heros !== null) {
-        console.log("obj", heros);
-    }
-
-    const [heroInventory, setHeroInventory] = useState([]);
+    const [heroInventory, setHeroInventory] = useState(heros);
     useEffect(() => {
         setHeroInventory(heros);
     }, [heros]);
 
-    const { account } = useAccountInformation();
+    const { account } = useAccountInformation() as unknown as {
+        account: Account;
+    };
+
     const navigate = useNavigate();
     return (
         <div>
@@ -100,8 +120,8 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="  w-full h-full">
-                                <div className="grid grid-cols-2 lg:grid-cols-3 gap-10 my-10">
+                            <div>
+                                <div className=" flex  gap-40 my-10">
                                     {heroInventory.map((hero) => (
                                         <div
                                             key={hero.id}
@@ -112,7 +132,6 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
                                                         "/detail"
                                                 )
                                             }
-                                            className=""
                                         >
                                             <DetailHero
                                                 key={hero.id}

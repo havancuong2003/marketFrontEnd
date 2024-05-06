@@ -1,137 +1,144 @@
 // Market.js
 
-import { useState } from "react";
-import { Header, MainMarkerr, SideBar } from "../../components";
-import { useHeroMarket, useSearchMarket } from "../../hooks";
+import { useEffect, useState } from "react";
+import { Header } from "../../components/common/header";
+import { MainMarkerr } from "../../components/market/main-market";
+import { SideBar } from "../../components/market/side-bar-market";
+import { useHeroMarket } from "../../hooks/use-hero-market";
+import { useSearchMarket } from "../../hooks/use-search-market";
 import clsx from "clsx";
 type MarketProps = {
-  classes?: {
-    [key: string]: string;
-  };
+    classes?: {
+        [key: string]: string;
+    };
 };
-interface Hero {
-  class: string;
-  race: string;
-  rank: string;
-}
+
 export const Market: React.FC<MarketProps> = ({ classes }) => {
-  const { heros, setHeros, dataSize } = useHeroMarket();
-  const { heroBackup } = useHeroMarket() as {
-    heroBackup: Hero[];
-  };
-  console.log("market", heros);
-  const {
-    isRankOpen,
-    isClassOpen,
-    isRaceOpen,
+    const {
+        heros,
+        setHeros,
+        dataSize,
+        loading,
+        setLoading,
+        herosMarket,
+        totalPage,
+        currentPage,
+        setCurrentPage,
+    } = useHeroMarket();
 
-    toggleRank,
-    toggleClass,
-    toggleRace,
+    const {
+        isRankOpen,
+        isClassOpen,
+        isRaceOpen,
 
-    selectedRank,
-    selectedClass,
-    selectedRace,
+        toggleRank,
+        toggleClass,
+        toggleRace,
 
-    setSelectedRank,
-    setSelectedClass,
-    setSelectedRace,
+        selectedRank,
+        selectedClass,
+        selectedRace,
 
-    setIsClassOpen,
-    setIsRankOpen,
-    setIsRaceOpen,
+        setSelectedRank,
+        setSelectedClass,
+        setSelectedRace,
 
-    onToggleClass,
-    onToggleRank,
-    onToggleRace,
-  } = useSearchMarket();
-  console.log("herroo", heros);
+        setIsClassOpen,
+        setIsRankOpen,
+        setIsRaceOpen,
 
-  const ITEMS_PER_PAGE = 5; // Số lượng hero mỗi trang
+        onToggleClass,
+        onToggleRank,
+        onToggleRace,
+    } = useSearchMarket();
 
-  const [currentPage, setCurrentPage] = useState(1);
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
 
-  // Tính số trang dựa trên số lượng hero
-  const totalPages = Math.ceil(heros.length / ITEMS_PER_PAGE);
-  const getHeroesForPage = () => {
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    const endIndex = startIndex + ITEMS_PER_PAGE;
-    return heros.slice(startIndex, endIndex);
-  };
-  // Xử lý khi chuyển trang
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-  const filterItems = (selectedFilter) => {
-    const { selectedRank, selectedClass, selectedRace } = selectedFilter;
-    const filteredHeros = heroBackup.filter((hero) => {
-      return (
-        (!selectedRank || hero.rank === selectedRank.toUpperCase()) &&
-        (!selectedClass || hero.class === selectedClass.toUpperCase()) &&
-        (!selectedRace || hero.race === selectedRace.toUpperCase())
-      );
-    });
-    setHeros(filteredHeros);
-  };
+    useEffect(() => {
+        herosMarket(
+            currentPage,
+            4,
+            selectedRace,
+            selectedClass,
+            selectedRank
+        ).then((data: any) => {
+            setHeros(data.data);
+        });
+    }, [currentPage, dataSize, selectedRank, selectedClass, selectedRace]);
+    const resetFilters = () => {
+        setLoading(true);
+        setTimeout(() => {
+            setSelectedRank("");
+            setSelectedClass("");
+            setSelectedRace("");
+            setIsClassOpen(true);
+            setIsRankOpen(true);
+            setIsRaceOpen(true);
 
-  const resetFilters = () => {
-    setHeros(heroBackup);
+            setLoading(false);
+        }, 1000);
+    };
 
-    setSelectedRank("");
-    setSelectedClass("");
-    setSelectedRace("");
+    const [filterOff, setFilterOff] = useState(true);
+    const handleClickFilter = (filterstt) => {
+        setFilterOff(filterstt);
+    };
 
-    setIsClassOpen(true);
-    setIsRankOpen(true);
-    setIsRaceOpen(true);
-  };
+    return (
+        <div className="bg-black h-auto">
+            <div className="bg-market h-auto relative bg-cover bg-center">
+                <div className="w-full">
+                    <Header />
+                </div>
+                <div className="lg:flex w-full mt-14">
+                    <div
+                        className={clsx(
+                            classes?.sizeSidebar,
+                            `${filterOff ? "hidden" : "block"}  lg:block`
+                        )}
+                    >
+                        <SideBar
+                            //  filterItems={filterItems}
+                            resetFilters={resetFilters}
+                            toggleRank={toggleRank}
+                            toggleClass={toggleClass}
+                            toggleRace={toggleRace}
+                            isRankOpen={isRankOpen}
+                            isClassOpen={isClassOpen}
+                            isRaceOpen={isRaceOpen}
+                            selectedClass={selectedClass}
+                            selectedRank={selectedRank}
+                            selectedRace={selectedRace}
+                            onToggleClass={onToggleClass}
+                            onToggleRank={onToggleRank}
+                            onToggleRace={onToggleRace}
+                            filterStatus={handleClickFilter}
+                        />
+                    </div>
 
-  const [filterOff, setFilterOff] = useState(true);
-  const handleClickFilter = (filterstt) => {
-    setFilterOff(filterstt);
-  };
-  console.log(filterOff);
-
-  return (
-    <div className="bg-black h-auto">
-      <div className="bg-market h-auto relative bg-cover bg-center">
-        <div className="w-full">
-          <Header />
+                    <div className={clsx(classes?.sizeMarket, "lg:w-2/3")}>
+                        {loading ? (
+                            <div className="flex items-center justify-center h-screen">
+                                <div className="spinner"></div>
+                                <span className="ml-2 text-2xl text-white">
+                                    Loading...
+                                </span>
+                            </div>
+                        ) : (
+                            <MainMarkerr
+                                heros={heros}
+                                dataSize={dataSize}
+                                totalPages={totalPage}
+                                currentPage={currentPage}
+                                onPageChange={handlePageChange}
+                                onFilterStatusChange={handleClickFilter}
+                            />
+                        )}
+                    </div>
+                </div>
+            </div>
         </div>
-        <div className="flex">
-          <div
-            className={`${filterOff ? "hidden" : "block"} lg:w-1/3 lg:block`}
-          >
-            <SideBar
-              filterItems={filterItems}
-              resetFilters={resetFilters}
-              toggleRank={toggleRank}
-              toggleClass={toggleClass}
-              toggleRace={toggleRace}
-              isRankOpen={isRankOpen}
-              isClassOpen={isClassOpen}
-              isRaceOpen={isRaceOpen}
-              selectedClass={selectedClass}
-              selectedRank={selectedRank}
-              selectedRace={selectedRace}
-              onToggleClass={onToggleClass}
-              onToggleRank={onToggleRank}
-              onToggleRace={onToggleRace}
-              filterStatus={handleClickFilter}
-            />
-          </div>
-          <div className={clsx(classes?.sizeMarket, "w-2/3")}>
-            <MainMarkerr
-              heros={getHeroesForPage()}
-              dataSize={dataSize}
-              totalPages={totalPages}
-              currentPage={currentPage}
-              onPageChange={handlePageChange}
-              onFilterStatusChange={handleClickFilter}
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    );
 };

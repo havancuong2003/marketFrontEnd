@@ -47,6 +47,9 @@ const mappingActionDetail = {
 const items_per_page = 10;
 export const Activities :React.FC<ActivitiesProps> = ({classes}) => {
     const [searchParams] = useSearchParams();
+import { Activity } from "../../models/activity";
+
+export const Activities = () => {
     const { account } = useAccountInformation();
     const navigate = useNavigate();
     const [totalPage, setTotalPage] = useState(0);

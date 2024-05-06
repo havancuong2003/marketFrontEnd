@@ -10,6 +10,7 @@ import { isAuthenticated } from "../../../utils";
 import { Hero } from "../../../models/hero";
 import clsx from "clsx";
 import { useAccountInformation } from "../../../hooks";
+import { Account } from "../../../models/account";
 
 type DetailInfoProps = {
     classes?: {
@@ -35,8 +36,10 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
         navigate("/");
     };
 
-    const { account } = useAccountInformation();
-    console.log("acopunt", account);
+    const { account } = useAccountInformation() as unknown as {
+        account: Account;
+    };
+
     return (
         <div className="container ">
             <div className="text-white h-1/6">

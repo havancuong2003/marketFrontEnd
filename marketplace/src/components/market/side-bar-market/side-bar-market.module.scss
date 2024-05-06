@@ -1,9 +1,20 @@
+.filterHeader {
+    margin-top: 22px;
+    margin-left: 36px;
+    display: inline-block;
+}
+
 @media screen and (max-width: 768px) {
     .showFilter {
-        width: 450px;
+        width: 430px;
         height: auto;
         z-index: 999;
         position: absolute;
+    }
+    .filterHeader {
+        margin-top: 0;
+        margin-left: 34px;
+        display: inline-block;
     }
     .setOpacity {
         @apply bg-opacity-100;

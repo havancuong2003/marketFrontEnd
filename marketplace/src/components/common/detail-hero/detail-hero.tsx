@@ -28,7 +28,7 @@ export const DetailHero: React.FC<DetailHeroProps> = ({
                 classes?.size,
                 classes?.backgroundHeroCard,
                 classes?.textsize,
-                "relative cursor-pointer "
+                "relative "
             )}
         >
             <div className="">
@@ -50,10 +50,12 @@ export const DetailHero: React.FC<DetailHeroProps> = ({
                     )}
                 >
                     <div className={clsx(classes?.setPosHp, "  ml-2")}>
-                        <span>HP: {hp}</span>
+                        <span title="Health point">HP: {hp}</span>
                     </div>
-                    <div className={clsx(classes?.setPosAtk, "  ml-4")}>
-                        <span>ATK: {atk}</span>
+                    <div className={clsx(classes?.setPosAtk, "")}>
+                        <span title="Attack" className={clsx(classes?.sizeAtb)}>
+                            ATK: {atk}
+                        </span>
                     </div>
                 </div>
                 <div
@@ -64,10 +66,15 @@ export const DetailHero: React.FC<DetailHeroProps> = ({
                     )}
                 >
                     <div className={clsx(classes?.setPosSpd, "mx-1  ")}>
-                        <span>SPD: {speed}</span>
+                        <span title="Speed">SPD: {speed}</span>
                     </div>
                     <div className={clsx(classes?.setPosDps, "ml-2  ")}>
-                        <span>DPS: {dps}</span>
+                        <span
+                            title="Damage Per Second"
+                            className={clsx(classes?.sizeAtb)}
+                        >
+                            DPS: {dps}
+                        </span>
                     </div>
                 </div>
                 <div
@@ -76,14 +83,36 @@ export const DetailHero: React.FC<DetailHeroProps> = ({
                         "absolute left-14 bottom-7 lg:bottom-10 lg:left-32"
                     )}
                 >
-                    <span>{price}</span>
+                    <span title="price" className={clsx(classes?.price)}>
+                        {price}
+                    </span>
                 </div>
-                <div className="flex absolute bottom-1 left-3 lg:bottom-1 lg:left-3 lg:text-xl ">
-                    <div className={clsx(classes?.info, " mr-8 lg:mr-16")}>
-                        <span>{race} </span>
+                {/* bottom-1 left-3 */}
+                <div className="flex absolute  lg:bottom-1 lg:left-3 lg:text-xl ">
+                    <div
+                        className={clsx(
+                            classes?.info,
+                            classes?.infoFooterLeft,
+                            "mr-8 lg:ml-2 text-center "
+                        )}
+                    >
+                        <span title="Race" className="">
+                            {race}{" "}
+                        </span>
                     </div>
-                    <div className={clsx(classes?.info, "lg:ml-4 mb-1")}>
-                        <span>{classess}</span>
+                    <div
+                        className={clsx(
+                            classes?.info,
+                            classes?.infoFooterRight,
+                            "lg:ml-10 mb-1  "
+                        )}
+                    >
+                        <span
+                            title="Class"
+                            className={clsx(classes?.posFooterRightt)}
+                        >
+                            {classess}
+                        </span>
                     </div>
                 </div>
             </div>

@@ -1,24 +1,24 @@
-import { useNavigate } from "react-router-dom"
-import { useEffect } from "react"
-import clsx from "clsx"
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import clsx from "clsx";
 type ButtonStartProps = {
-    component: React.ReactNode
-    p: string
+    component: React.ReactNode;
+    p: string;
     classes?: {
-        [key: string]: string
-    }
-}
+        [key: string]: string;
+    };
+};
 export const StartPage: React.FC<ButtonStartProps> = ({
     component,
     p,
     classes,
 }) => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     useEffect(() => {
         if (localStorage.getItem("token")) {
             navigate("/")
         }
-    })
+    });
     return (
         <div className="h-screen w-[414px] lg:w-full flex justify-center items-center rounded-lg bg-bglogin bg-cover bg-center">
             <div
@@ -51,5 +51,5 @@ export const StartPage: React.FC<ButtonStartProps> = ({
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
