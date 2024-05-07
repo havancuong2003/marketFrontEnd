@@ -135,7 +135,7 @@ export const HeroDetail: React.FC<HeroDetailProps> = ({ classes }) => {
                     </div>
 
                     {showHistory && <HistoryTrans heroId={hero.id} />}
-                    <img src={footer} className="mt-28"></img>
+                    {/* <img src={footer} className="mt-28"></img> */}
                 </div>
             </div>
         </>
