@@ -43,6 +43,8 @@ export const PaginationActivity: React.FC<Props> = ({
                     }
                   }
                 }
+                size="small"
+
             />
         </Stack>
         </div>

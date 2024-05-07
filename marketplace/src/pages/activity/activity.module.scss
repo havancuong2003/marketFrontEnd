@@ -7,17 +7,7 @@
     background-size: 100% 100%;
     background-repeat:no-repeat ;
  }
- .skranji-regular {
-    font-family: "Skranji", system-ui;
-    font-weight: 400;
-    font-style: normal;
-  }
-  
-  .skranji-bold {
-    font-family: "Skranji", system-ui;
-    font-weight: 700;
-    font-style: normal;
-  }
+
 .containerProfile{
     display: flex;
     width: 25%;
@@ -27,9 +17,12 @@
     height: 800px;
     margin-left: 6rem/* 96px */;
     margin-top: 6rem/* 96px */;
+    border-radius: 10px;
 }
 .tableActivities{
+    font-size: 0.875rem;
     background-color: rgba(23,10,2,0.8);
+    border-radius: 10px;
     width: 100%;
     margin-left: 6rem/* 96px */;
     margin-right: 6rem/* 96px */;
@@ -39,6 +32,9 @@
 .heroImage{
     display: none;
 }
+
+
+
 @media screen and (max-width: 768px) {
     .containerActivities{
         display: block;
@@ -47,10 +43,12 @@
         display: none;
     }
     .container{
+        padding-top: 30px;
         width: 100%;
         background-image: url('../src/assets/img/Fixed.png');
         background-size: 100% 100%;
         background-repeat:no-repeat ;
+        
 
     }
     .containerProfile{
@@ -58,12 +56,15 @@
         margin-left: 10px;
     }
     .tableActivities{
-        margin-left: 12px;
+        margin-left: 0px;
         margin-right: 0px;
         margin-top: 0px;
+        margin: auto;
         padding-top: 10px;
         padding-bottom: 15px;
         width: 95%;
+        background-color: rgba(23, 10, 2, 0.8);
+        border-radius: 10px;
         
     }
     .heroImage{

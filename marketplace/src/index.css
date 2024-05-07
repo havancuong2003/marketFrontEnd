@@ -7,24 +7,24 @@
 
 /* width */
 .custom-scrollbar::-webkit-scrollbar {
-    width: 5px;
+    width: 2px;
 }
 
 /* Track */
-.custom-scrollbar::-webkit-scrollbar-track {
-}
+.custom-scrollbar::-webkit-scrollbar-track {}
 
 /* Handle */
 .custom-scrollbar::-webkit-scrollbar-thumb {
     background: #888;
-    border-radius: 5px;
-    overflow-y: auto;
+    border-radius: 2px;
+    overflow-y: auto
 }
 
 /* Handle on hover */
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
 
 .spinner {
     border: 8px solid #fff; /* Màu nền của hiệu ứng quay tròn */

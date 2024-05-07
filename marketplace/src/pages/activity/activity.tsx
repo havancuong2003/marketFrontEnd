@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Event } from "../../types";
 import clsx from "clsx";
-import hero from '../../assets/img/HeroImage.png' 
+import hero from "../../assets/img/HeroImage.png";
 
 type ActivitiesProps = {
     classes?: {
@@ -45,11 +45,8 @@ const mappingActionDetail = {
     PURCHASE: "Making a purchase",
 };
 const items_per_page = 10;
-export const Activities :React.FC<ActivitiesProps> = ({classes}) => {
+export const Activities: React.FC<ActivitiesProps> = ({ classes }) => {
     const [searchParams] = useSearchParams();
-import { Activity } from "../../models/activity";
-
-export const Activities = () => {
     const { account } = useAccountInformation();
     const navigate = useNavigate();
     const [totalPage, setTotalPage] = useState(0);
@@ -84,15 +81,13 @@ export const Activities = () => {
             .then((res) => {
                 setActivities(res.data.records);
                 setTotalRecords(res.data.totalRecords);
-                setTotalPage(Math.ceil(totalRecords/ items_per_page));
+                setTotalPage(Math.ceil(totalRecords / items_per_page));
             })
             .catch((err) => {
                 console.log(err);
             });
-            
     }, [searchParams, totalRecords]);
-    
-    
+
     //console.log("total page",totalPage)
     return (
         <div>
@@ -102,14 +97,15 @@ export const Activities = () => {
 
             <div className={clsx(classes?.container, "font-home")}>
                 <div className="">
-                <div className={clsx(classes?.heroImage)}>
-                    <span className={clsx("text-4xl text-white")}>
-                        Activities
-                    </span>
-                    <img src={hero} alt="" />
-                </div>
-                    <div className={clsx(classes?.containerActivities,"flex")}>
-                        <div className={clsx(classes?.containerProfile,"")}>
+                    <div className={clsx(classes?.heroImage)}>
+                        <span className={clsx("text-4xl text-white")}>
+                            ACTIVITIES
+                        </span>
+                        <img src={hero} alt="" />
+                        
+                    </div>
+                    <div className={clsx(classes?.containerActivities, "flex")}>
+                        <div className={clsx(classes?.containerProfile, "")}>
                             <div className="pt-10">
                                 <img src={avatar} alt="" className="pb-3 p-5" />
                                 <p className="text-4xl font-semibold text-white pb-3">
@@ -121,11 +117,16 @@ export const Activities = () => {
                                 <ButtonInventory selectedItem={"Activities"} />
                             </div>
                         </div>
-                        
+
                         <div className={clsx(classes?.tableActivities)}>
                             <div className="mt-5 ml-10 mr-10">
                                 <div>
-                                    <span className={clsx(classes?.title,"text-2xl text-white")}>
+                                    <span
+                                        className={clsx(
+                                            classes?.title,
+                                            "text-2xl text-white"
+                                        )}
+                                    >
                                         Activities
                                     </span>
                                     <div className="flex items-end">
@@ -157,7 +158,10 @@ export const Activities = () => {
                                         </tr>
                                     </thead>
 
-                                    <tbody className="text-[#CCC3B5] text-sm mt-5 mb-5 flex flex-col  justify-between overflow-y-scroll w-full h-[500px]">
+                                    <tbody
+                                        className="custom-scrollbar text-[#CCC3B5] text-sm mt-5 mb-5 flex flex-col  justify-between overflow-y-scroll w-full h-[500px]"
+                                        id="style-2"
+                                    >
                                         {activities.map((item) => (
                                             <tr
                                                 className={clsx(
@@ -223,12 +227,11 @@ export const Activities = () => {
                                 </table>
                                 <div>
                                     <PaginationActivity
-                                    currentPage={currentPage}
-                                    totalPage={totalPage}
-                                    totalRecords={totalRecords}
+                                        currentPage={currentPage}
+                                        totalPage={totalPage}
+                                        totalRecords={totalRecords}
                                     />
                                 </div>
-                                
                             </div>
                         </div>
                     </div>

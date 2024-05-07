@@ -71,7 +71,19 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
     const handlePassEditClick = () => {
         setIsEditingPass(true);
     };
-
+    // useEffect(() => {
+    //     axios
+    //         .post(VITE_API_URL + "/api/v1/account/update-username", {
+    //             headers: {
+    //                 Authorization: `Bearer ${localStorage.getItem("token")}`,
+    //             },
+    //             username: newUsername,
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+            
+    // }, [newUsername]);
     const handleSaveClick = async () => {
         try {
             // Call API to update username
@@ -179,8 +191,20 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                 <Header />
             </div>
 
-            <div className="flex bg-bginventory">
-                <div className={clsx(classes?.container, "border")}>
+            <div className={clsx(classes?.containerProfile, "flex")}>
+                <div className={clsx(classes?.avatarImage)}>
+                    <span className={clsx("text-4xl text-white")}>
+                        PROFILE SETTINGS
+                    </span>
+                    <img src={avatar} alt="" />
+                    <p className={clsx(classes?.textFont, "")}>
+                        {account["username"]}
+                    </p>
+                    <p className={clsx(classes?.textFontId, "")}>
+                        #{account["id"]}
+                    </p>
+                </div>
+                <div className={clsx(classes?.container, "")}>
                     <div className=" w-full bg-bgprofile flex justify-center text-center">
                         <div className="pt-10">
                             <img src={avatar} alt="" className="pb-3 p-5" />
@@ -196,13 +220,14 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                         </div>
                     </div>
                 </div>
-                <div className="w-full">
+
+                <div className="w-full ml-10">
                     <div
                         className={clsx(
                             classes?.profileSize,
                             classes?.profilebg,
                             classes?.profileFont,
-                            "border"
+                            ""
                         )}
                     >
                         <div className={clsx(classes?.profileHeader, "")}>
