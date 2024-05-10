@@ -216,3 +216,60 @@
     font-weight: 900;
     line-height: normal;
 }
+.containerProfile{
+    background-image: url('../src/assets/img/bginventory.png');
+    background-size: 100% 100%;
+    background-repeat:no-repeat ;
+ }
+  .avatarImage{
+    display: none;
+  }
+
+ @media screen and (max-width: 768px) {
+    .avatarImage{
+        padding-top: 100px;
+        display: block;
+        justify-content: center;
+        justify-items: center;
+        align-items: center;
+        text-align: center;
+        font-family: "Skranji", system-ui;
+        font-weight: 400;
+        font-style: normal;
+    }
+    .avatarImage img {
+        padding-top: 10px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .container{
+        display: none;
+    }
+    .containerProfile{
+        margin-top: 0;
+        display: block;
+        background-image: url("../../assets/img/Fixed.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        justify-items: center;
+    }
+    .textFont{
+        margin-top: 0;
+        font-family: Avenir;
+        color: white;
+        font-size: 25px;
+    }
+    .textFontId{
+        margin-top: 0;
+        font-family: Avenir;
+        color: white;
+        font-size: 15px;
+    }
+    .layout{
+        display: block;
+    }
+    .profileSize{
+        margin-top: 0;
+    }
+    
+ }

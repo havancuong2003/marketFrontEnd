@@ -16,7 +16,7 @@ export const StartPage: React.FC<ButtonStartProps> = ({
     const navigate = useNavigate();
     useEffect(() => {
         if (localStorage.getItem("token")) {
-            navigate("/dashboard");
+            navigate("/")
         }
     });
     return (

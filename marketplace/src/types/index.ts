@@ -20,8 +20,8 @@ export enum Class {
     TANKER = "TANKER",
 }
 export enum Event {
-    LIST = "LIST",
-    DELIST = "DELIST",
+    LIST="LIST",
+    DELIST="DELIST",
     SALE = "SALE",
     PURCHASE = "PURCHASE",
 }
