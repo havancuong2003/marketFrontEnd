@@ -3,11 +3,6 @@ import * as React from 'react';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
-
-
-
-
-
 type Props = {
     classes?: {
         [key: string]: string;
@@ -36,7 +31,9 @@ export const PaginationActivity: React.FC<Props> = ({
                 variant="outlined"
                 shape="rounded"
                 color='secondary'           
-                onChange={(page) => navigate(`?page=${page}`)}
+                onChange={(e,page) => {navigate(`?page=${page}`)
+                  console.log(e);
+                }}
                 sx= {
                   {
                     "& .MuiPaginationItem-root": {
