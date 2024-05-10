@@ -1,0 +1,12 @@
+.copy{
+    @apply w-2/5
+}
+
+@media screen and (max-width: 1024px) {
+    .copy {
+        padding: 0px;
+        @apply w-1/4
+    }
+
+
+}

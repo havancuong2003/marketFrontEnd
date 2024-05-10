@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { VITE_API_URL } from "../env";
 
 export const useHeroDetail = () => {
-    const [hero, setHero] = useState([]);
+    const [hero, setHero] = useState(Object);
     const { id } = useParams();
     useEffect(() => {
         axios
@@ -15,6 +15,6 @@ export const useHeroDetail = () => {
             .catch((err) => {
                 console.log(err);
             });
-    }, []);
+    });
     return hero;
 };

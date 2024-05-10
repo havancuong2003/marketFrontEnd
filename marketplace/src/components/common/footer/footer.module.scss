@@ -1,0 +1,25 @@
+.rightFooterLogo {
+    display: none;
+}
+.rightFooter {
+    display: flex;
+}
+.footer {
+    padding-left: 5rem /* 80px */;
+    padding-right: 5rem /* 80px */;
+}
+@media screen and (max-width: 1024px) {
+    .rightFooter {
+        display: none;
+    }
+    .rightFooterLogo {
+        display: flex;
+    }
+    .leftFooter {
+        font-size: 0.75rem;
+    }
+    .footer {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}

@@ -1,8 +1,14 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Route,
+    Routes,
+    Navigate,
+} from "react-router-dom";
 import React, { Suspense } from "react";
-import { LoginForm, SignUpForm } from "./components";
+import { Layout, LoginForm, SignUpForm } from "./components";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
+import { isAuthenticated } from "./utils";
 
 const LazyMarket = React.lazy(() =>
     import("./pages").then(({ Market }) => ({ default: Market }))
@@ -36,6 +42,15 @@ const LazyHeroDetail = React.lazy(() =>
         default: HeroDetail,
     }))
 );
+
+const PrivateRoute = ({ children }) => {
+    const isAuth = isAuthenticated();
+    if (!isAuth) {
+        return <Navigate to="/auth" replace />;
+    }
+    return children;
+};
+
 const App: React.FC = () => {
     return (
         <Router>
@@ -49,6 +64,7 @@ const App: React.FC = () => {
                 }
             >
                 <Routes>
+                    {/* PUBLIC ROUTE */}
                     <Route index element={<LazyMarket />} />
 
                     <Route
@@ -70,14 +86,56 @@ const App: React.FC = () => {
                             />
                         }
                     />
-                    <Route path="/inventory" element={<LazyInventory />} />
-                    <Route path="/activities" element={<LazyActivities />} />
+
                     <Route
                         path="hero/:id/detail"
-                        element={<LazyHeroDetail />}
+                        element={
+                            <Layout>
+                                <LazyHeroDetail />
+                            </Layout>
+                        }
                     />
-                    <Route path="/confirm" element={<LazyBuyHero />} />
-                    <Route path="/profile" element={<LazyProfile />} />
+                    {/* PRIVATE ROUTE */}
+                    <Route
+                        path="/inventory"
+                        element={
+                            <Layout>
+                                <PrivateRoute>
+                                    <LazyInventory />
+                                </PrivateRoute>
+                            </Layout>
+                        }
+                    />
+                    <Route
+                        path="/activities"
+                        element={
+                            <Layout>
+                                <PrivateRoute>
+                                    <LazyActivities />
+                                </PrivateRoute>
+                            </Layout>
+                        }
+                    />
+                    <Route
+                        path="/confirm"
+                        element={
+                            <Layout>
+                                <PrivateRoute>
+                                    <LazyBuyHero />
+                                </PrivateRoute>
+                            </Layout>
+                        }
+                    />
+                    <Route
+                        path="/profile"
+                        element={
+                            <Layout>
+                                <PrivateRoute>
+                                    <LazyProfile />
+                                </PrivateRoute>
+                            </Layout>
+                        }
+                    />
                 </Routes>
             </Suspense>
         </Router>

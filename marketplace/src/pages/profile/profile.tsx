@@ -99,7 +99,19 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
             setIsEditingPass(true);
         }
     };
+    // useEffect(() => {
+    //     axios
+    //         .post(VITE_API_URL + "/api/v1/account/update-username", {
+    //             headers: {
+    //                 Authorization: `Bearer ${localStorage.getItem("token")}`,
+    //             },
+    //             username: newUsername,
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
 
+    // }, [newUsername]);
     const handleSaveClick = async () => {
         try {
             // Call API to update username
@@ -126,10 +138,6 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
 
     const handlePassCancelClick = () => {
         setIsEditingPass(false);
-    };
-
-    const handleChange = (e) => {
-        setNewUsername(e.target.value);
     };
 
     useEffect(() => {
@@ -172,6 +180,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                 console.error("Error changing password:", error);
                 setErrorChangePassword(error.response?.data.message);
             }
+            // Handle error here, maybe show a message to the user
         }
     };
 
@@ -184,7 +193,9 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
         setOldPassword(e.target.value);
         setErrorChangePassword([]);
     };
-
+    const handleChange = (e) => {
+        setNewUsername(e.target.value);
+    };
     const handleConfirmPasswordChange = (e) => {
         if (newPassword !== e.target.value) {
             setErroDiff("Password not match");
@@ -228,7 +239,19 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                 <Header />
             </div>
 
-            <div className="lg:flex bg-bginventory">
+            <div className={clsx(classes?.containerProfile, "flex")}>
+                <div className={clsx(classes?.avatarImage)}>
+                    <span className={clsx("text-4xl text-white")}>
+                        PROFILE SETTINGS
+                    </span>
+                    <img src={avatar} alt="" />
+                    <p className={clsx(classes?.textFont, "")}>
+                        {account["username"]}
+                    </p>
+                    <p className={clsx(classes?.textFontId, "")}>
+                        #{account["id"]}
+                    </p>
+                </div>
                 <div className={clsx(classes?.container, "")}>
                     <div className=" w-full bg-bgprofile flex justify-center text-center">
                         <div className="pt-10">
@@ -247,7 +270,8 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                         </div>
                     </div>
                 </div>
-                <div className="w-full">
+
+                <div className="w-full ml-10">
                     <div
                         className={
                             isEditingPass
@@ -383,7 +407,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                         <button
                                             className={clsx(
                                                 classes?.editBtn,
-                                                "border-5 border-red-500"
+                                                ""
                                             )}
                                             onClick={handleEditClick}
                                         >
@@ -867,7 +891,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                     </div>
                 </div>
             </div>
-            <div className="border-4 border-red-500">
+            <div className="">
                 {!shouldHideModal && (
                     <BasicModal
                         open={isModalOpen}
