@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import React, { Suspense } from "react";
 import { LoginForm, SignUpForm } from "./components";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 const LazyMarket = React.lazy(() =>
     import("./pages").then(({ Market }) => ({ default: Market }))
@@ -37,7 +39,15 @@ const LazyHeroDetail = React.lazy(() =>
 const App: React.FC = () => {
     return (
         <Router>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense
+                fallback={
+                    <div className="w-full h-screen flex justify-center items-center">
+                        <Box sx={{ display: "flex" }}>
+                            <CircularProgress />
+                        </Box>
+                    </div>
+                }
+            >
                 <Routes>
                     <Route index element={<LazyMarket />} />
 
