@@ -55,7 +55,13 @@ const App: React.FC = () => {
             <Suspense fallback={<div>Loading...</div>}>
                 <Routes>
                     {/* PUBLIC ROUTE */}
-                    <Route index element={<LazyMarket />} />
+                    <Route index element={
+                    <Layout>
+                        <LazyMarket />
+                    </Layout>
+                        
+                    
+                    } />
 
                     <Route
                         path="/login"
