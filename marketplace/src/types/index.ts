@@ -6,10 +6,10 @@ export enum Rank {
     CHIEFTAIN = "CHIEFTAIN",
 }
 export enum Race {
-    ANTUK = "ANTUK ",
-    KRAKEE = "KRAKEE ",
-    MANTAH = "MANTAH ",
-    MONTAK = "MONTAK ",
+    ANTUK = "ANTUK",
+    KRAKEE = "KRAKEE",
+    MANTAH = "MANTAH",
+    MONTAK = "MONTAK",
     MUU = "MUU",
 }
 export enum Class {

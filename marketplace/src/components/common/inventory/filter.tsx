@@ -12,16 +12,17 @@ export const FilterInventory = ({name,actionValues, eventSearch, handleChange}) 
                     },
                     "& .MuiInputLabel-root": {
                         // Màu text của InputLabel
-                        color: "white",
+                        color: "#F1E9DC",
                     },
                     "& .MuiInputBase-root": {
-                        color: "orange", // Màu text của Select khi không focus
+                        color: "#F1E9DC", // Màu text của Select khi không focus
                     },
 
                     "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline":
                         {
-                            borderColor: "brown",
+                            borderColor: "#B7A284",
                         },
+                        backgroundColor: "#170A02CC",
                 }}
                 size="small"
             >

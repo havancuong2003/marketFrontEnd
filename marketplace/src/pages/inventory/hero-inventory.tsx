@@ -51,7 +51,7 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
         setEventRank(event.target.value);
         //navigate(`?event=${event.target.value}`);
     };
-    console.log("eventSearchClass", eventSearchClass);
+    console.log("eventSearchRace", eventSearchRace);
     useEffect(() => {
         if(eventSearchClass === ""){
             setEventClass("ALL");
