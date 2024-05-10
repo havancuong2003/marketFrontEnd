@@ -32,6 +32,9 @@ export const FilterInventory = ({name,actionValues, eventSearch, handleChange}) 
                           "& .MuiSelect-icon": {
                             color: "#F1E9DC", // Màu của mũi tên là màu cam
                           },
+                          "& .MuiInputLabel-root.Mui-focused": {
+                            color: "white", // Màu text của InputLabel khi focus là màu cam
+                          },
                 }}
                 size="small"
             >
