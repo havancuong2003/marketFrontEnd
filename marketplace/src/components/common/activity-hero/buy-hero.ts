@@ -8,8 +8,10 @@ export const buyHero = async (id: number) => {
         );
         console.log("Buy Status:", response.data);
         return response.data;
-    } catch (error) {
-        console.error("Buy Error:", error.response.data.message);
-        return { error: error.response.data.message };
+    } catch (error: unknown) {
+        if (error instanceof AxiosError) {
+            console.error("Buy Error:", error.response?.data.message);
+            return { error: error.response?.data.message };
+        }
     }
 };

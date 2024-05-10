@@ -1,4 +1,4 @@
-import { format, parseISO, differenceInHours } from "date-fns";
+import { format, differenceInHours } from "date-fns";
 import { ShortId } from "../../services";
 import { Tooltip } from "@mui/material";
 import TimeAgo from "javascript-time-ago";
@@ -15,7 +15,8 @@ import axios from "axios";
 import { VITE_API_URL } from "../../env";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { CopyText } from "../common";
-import dayjs from "dayjs";
+import clsx from "clsx";
+import { HistoryTran } from "../../models";
 
 TimeAgo.addDefaultLocale(en);
 TimeAgo.addLocale(ru);
@@ -66,16 +67,15 @@ export const HistoryTrans: React.FC<HistoryTransProps> = ({
     // };
 
     const navigate = useNavigate();
-    const formatDate = (dateString: string): string => {
-        const parsedDate = parseISO(dateString);
-        const formattedDate = format(parsedDate, "MMM dd yyyy HH:mm:ss");
+    const formatDate = (date: Date): string => {
+        const formattedDate = format(date, "MMM dd yyyy HH:mm:ss");
         return formattedDate;
     };
 
     const time = Date();
 
     return (
-        <div className="flex justify-center ">
+        <div className={clsx(classes?.container, "flex justify-center")}>
             <div className="w-7/12  bg-[#170A02] mt-2 tex-sm ">
                 <table className=" w-full table-auto border-collapse ">
                     <thead className="text-dark-yellow  border-light-brown border-opacity-20 mt-5 mb-5 flex mx-20 ">
@@ -95,7 +95,7 @@ export const HistoryTrans: React.FC<HistoryTransProps> = ({
                         </tr>
                     </thead>
                     <tbody className="text-main px-20 mt-5 mb-5 flex flex-col  overflow-y-scroll custom-scrollbar h-96">
-                        {historyTrans.map((item) => (
+                        {historyTrans.map((item: HistoryTran) => (
                             <tr
                                 key={item.id}
                                 className="border-b border-light-brown border-opacity-20 flex w-full justify-between"
@@ -166,7 +166,7 @@ export const HistoryTrans: React.FC<HistoryTransProps> = ({
                                         }}
                                         color="secondary"
                                         variant="outlined"
-                                        onChange={(event, page) => {
+                                        onChange={(page) => {
                                             //handlePageChange(event, page);
                                             navigate("?page=" + page);
                                         }}

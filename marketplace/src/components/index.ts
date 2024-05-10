@@ -5,4 +5,3 @@ export * from "./sign-up-form";
 export * from "./hero";
 export * from "./history_trans";
 export * from "./trasnaction";
-1;

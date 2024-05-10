@@ -1,16 +1,8 @@
-import {
-    ButtonBack,
-    DetailInfo,
-    Header,
-    HistoryTrans,
-    InfoHero,
-} from "../../components";
+import { DetailInfo, Header, InfoHero, ButtonBack } from "../../components";
 import { useHeroDetail } from "../../hooks/use-hero-info";
-import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import footer from "../../assets/img/Footer.png";
 import clsx from "clsx";
-
+import { HistoryTrans } from "../../components/history_trans/list-history-trans";
 import {
     BuyHero,
     PaySucceeded,
@@ -19,15 +11,16 @@ import {
 } from "../../components/trasnaction";
 
 import { Button, Tooltip } from "@mui/material";
+import { Hero } from "../../models";
+
 type HeroDetailProps = {
     classes?: {
         [key: string]: string;
     };
+    hero: Hero;
 };
 export const HeroDetail: React.FC<HeroDetailProps> = ({ classes }) => {
     const hero = useHeroDetail();
-    const navigate = useNavigate();
-
     const [showHistory, setShowHistory] = useState(false);
     const [showBuy, setShowBuy] = useState(false);
     const [showSell, setShowSell] = useState(false);
@@ -59,8 +52,6 @@ export const HeroDetail: React.FC<HeroDetailProps> = ({ classes }) => {
     const handleSell = () => {
         setIsSell(true);
     };
-
-    console.log("hero", hero.id);
     return (
         <>
             {showBuy && !isPay && (
@@ -99,7 +90,7 @@ export const HeroDetail: React.FC<HeroDetailProps> = ({ classes }) => {
                 <div
                     className={clsx(
                         classes?.container,
-                        "h-screen bg-bgdetail bg-cover  overflow-y-scroll custom-scrollbar",
+                        "h-screen bg-bgdetail bg-cover  overflow-y-scroll custom-scrollbar relative",
                         isBlur()
                     )}
                 >

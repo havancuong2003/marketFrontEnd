@@ -57,7 +57,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
     const [errorChangePassword, setErrorChangePassword] = useState([]);
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [oldpassword, setOldPassword] = useState("");
+    const [oldpassword] = useState("");
 
     const [erroDiff, setErroDiff] = useState("");
     useEffect(() => {
@@ -100,10 +100,6 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
 
     const handlePassCancelClick = () => {
         setIsEditingPass(false);
-    };
-
-    const handleChange = (e) => {
-        setNewUsername(e.target.value);
     };
 
     useEffect(() => {
@@ -150,16 +146,6 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
             }
             // Handle error here, maybe show a message to the user
         }
-    };
-
-    const handlePasswordChange = (e) => {
-        setNewPassword(e.target.value);
-        setErrorChangePassword([]);
-    };
-
-    const handleOldPasswordChange = (e) => {
-        setOldPassword(e.target.value);
-        setErrorChangePassword([]);
     };
 
     const handleConfirmPasswordChange = (e) => {

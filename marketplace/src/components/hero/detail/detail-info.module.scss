@@ -39,7 +39,7 @@
     width: 250px;
     height: 60px;
     position: absolute;
-    right: -0;
+    right: -5px;
 }
 .price {
     width: 100%;
@@ -146,6 +146,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+       
     }
     .stats_title {
         display: flex;
@@ -174,7 +175,7 @@
     .stats_properties div {
         display: flex;
         //justify-content: space-evenly;
-        font-size: 1rem;
+        font-size: 12px;
     }
 
     .stats_properties img {

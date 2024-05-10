@@ -10,13 +10,11 @@ import { isAuthenticated } from "../../../utils";
 import { Hero } from "../../../models/hero";
 import clsx from "clsx";
 import { useAccountInformation } from "../../../hooks";
-import img_copy from "../../../assets/img/copy_1.png";
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import { useState } from "react";
-import { Button, Tooltip } from "@mui/material";
 import { NumericFormat } from "react-number-format";
 import Swal from "sweetalert2";
 import { CopyText } from "../../common";
+import { Account } from "../../../models/account";
+import Tooltip from "@mui/material/Tooltip";
 
 type DetailInfoProps = {
     classes?: {
@@ -342,7 +340,7 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
                             <span className="text-base font-bold  text-light-brown">
                                 Combat power:&nbsp;
                             </span>
-                            <span className="text-xl font-bold">
+                            <span className="text-base font-bold">
                                 <NumericFormat
                                     value={hero.power}
                                     thousandSeparator=","

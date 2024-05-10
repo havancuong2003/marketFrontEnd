@@ -12,30 +12,20 @@ type ButtonBackProps = {
 export const ButtonBack: React.FC<ButtonBackProps> = ({ classes }) => {
     return (
         <div>
-            <div
-                className={clsx(
-                    classes?.buttonBack,
-                    "absolute top-24 left-20  text-xl font-bold"
-                )}
-            >
-                <Link to={"/"}>
-                    <div>
-                        <ArrowBackIcon />
-                        <span>Back</span>
-                    </div>
-                </Link>
-            </div>
-
-            <div
-                className={clsx(
-                    classes?.arrow,
-                    "absolute top-24 left-20  text-xl font-bold"
-                )}
-            >
-                <Link to={"/"}>
+            <Link to={"/"}>
+                <div
+                    className={clsx(
+                        classes?.buttonBack,
+                        "absolute top-28 left-52  text-xl font-bold"
+                    )}
+                >
+                    <ArrowBackIcon />
+                    <span>Back</span>
+                </div>
+                <div className={clsx(classes?.arrow, "absolute ")}>
                     <img src={arrow} alt="" />
-                </Link>
-            </div>
+                </div>
+            </Link>
         </div>
     );
 };
