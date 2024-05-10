@@ -1,5 +1,5 @@
 import { withClasses } from "../../components/common/with-classes";
-import { HeroDetail as SP } from "./hero-info";
+import { HeroDetail as HD } from "./hero-info";
 import classes from "./hero-info.module.scss";
 
-export const HeroDetail = withClasses(classes, SP);
+export const HeroDetail = withClasses(classes, HD);

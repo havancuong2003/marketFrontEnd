@@ -1,4 +1,204 @@
-.sell_bt{
-width: 400px;
-height: 58px;
+.container {
+    width: 100%;
+}
+
+.hero_info {
+    height: 19%;
+}
+.hero_name {
+    background-color: #423429;
+    border-radius: 0.375rem;
+    background-size: cover;
+    height: 43%;
+}
+.heroId_onwner {
+    display: flex;
+    height: 40%;
+    justify-content: space-between;
+}
+.heroId_onwner_detail {
+    width: 48%;
+    background-color: #423429;
+    border-radius: 0.375rem;
+    background-size: cover;
+    margin-top: 15px;
+}
+
+.container_price {
+    display: flex;
+    height: 15%;
+}
+.sell_bt {
+    width: 400px;
+    height: 58px;
+
+}
+
+.buy_bt {
+    background-image: url("../../../assets/img/Yellow_M.png");
+    width: 250px;
+    height: 60px;
+    position: absolute;
+    right: -5px;
+}
+.price {
+    width: 100%;
+    height: 3.5rem;
+}
+
+.action {
+    width: 33.33%;
+    font-size: 1.5rem
+            /* 24px */
+        ;
+    line-height: 2rem
+            /* 32px */
+        ;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+    
+}
+
+.buy_bt span{
+    width: 100%;
+}
+
+.stats_content {
+    display: flex;
+}
+.stats_content_responsive {
+    display: none;
+}
+
+.stats_properties {
+    display: flex;
+}
+
+.delist_bt{
+    width: 67%;
+}
+
+
+
+@media screen and (max-width: 1024px) {
+    .container {
+        width: 100%;
+        margin: 5%;
+    }
+
+    .action {
+        width: 100%;
+        height: 100%;
+        font-size: 1.5rem;
+    }
+
+    .delist_bt {
+            width: 100%
+    }
+
+    .hero_info {
+        height: 50%;
+    }
+
+    .price {
+        justify-content: center;
+    }
+
+    .hero_name {
+        background: none;
+        justify-content: center;
+        height: 15%;
+    }
+
+    .heroId_onwner {
+        margin-top: 0;
+        height: 70%;
+        display: block;
+    }
+
+    .heroId_onwner_detail {
+        width: 100%;
+        background-color: #170a02;
+        opacity: 0.8;
+        border-radius: 0.375rem;
+        margin-bottom: 2px;
+        height: 30%;
+    }
+
+    .container_price {
+        margin-top: 3%;
+        display: block;
+        height: 50%;
+    }
+
+    .buy_bt {
+        margin-top: 2%;
+        background-image: url("../../../assets/img/Yellow_L_mobile.png");
+        width: 100%;
+        height: 40%;
+    
+        text-align: center;
+        align-items: center;
+        
+    }
+
+
+    .sell_bt span{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       
+    }
+    .stats_title {
+        display: flex;
+        justify-content: center;
+    }
+
+    .stats_content {
+        display: none;
+    }
+
+    .stats_power {
+        display: flex;
+        justify-content: center;
+    }
+
+    .stats_content_responsive{
+        display: block;
+        margin-bottom: 2rem;
+    }
+
+    .stats_properties {
+        display: block;
+        
+    }
+
+    .stats_properties div {
+        display: flex;
+        //justify-content: space-evenly;
+        font-size: 12px;
+    }
+
+    .stats_properties img {
+        width: 600%;
+        
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .buy_bt {
+        width: 100%;
+            height: 35%;
+        }
+
+        
+}
+
+@media screen and (max-width: 640px) {
+    .buy_bt {
+        width: 100%;
+        height: 20%;
+    }
+         .action {
+             font-size: 90%;
+         }
 }

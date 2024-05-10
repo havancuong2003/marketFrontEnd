@@ -6,12 +6,11 @@ export const buyHero = async (id: number) => {
         const response = await axios.patch(
             VITE_API_URL + `/api/v1/hero/${id}/buy`
         );
-
+        console.log("Buy Status:", response.data);
         return response.data;
     } catch (error: unknown) {
         if (error instanceof AxiosError) {
-            console.error("Buy Error:", error);
-
+            console.error("Buy Error:", error.response?.data.message);
             return { error: error.response?.data.message };
         }
     }

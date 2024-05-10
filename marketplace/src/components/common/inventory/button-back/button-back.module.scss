@@ -1,0 +1,19 @@
+
+
+.arrow{
+    display: none;
+}
+
+@media screen and (max-width: 1024px) {
+    .buttonBack {   
+        display: none;
+    }
+
+    .arrow{
+        display: block;
+        left: 2rem;
+        
+        top: 5rem;
+    }
+
+}
