@@ -15,6 +15,6 @@ export const useHeroDetail = () => {
             .catch((err) => {
                 console.log(err);
             });
-    });
+    }, []);
     return hero;
 };
