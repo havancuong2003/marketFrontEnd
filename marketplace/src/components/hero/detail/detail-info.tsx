@@ -31,8 +31,6 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
     onClickBuy,
     onClickSell,
 }) => {
-    const token = localStorage.getItem("token");
-    console.log(token);
     const navigate = useNavigate();
 
     const handelUnList = async (id: number) => {
@@ -350,99 +348,101 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
                         </div>
                         <div className={clsx(classes?.stats_properties)}>
                             <table className="w-full">
-                                <tr>
-                                    <td className="w-1/2">
-                                        <div className="mx-5 text-xl font-thin">
-                                            <div>
-                                                <img
-                                                    src={hp}
-                                                    className="mr-2"
-                                                />
-                                                <span className=" text-light-brown">
-                                                    Health:&nbsp;
-                                                </span>
-                                            </div>
-                                            <div className="flex items-center">
-                                                <span className="">
-                                                    <NumericFormat
-                                                        value={hero.hp}
-                                                        thousandSeparator=","
-                                                        displayType="text"
+                                <tbody>
+                                    <tr>
+                                        <td className="w-1/2">
+                                            <div className="mx-5 text-xl font-thin">
+                                                <div>
+                                                    <img
+                                                        src={hp}
+                                                        className="mr-2"
                                                     />
-                                                </span>
+                                                    <span className=" text-light-brown">
+                                                        Health:&nbsp;
+                                                    </span>
+                                                </div>
+                                                <div className="flex items-center">
+                                                    <span className="">
+                                                        <NumericFormat
+                                                            value={hero.hp}
+                                                            thousandSeparator=","
+                                                            displayType="text"
+                                                        />
+                                                    </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td className="w-1/2">
-                                        <div className="mx-5 text-xl font-thin">
-                                            <div>
-                                                <img
-                                                    src={atk}
-                                                    className="mr-2"
-                                                />
-                                                <span className=" text-light-brown">
-                                                    Attack:&nbsp;
-                                                </span>
-                                            </div>
-                                            <div className="flex items-center">
-                                                <span className="t">
-                                                    <NumericFormat
-                                                        value={hero.power}
-                                                        thousandSeparator=","
-                                                        displayType="text"
+                                        </td>
+                                        <td className="w-1/2">
+                                            <div className="mx-5 text-xl font-thin">
+                                                <div>
+                                                    <img
+                                                        src={atk}
+                                                        className="mr-2"
                                                     />
-                                                </span>
+                                                    <span className=" text-light-brown">
+                                                        Attack:&nbsp;
+                                                    </span>
+                                                </div>
+                                                <div className="flex items-center">
+                                                    <span className="t">
+                                                        <NumericFormat
+                                                            value={hero.power}
+                                                            thousandSeparator=","
+                                                            displayType="text"
+                                                        />
+                                                    </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="w-1/2">
-                                        <div className="mx-5 text-xl font-thin">
-                                            <div>
-                                                <img
-                                                    src={atk_speed}
-                                                    className="mr-2"
-                                                />
-                                                <span className=" text-light-brown">
-                                                    Speed:&nbsp;
-                                                </span>
-                                            </div>
-                                            <div className="flex  items-center">
-                                                <span className="">
-                                                    <NumericFormat
-                                                        value={hero.speed}
-                                                        thousandSeparator=","
-                                                        displayType="text"
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td className="w-1/2">
+                                            <div className="mx-5 text-xl font-thin">
+                                                <div>
+                                                    <img
+                                                        src={atk_speed}
+                                                        className="mr-2"
                                                     />
-                                                </span>
+                                                    <span className=" text-light-brown">
+                                                        Speed:&nbsp;
+                                                    </span>
+                                                </div>
+                                                <div className="flex  items-center">
+                                                    <span className="">
+                                                        <NumericFormat
+                                                            value={hero.speed}
+                                                            thousandSeparator=","
+                                                            displayType="text"
+                                                        />
+                                                    </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
+                                        </td>
 
-                                    <td className="w-1/2">
-                                        <div className="mx-5 text-xl font-thin">
-                                            <div>
-                                                <img
-                                                    src={dps}
-                                                    className="mr-2"
-                                                />
-                                                <span className="  text-light-brown">
-                                                    DPS:&nbsp;
-                                                </span>
-                                            </div>
-                                            <div className="flex items-center">
-                                                <span className="">
-                                                    <NumericFormat
-                                                        value={hero.dps}
-                                                        thousandSeparator=","
-                                                        displayType="text"
+                                        <td className="w-1/2">
+                                            <div className="mx-5 text-xl font-thin">
+                                                <div>
+                                                    <img
+                                                        src={dps}
+                                                        className="mr-2"
                                                     />
-                                                </span>
+                                                    <span className="  text-light-brown">
+                                                        DPS:&nbsp;
+                                                    </span>
+                                                </div>
+                                                <div className="flex items-center">
+                                                    <span className="">
+                                                        <NumericFormat
+                                                            value={hero.dps}
+                                                            thousandSeparator=","
+                                                            displayType="text"
+                                                        />
+                                                    </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>

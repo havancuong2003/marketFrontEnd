@@ -111,7 +111,7 @@ export const HeroDetail: React.FC<HeroDetailProps> = ({ classes }) => {
                     <div
                         className={clsx(
                             classes?.history,
-                            "flex justify-center w-screen mt-28"
+                            "flex justify-center w-full mt-28"
                         )}
                     >
                         <Tooltip
