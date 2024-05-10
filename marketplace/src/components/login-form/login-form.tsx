@@ -1,13 +1,13 @@
 // components/LoginForm.js
-import clsx from "clsx"
-import { useLoginForm } from "../../hooks/use-login-form"
-import { Input } from "../common/input"
+import clsx from "clsx";
+import { useLoginForm } from "../../hooks/use-login-form";
+import { Input } from "../common/input";
 
 type LoginFormProps = {
     classes?: {
-        [key: string]: string
-    }
-}
+        [key: string]: string;
+    };
+};
 export const LoginForm: React.FC<LoginFormProps> = ({ classes }) => {
     const {
         email,
@@ -16,7 +16,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ classes }) => {
         handlePasswordChange,
         handleSubmit,
         error,
-    } = useLoginForm()
+    } = useLoginForm();
 
     return (
         <div>
@@ -59,5 +59,5 @@ export const LoginForm: React.FC<LoginFormProps> = ({ classes }) => {
                 </button>
             </form>
         </div>
-    )
-}
+    );
+};

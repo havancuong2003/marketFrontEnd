@@ -1,4 +1,10 @@
-import { DetailInfo, Header, HistoryTrans, InfoHero } from "../../components";
+import {
+    ButtonBack,
+    DetailInfo,
+    Header,
+    HistoryTrans,
+    InfoHero,
+} from "../../components";
 import { useHeroDetail } from "../../hooks/use-hero-info";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
@@ -11,7 +17,7 @@ import {
     SellHero,
     ListingSucceeded,
 } from "../../components/trasnaction";
-import { ButtonBack } from "../../components/";
+
 import { Button, Tooltip } from "@mui/material";
 type HeroDetailProps = {
     classes?: {
@@ -111,7 +117,12 @@ export const HeroDetail: React.FC<HeroDetailProps> = ({ classes }) => {
                             />
                         </div>
                     </div>
-                    <div className="flex justify-center w-screen mt-28">
+                    <div
+                        className={clsx(
+                            classes?.history,
+                            "flex justify-center w-screen mt-28"
+                        )}
+                    >
                         <Tooltip
                             open={showHistory}
                             title="History"
@@ -120,13 +131,13 @@ export const HeroDetail: React.FC<HeroDetailProps> = ({ classes }) => {
                         >
                             <div
                                 className={clsx(
-                                    classes?.history,
+                                    classes?.bt_history,
                                     "bg-yellow_m_button flex  bg-cover  justify-center items-center "
                                 )}
                                 onClick={toggleHistory}
                             >
                                 <Button>
-                                    <span className=" text-2xl font-semibold pb-2 text-main">
+                                    <span className=" text-2xl pb-2 text-main font-Skranji ">
                                         History
                                     </span>
                                 </Button>

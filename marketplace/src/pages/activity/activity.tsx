@@ -4,10 +4,14 @@ import { ButtonInventory } from "../../components/common/inventory/button-invent
 import avatar from "../../assets/img/avatar-account.png";
 import { useAccountInformation, useActivities } from "../../hooks";
 import dayjs from "dayjs";
+import { Activity } from "../../models/activity";
 
 export const Activities = () => {
     const { account } = useAccountInformation();
-    const { activities } = useActivities();
+    const { activities } = useActivities() as unknown as {
+        activities: Activity[];
+    };
+
     return (
         <div>
             <div>

@@ -2,30 +2,35 @@ import clsx from "clsx";
 import { Header } from "../../components";
 
 import { useEffect, useState } from "react";
+import { useInventory } from "../../hooks";
 import { getInfoUser } from "../../services";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { VITE_API_URL } from "../../env";
 import avatar from "../../assets/img/avatar-account.png";
-import { useAccountInformation, useInventory } from "../../hooks";
+import { useAccountInformation } from "../../hooks/";
 import { ButtonInventory } from "../../components/common/inventory/button-inventory";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
 type ProfileProps = {
     classes?: {
         [key: string]: string;
     };
 };
+
 export const Profile: React.FC<ProfileProps> = ({ classes }) => {
     const [myHeros, setMyHeros] = useState<any>([]);
     const { inventory } = useInventory();
 
     useEffect(() => {
         if (Array.isArray(inventory)) {
-            console.log("inventory arr", inventory);
+            console.log();
         } else if (typeof inventory === "object" && inventory !== null) {
-            setMyHeros(inventory.data);
+            // Xác định kiểu cho 'inventory' như là một đối tượng với kiểu dữ liệu cụ thể
+            const inventoryObject = inventory as { data: any[] };
+            setMyHeros(inventoryObject.data);
         }
     }, [inventory]);
 
-    console.log("myHeros", myHeros);
     function countByAttribute(attribute, value) {
         // Số lượng ban đầu là 0
         let count = 0;
@@ -72,20 +77,19 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
     const handleSaveClick = async () => {
         try {
             // Call API to update username
-            const response = await axios.post(
-                VITE_API_URL + "/api/v1/account/update-username",
-                {
-                    username: newUsername,
-                }
-            );
-            console.log(response);
+            await axios.post(VITE_API_URL + "/api/v1/account/update-username", {
+                username: newUsername,
+            });
+
             setErrorChangeUserName("");
             // Update user data on UI
             setUsername(newUsername);
             setIsEditing(false);
-        } catch (error) {
-            console.error("Error updating username:", error);
-            setErrorChangePassword(error.response.data.message);
+        } catch (error: unknown) {
+            if (error instanceof AxiosError) {
+                console.error("Error updating username:", error);
+                setErrorChangePassword(error.response?.data.message);
+            }
             // Handle error here, maybe show a message to the user
         }
     };
@@ -101,6 +105,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
     const handleChange = (e) => {
         setNewUsername(e.target.value);
     };
+
     useEffect(() => {
         const fetchUserData = async () => {
             try {
@@ -118,23 +123,31 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
             if (newPassword !== confirmPassword) {
                 setErroDiff("Passwords do not match");
                 return; // Stop further execution
+                setErroDiff("Passwords do not match");
+                return; // Stop further execution
             }
             setErroDiff("");
+            setErroDiff("");
             // Call API to change password
-            // const response =
-            await axios.post(VITE_API_URL + "/api/v1/account/update-password", {
-                curentpassword: oldpassword,
-                password: newPassword,
-                repassword: confirmPassword,
-            });
-
+            const response = await axios.post(
+                VITE_API_URL + "/api/v1/account/update-password",
+                {
+                    curentpassword: oldpassword,
+                    password: newPassword,
+                    repassword: confirmPassword,
+                }
+            );
+            console.log(response.data, "data here");
+            console.log(response, " response here");
             setErrorChangePassword([]);
             // Reset password fields
             setNewPassword("");
             setConfirmPassword("");
-        } catch (error: any) {
-            console.error("Error changing password:", error);
-            setErrorChangePassword(error.response.data.message);
+        } catch (error: unknown) {
+            if (error instanceof AxiosError) {
+                console.error("Error changing password:", error);
+                setErrorChangePassword(error.response?.data.message);
+            }
             // Handle error here, maybe show a message to the user
         }
     };
@@ -143,6 +156,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
         setNewPassword(e.target.value);
         setErrorChangePassword([]);
     };
+
     const handleOldPasswordChange = (e) => {
         setOldPassword(e.target.value);
         setErrorChangePassword([]);
@@ -152,7 +166,10 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
         if (newPassword !== e.target.value) {
             setErroDiff("Password not match");
             setErrorChangePassword([]);
+            setErroDiff("Password not match");
+            setErrorChangePassword([]);
         } else {
+            setErroDiff("");
             setErroDiff("");
         }
         setConfirmPassword(e.target.value);
@@ -208,12 +225,46 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                                 <p className="text-red-500">
                                                     {errorChangeUserName}
                                                 </p>
-                                                <input
-                                                    type="text"
-                                                    value={newUsername}
-                                                    onChange={handleChange}
-                                                    className="text-base text-black p-1"
-                                                />
+                                                <Box
+                                                    component="form"
+                                                    sx={{
+                                                        "& > :not(style)": {
+                                                            m: 1,
+                                                            width: "25ch",
+                                                        },
+                                                    }}
+                                                    noValidate
+                                                    autoComplete="off"
+                                                >
+                                                    <TextField
+                                                        id="outlined-basic"
+                                                        label="Username"
+                                                        variant="outlined"
+                                                        sx={{
+                                                            "& label": {
+                                                                color: "gray", // Màu chữ mặc định
+                                                            },
+                                                            "& fieldset": {
+                                                                borderColor:
+                                                                    "gray", // Màu border mặc định
+                                                            },
+                                                            "&:focus-within label":
+                                                                {
+                                                                    color: "white", // Thay đổi màu chữ thành màu xanh khi focus
+                                                                },
+                                                            "&:focus-within fieldset":
+                                                                {
+                                                                    borderColor:
+                                                                        "blue", // Thay đổi màu border thành màu xanh khi focus
+                                                                },
+                                                        }}
+                                                        InputProps={{
+                                                            sx: {
+                                                                color: "white", // Thay đổi màu chữ của input thành màu xanh
+                                                            },
+                                                        }}
+                                                    />
+                                                </Box>
                                             </>
                                         ) : (
                                             <span>{username}</span>
@@ -336,34 +387,88 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                                         {errorChangePassword}
                                                     </p>
                                                 )}
-                                                <label htmlFor="oldpassword">
-                                                    Old Password
-                                                    <input
+                                                <Box
+                                                    component="form"
+                                                    sx={{
+                                                        "& > :not(style)": {
+                                                            m: 1,
+                                                            width: "25ch",
+                                                        },
+                                                    }}
+                                                    noValidate
+                                                    autoComplete="off"
+                                                >
+                                                    <TextField
+                                                        id="outlined-basic"
+                                                        label="Old password"
+                                                        variant="outlined"
                                                         type="password"
-                                                        value={oldpassword}
-                                                        onChange={
-                                                            handleOldPasswordChange
-                                                        }
-                                                        id="oldpassword"
-                                                        className="text-base text-black p-1 my-2 ml-12"
+                                                        sx={{
+                                                            "& label": {
+                                                                color: "gray", // Màu chữ mặc định
+                                                            },
+                                                            "& fieldset": {
+                                                                borderColor:
+                                                                    "gray", // Màu border mặc định
+                                                            },
+                                                            "&:focus-within label":
+                                                                {
+                                                                    color: "white", // Thay đổi màu chữ thành màu xanh khi focus
+                                                                },
+                                                            "&:focus-within fieldset":
+                                                                {
+                                                                    borderColor:
+                                                                        "blue", // Thay đổi màu border thành màu xanh khi focus
+                                                                },
+                                                        }}
+                                                        InputProps={{
+                                                            sx: {
+                                                                color: "white", // Thay đổi màu chữ của input thành màu xanh
+                                                            },
+                                                        }}
                                                     />
-                                                </label>
-                                                <br />
-
-                                                <label htmlFor="password">
-                                                    New Password
-                                                    <input
+                                                </Box>
+                                                <Box
+                                                    component="form"
+                                                    sx={{
+                                                        "& > :not(style)": {
+                                                            m: 1,
+                                                            width: "25ch",
+                                                        },
+                                                    }}
+                                                    noValidate
+                                                    autoComplete="off"
+                                                >
+                                                    <TextField
+                                                        id="outlined-basic"
+                                                        label="New password"
                                                         type="password"
-                                                        value={newPassword}
-                                                        onChange={
-                                                            handlePasswordChange
-                                                        }
-                                                        id="password"
-                                                        className="text-base text-black p-1 my-2 ml-11"
+                                                        variant="outlined"
+                                                        sx={{
+                                                            "& label": {
+                                                                color: "gray", // Màu chữ mặc định
+                                                            },
+                                                            "& fieldset": {
+                                                                borderColor:
+                                                                    "gray", // Màu border mặc định
+                                                            },
+                                                            "&:focus-within label":
+                                                                {
+                                                                    color: "white", // Thay đổi màu chữ thành màu xanh khi focus
+                                                                },
+                                                            "&:focus-within fieldset":
+                                                                {
+                                                                    borderColor:
+                                                                        "blue", // Thay đổi màu border thành màu xanh khi focus
+                                                                },
+                                                        }}
+                                                        InputProps={{
+                                                            sx: {
+                                                                color: "white", // Thay đổi màu chữ của input thành màu xanh
+                                                            },
+                                                        }}
                                                     />
-                                                </label>
-
-                                                <br />
+                                                </Box>
                                                 <label htmlFor="confirm">
                                                     Confirm password
                                                     <input
@@ -373,7 +478,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                                         onChange={
                                                             handleConfirmPasswordChange
                                                         }
-                                                        className="text-base text-black p-1 my-2 ml-3"
+                                                        className="text-base text-black p-1 my-2"
                                                     />
                                                 </label>
                                             </>
@@ -413,6 +518,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                             <button
                                                 className={clsx(
                                                     classes?.editBtn,
+                                                    classes?.editspacing,
                                                     ""
                                                 )}
                                                 onClick={handlePassEditClick}
@@ -461,7 +567,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                             <div className={clsx(classes?.heroLogo, "")}></div>
                             <div>
                                 <div className={clsx(classes?.herosCount, "")}>
-                                    Hero Owner: 200
+                                    Hero Owner: {myHeros.length}
                                 </div>
                                 <div className={clsx(classes?.herosCount, "")}>
                                     <div

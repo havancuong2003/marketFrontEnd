@@ -19,26 +19,37 @@
     background-image: url("../../../assets/img/avatar.png");
 }
 .textsize {
-    font-size: 30px;
+    font-size: 25px;
 }
 .info {
     display: flex;
 }
-
-@media screen and (max-width: 768px) {
+.sizeInfo {
+    height: 50px;
+    width: 220px;
+}
+.price {
+    margin-bottom: 8px;
+}
+@media screen and (max-width: 1024px) {
+    .price {
+        margin-bottom: 20px;
+        font-size: 15px;
+        margin-left: 40px;
+    }
     .sizeAvatar {
-        width: 100px;
-        height: 100px;
+        width: 170px;
+        height: 175px;
     }
     .size {
-        width: 120px;
-        height: 190px;
+        width: 190px;
+        height: 300px;
     }
     .info {
         color: white;
     }
     .backgroundHeroCard {
-        background-size: 120px 190px;
+        background-size: 100% 100%;
     }
     .sizeInfo {
         height: 15px;
@@ -47,12 +58,72 @@
     .textsize {
         font-size: 8px;
     }
+
+    .setPosSpd {
+        position: absolute;
+        bottom: 57px;
+        left: 15px;
+        font-size: 12px;
+    }
+    .setPosDps {
+        position: absolute;
+        bottom: 56px;
+        left: 74px;
+        font-size: 12px;
+    }
+    .setPosHp {
+        position: absolute;
+        bottom: 88px;
+        left: 19px;
+        font-size: 12px;
+    }
+    .setPosAtk {
+        position: absolute;
+        bottom: 88px;
+        left: 90px;
+        font-size: 12px;
+        width: 50px;
+        display: inline-block;
+    }
+
+    .sizeAtb {
+        display: inline-block;
+        width: 100px;
+    }
+    .infoFooterRight {
+        position: absolute;
+        left: 95px;
+        width: 93px;
+        height: 34px;
+
+        bottom: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 15px;
+    }
+    .infoFooterLeft {
+        position: absolute;
+        bottom: 6px;
+        left: 1px;
+        width: 93px;
+        height: 34px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 15px;
+    }
 }
-.sizeInfo {
-    height: 50px;
-    width: 220px;
+
+.posFooterRight {
+    position: absolute;
+    left: -15px;
 }
 @media screen and (min-width: 1024px) {
+    .sizeInfo {
+        height: 50px;
+        width: 220px;
+    }
     .setPosSpd {
         position: absolute;
         bottom: 55px;
@@ -71,6 +142,24 @@
     .setPosAtk {
         position: absolute;
         bottom: 48px;
-        left: 100px;
+        left: 115px;
+    }
+    .infoFooterRight {
+        position: absolute;
+        left: 75px;
+        width: 110px;
+        bottom: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .infoFooterLeft {
+        position: absolute;
+        bottom: 5px;
+        left: -15px;
+        width: 110px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }

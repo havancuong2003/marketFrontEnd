@@ -1,12 +1,12 @@
-import clsx from "clsx"
-import { useRegister } from "../../hooks/use-register"
-import { Input } from "../common/input"
+import clsx from "clsx";
+import { useRegister } from "../../hooks/use-register";
+import { Input } from "../common/input";
 
 type SignUpFormProps = {
     classes?: {
-        [key: string]: string
-    }
-}
+        [key: string]: string;
+    };
+};
 export const SignUpForm: React.FC<SignUpFormProps> = ({ classes }) => {
     const {
         handleEmailChange,
@@ -15,11 +15,11 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ classes }) => {
         email,
         password,
         emailError,
-        passwordError,
+
         usernameError,
         username,
         handleUsernameChange,
-    } = useRegister()
+    } = useRegister();
     return (
         <div className="my-5 text-sm">
             <form onSubmit={handleSubmit}>
@@ -85,5 +85,5 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ classes }) => {
                 </div>
             </form>
         </div>
-    )
-}
+    );
+};

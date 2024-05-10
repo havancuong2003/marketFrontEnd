@@ -2,6 +2,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Button, Tooltip } from "@mui/material";
 import img_copy from "../../../assets/img/copy_1.png";
 import { useState } from "react";
+import clsx from "clsx";
 
 type CopyTextProps = {
     text: string;
@@ -24,7 +25,11 @@ export const CopyText: React.FC<CopyTextProps> = ({ text, classes }) => {
         <CopyToClipboard text={text} onCopy={handleCopy}>
             <Tooltip title={tooltipTitle} placement="top">
                 <Button>
-                    <img src={img_copy} alt="copy" className="w-2/5" />
+                    <img
+                        src={img_copy}
+                        alt="copy"
+                        className={clsx(classes?.copy)}
+                    />
                 </Button>
             </Tooltip>
         </CopyToClipboard>

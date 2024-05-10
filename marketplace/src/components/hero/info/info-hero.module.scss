@@ -8,13 +8,13 @@
     bottom: -5rem;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
     .container {
             width: 100%;
-            margin: 1rem 1rem 1rem 2rem;
+            margin: 5%;
         }
     
     .race_class {
-        bottom: -3rem;
+        bottom: -14%;
     }
 }

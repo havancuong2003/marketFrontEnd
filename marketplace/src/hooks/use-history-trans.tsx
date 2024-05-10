@@ -5,6 +5,7 @@ import { VITE_API_URL } from "../env";
 
 export const useHistoryTrans = () => {
     const [historyTrans, setHistoryTrans] = useState([]);
+
     const [currPage, setCurrPage] = useState();
     const [lastPage, setLastPage] = useState();
     const [nextPage, setNextPage] = useState();
@@ -12,6 +13,18 @@ export const useHistoryTrans = () => {
     const [total, setTotal] = useState();
     const { id } = useParams();
 
+    useEffect(() => {
+        axios
+            .get(VITE_API_URL + `/api/v1/history-trans/${id}/top-trans`)
+            .then((res) => {
+                setHistoryTrans(res.data);
+                console.log(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+    return { historyTrans, setHistoryTrans };
     useEffect(() => {
         axios
             .get(VITE_API_URL + `/api/v1/history-trans/${id}/top-trans`)

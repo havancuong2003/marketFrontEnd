@@ -4,9 +4,10 @@ import avatar from "../../../assets/img/avatar.png";
 import okg_token from "../../../assets/img/OKGToken.png";
 import x_button from "../../../assets/img/xbutton.png";
 import { Hero } from "../../../models/hero";
-import { buyHero } from "../../common";
+import { buyHero, CopyText } from "../../common";
 import { NumericFormat } from "react-number-format";
 import Swal from "sweetalert2";
+import { ShortId } from "../../../services";
 type BuyHeroProps = {
     classes?: {
         [key: string]: string;
@@ -44,15 +45,22 @@ export const BuyHero: React.FC<BuyHeroProps> = ({
 
     return (
         <div
-            className={clsx(
-                classes?.container,
-                "bg-cover bg-center absolute top-40 text-main"
-            )}
+            className={clsx(classes?.container, "bg-cover bg-center absolute ")}
         >
-            <div className="absolute top-0 right-0 cursor-pointer">
+            <div
+                className={clsx(
+                    classes?.x_button,
+                    "absolute top-0 right-0 cursor-pointer"
+                )}
+            >
                 <img src={x_button} alt="" onClick={onClickX}></img>
             </div>
-            <div className="flex justify-center text-3xl mb-8 font-Skranji">
+            <div
+                className={clsx(
+                    classes?.container_text,
+                    "flex justify-center font-bold"
+                )}
+            >
                 <span>PURCHASING ITEM</span>
             </div>
             <div
@@ -61,26 +69,46 @@ export const BuyHero: React.FC<BuyHeroProps> = ({
                     "bg-brown-op rounded-lg  flex "
                 )}
             >
-                <div className="w-1/2 flex justify-center items-center">
+                <div
+                    className={clsx(
+                        classes?.avatar_container,
+                        " flex justify-center "
+                    )}
+                >
                     <img
                         src={avatar}
                         className={clsx(classes?.avatar, "rounded-md")}
                         alt=""
                     />
                 </div>
-                <div className="w-1/2 grid grid-rows-3 mt-7 pr-10">
-                    <div className=" row-span-2">
+                <div
+                    className={clsx(
+                        classes?.info_container,
+                        " grid grid-rows-3 relative"
+                    )}
+                >
+                    <div className={clsx(classes?.info, "")}>
                         <span>{hero.name}</span>
                         <hr />
-                        <div className="mt-3">
+                        <div className={clsx(classes?.rank)}>
+                            <span>Rank: </span>
+                            <span className="text-green-700">{hero.rank}</span>
+                        </div>
+                        <div className={clsx(classes?.id)}>
                             <span>ID:</span> <span>{hero.id}</span>
                         </div>
-                        <div className="mt-3">
-                            <span>Owner:</span> <span>{hero.account_id}</span>
+                        <div className={clsx(classes?.owner)}>
+                            <span>Owner: </span>
+                            <span>
+                                {ShortId(hero.account_id)}
+                                {CopyText(hero.account_id)}
+                            </span>
                         </div>
                         <br />
                     </div>
-                    <div className="my-10 row-span-1 ">
+                    <div
+                        className={clsx(classes?.amount, "my-10 row-span-1  ")}
+                    >
                         <div className="flex justify-between">
                             <span>Total amount</span>
                             {error && (
@@ -88,16 +116,26 @@ export const BuyHero: React.FC<BuyHeroProps> = ({
                             )}
                         </div>
 
-                        <hr className="my-2" />
-                        <div className="flex justify-between items-center ">
-                            <span className="font-black text-xl ">
+                        <hr />
+                        <div
+                            className={clsx(
+                                classes?.price,
+                                "flex justify-between items-center "
+                            )}
+                        >
+                            <span className="font-bold  ">
                                 <NumericFormat
                                     value={hero.price}
                                     displayType="text"
                                     thousandSeparator={","}
                                 ></NumericFormat>
                             </span>
-                            <div className="flex items-center ">
+                            <div
+                                className={clsx(
+                                    classes?.token,
+                                    "flex items-center "
+                                )}
+                            >
                                 <img src={okg_token} alt="" className="mr-1" />
                                 <span>OKG</span>
                             </div>
@@ -109,7 +147,7 @@ export const BuyHero: React.FC<BuyHeroProps> = ({
                 <div
                     className={clsx(
                         classes?.button,
-                        "bg-yellow_l flex justify-center items-center text-xl  font-Skranji cursor-pointer"
+                        "flex justify-center items-center font-bold"
                     )}
                     onClick={() => handleCheckOut(hero.id)}
                 >

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { VITE_API_URL } from "../../../env";
 
 export const buyHero = async (id: number) => {

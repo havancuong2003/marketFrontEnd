@@ -1,10 +1,17 @@
 .container {
     @apply flex justify-center items-center;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    top: 0;
 }
 .clickbutton {
     @apply cursor-pointer hover:bg-violet-600 rounded-lg p-2 active:bg-violet-700  mx-3;
 }
-@media screen and (max-width: 768px) {
+.logoResponsive {
+    margin-left: 130px;
+}
+@media screen and (max-width: 1024px) {
     .navheader,
     .clickbutton {
         display: none;
@@ -12,15 +19,18 @@
     .sizenav {
         width: 20px;
         height: 16px;
-        margin-left: 50px;
+        margin-left: 90px;
     }
     .bgopa {
         background: rgba(23, 10, 2, 0.9);
 
         backdrop-filter: blur(2px);
     }
-    body {
-        width: 450px;
+    .logoResponsive {
+        margin-left: 30px;
+    }
+    .container {
+        width: 100%;
     }
 }
 
@@ -28,4 +38,5 @@
     width: 200px;
     height: 40px;
     border: 1px solid white;
+    margin-right: 100px;
 }

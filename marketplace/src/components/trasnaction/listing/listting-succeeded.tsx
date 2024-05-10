@@ -23,17 +23,22 @@ export const ListingSucceeded: React.FC<ListingProps> = ({ classes }) => {
                 <div className="flex justify-center py-5">
                     <img src={arrow} alt="" className={classes?.arrow}></img>
                 </div>
-                <div className="flex justify-center pt-5 text-3xl font-Skranji ">
+                <div
+                    className={clsx(
+                        classes?.text,
+                        "flex justify-center font-Skranji"
+                    )}
+                >
                     <span>LISTING COMPLETE</span>
                 </div>
-                <div className="flex justify-center pt-4 text-xl ">
+                <div className={clsx(classes?.message, "flex ")}>
                     <span>Your item is now on the top of Marketplace.</span>
                 </div>
-                <div className="pt-10">
+                <div className={clsx(classes?.button)}>
                     <div
                         className={clsx(
                             classes?.view_item,
-                            "bg-yellow_l flex justify-center items-center  text-xl font-Skranji"
+                            "flex justify-center items-center font-Skranji"
                         )}
                         onClick={() => navigate("/inventory")}
                     >

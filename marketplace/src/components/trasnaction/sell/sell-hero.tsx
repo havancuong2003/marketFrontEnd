@@ -4,9 +4,10 @@ import avatar from "../../../assets/img/avatar.png";
 import okg_token from "../../../assets/img/OKGToken.png";
 import x_button from "../../../assets/img/xbutton.png";
 import { Hero } from "../../../models/hero";
-import { handleSelling } from "../../common";
+import { CopyText, handleSelling } from "../../common";
 import { NumericFormat } from "react-number-format";
 import Swal from "sweetalert2";
+import { ShortId } from "../../../services";
 
 type SellHeroProps = {
     classes?: {
@@ -69,13 +70,18 @@ export const SellHero: React.FC<SellHeroProps> = ({
         <div
             className={clsx(
                 classes?.container,
-                "bg-cover bg-center absolute top-40 text-main"
+                "bg-cover bg-center absolute top-14 text-main"
             )}
         >
-            <div className="absolute top-0 right-0">
+            <div className={clsx(classes?.x_button, "absolute top-0 right-0")}>
                 <img src={x_button} alt="" onClick={onClickX}></img>
             </div>
-            <div className="flex justify-center text-3xl  mb-8 font-Skranji">
+            <div
+                className={clsx(
+                    classes?.container_text,
+                    "flex justify-center font-medium font-Skranji"
+                )}
+            >
                 <span>LISTING ITEM</span>
             </div>
             <div
@@ -84,25 +90,49 @@ export const SellHero: React.FC<SellHeroProps> = ({
                     "bg-brown-op rounded-lg  flex "
                 )}
             >
-                <div className="w-1/2 flex justify-center items-center">
+                <div
+                    className={clsx(
+                        classes?.avatar_container,
+                        "flex justify-center "
+                    )}
+                >
                     <img
                         src={avatar}
                         className={clsx(classes?.avatar, "rounded-md")}
                         alt=""
                     />
                 </div>
-                <div className="w-1/2 grid grid-rows-2 mt-7 pr-10">
-                    <div className=" row-span-1">
+                <div
+                    className={clsx(
+                        classes?.info_container,
+                        "grid grid-rows-2 "
+                    )}
+                >
+                    <div className={clsx(classes?.info, "")}>
                         <span>{hero.name}</span>
-                        <div className="mt-3">
+                        <hr />
+                        <div className={clsx(classes?.rank)}>
+                            <span>Rank: </span>
+                            <span className="text-green-700">{hero.rank}</span>
+                        </div>
+                        <div className={clsx(classes?.id)}>
                             <span>ID:</span> <span>{hero.id}</span>
                         </div>
-                        <div className="mt-3">
-                            <span>Owner:</span> <span>{hero.account_id}</span>
+                        <div className={clsx(classes?.owner)}>
+                            <span>Owner: </span>
+                            <span>
+                                {ShortId(hero.account_id)}
+                                {CopyText(hero.account_id)}
+                            </span>
                         </div>
                         <br />
                     </div>
-                    <div className="my-10 row-span-1 ">
+                    <div
+                        className={clsx(
+                            classes?.input_container,
+                            "my-10 row-span-1 "
+                        )}
+                    >
                         <div className="flex justify-between text-xl">
                             <span>Input price</span>
                             {errorPrice && (
@@ -111,26 +141,27 @@ export const SellHero: React.FC<SellHeroProps> = ({
                                 </span>
                             )}
                         </div>
-                        <div className="flex justify-between items-center relative">
-                            {/* <input
-                                className={clsx(
-                                    classes?.input,
-                                    "bg-light-brown rounded-md text-my-brown text-xl font-bold my-2 pl-3 "
-                                )}
-                                type="text"
-                                value={price}
-                                onChange={handleInputChange}
-                            /> */}
+                        <div
+                            className={clsx(
+                                classes?.input_box,
+                                "flex justify-between items-center relative"
+                            )}
+                        >
                             <NumericFormat
                                 value={price}
                                 onChange={handleInputChange}
                                 thousandSeparator
                                 className={clsx(
                                     classes?.input,
-                                    "bg-light-brown rounded-md text-my-brown text-xl font-black my-2 pl-3 "
+                                    "bg-light-brown  text-my-brown font-bold my-2 pl-3 "
                                 )}
                             ></NumericFormat>
-                            <div className="flex items-center absolute right-2 text-my-brown text-xl font-semibold">
+                            <div
+                                className={clsx(
+                                    classes?.token,
+                                    "flex items-center absolute right-2 text-my-brown text-xl font-semibold"
+                                )}
+                            >
                                 <img src={okg_token} alt="" className="mr-1" />
                                 <span>OKG</span>
                             </div>
@@ -142,16 +173,16 @@ export const SellHero: React.FC<SellHeroProps> = ({
                 <div
                     className={clsx(
                         classes?.button,
-                        "bg-yellow_l flex justify-center items-center text-xl"
+                        " flex justify-center items-center font-normal font-Skranji"
                     )}
                 >
                     <button
-                        className="w-full h-full cursor-pointer font-Skranji"
+                        className="w-full h-full cursor-pointer "
                         onClick={() => {
                             handleSubmit(price, hero.id);
                         }}
                     >
-                        START LISTING
+                        Start Listing
                     </button>
                 </div>
             </div>
