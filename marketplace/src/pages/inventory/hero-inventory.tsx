@@ -1,11 +1,10 @@
-import { Header, PaginationActivity } from "../../components";
+import { FilterInventory, Header, PaginationActivity } from "../../components";
 import axios from "axios";
 import { ButtonInventory } from "../../components/common/inventory/button-inventory";
 import { useAccountInformation } from "../../hooks";
 import { Class, Race, Rank } from "../../types";
 import avatar from "../../assets/img/avatar-account.png";
 import herotext from "../../assets/img/hero.png";
-import { FilterInventory } from "../../components/common/inventory";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
@@ -14,6 +13,7 @@ import hero from "../../assets/img/HeroImage.png";
 import zero from "../../assets/img/zeroInventory.png";
 import { VITE_API_URL } from "../../env";
 import { Account, Hero } from "../../models";
+import { SelectChangeEvent } from "@mui/material";
 
 
 
@@ -31,7 +31,37 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPage, setTotalPage] = useState(0);
     const [heroInventory, setHeroInventory] = useState([]);
+    const actionClass = Object.values(Class);
+    const actionRace = Object.values(Race);
+    const actionRank = Object.values(Rank);
+
+
+    const [eventSearchClass, setEventClass] = useState("ALL");
+    const handleChangeClass = (event: SelectChangeEvent) => {
+        setEventClass(event.target.value);
+        //navigate(`?event=${event.target.value}`);
+    };
+    const [eventSearchRace, setEventRace] = useState("ALL");
+    const handleChangeRace = (event: SelectChangeEvent) => {
+        setEventRace(event.target.value);
+        //navigate(`?event=${event.target.value}`);
+    };
+    const [eventSearchRank, setEventRank] = useState("ALL");
+    const handleChangeRank = (event: SelectChangeEvent) => {
+        setEventRank(event.target.value);
+        //navigate(`?event=${event.target.value}`);
+    };
+    console.log("eventSearchClass", eventSearchClass);
     useEffect(() => {
+        if(eventSearchClass === ""){
+            setEventClass("ALL");
+        }
+        if(eventSearchRace === ""){
+            setEventRace("ALL");
+        }
+        if(eventSearchRank === ""){
+            setEventRank("ALL");
+        }
         let page = Number(searchParams.get("page"));
         if (!page) page = 1;
         if (isNaN(page)) page = 1;
@@ -40,6 +70,9 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
             .get(VITE_API_URL + "/api/v1/hero/show-inventory", {
                 params: {
                     page: page,
+                    class: eventSearchClass==="ALL"?"":eventSearchClass,
+                    race: eventSearchRace==="ALL"?"":eventSearchRace,
+                    rank: eventSearchRank==="ALL"?"":eventSearchRank
                 },
                 paramsSerializer: function customSerializer(params) {
                     // Customize serialization logic here
@@ -56,12 +89,12 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
                 setHeroInventory(res.data.data);
                 setTotalRecords(res.data.totalItems);
                 setTotalPage(Math.ceil(totalRecords / items_per_page));
-                console.log("total page", totalPage);
+                console.log("total page", res.data.data);
             })
             .catch((err) => {
                 console.log(err);
             });
-    },[searchParams,totalRecords,totalPage]);
+    },[searchParams,totalRecords,totalPage,eventSearchClass,eventSearchRace,eventSearchRank,currentPage]);
 
 
     
@@ -112,36 +145,16 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
                                 </div>
                                 <div className="flex text-end">
                                     <div>
-                                        <FilterInventory
-                                            component={[
-                                                Rank.CHIEFTAIN,
-                                                Rank.OVERSEER,
-                                                Rank.WARMONGER,
-                                                Rank.WARRIOR,
-                                            ]}
-                                        />
+                                        <FilterInventory name={"Class"} actionValues={actionClass} eventSearch={eventSearchClass} handleChange={handleChangeClass}>
+                                        </FilterInventory>
                                     </div>
                                     <div>
-                                        <FilterInventory
-                                            component={[
-                                                Race.ANTUK,
-                                                Race.KRAKEE,
-                                                Race.MANTAH,
-                                                Race.MONTAK,
-                                                Race.MUU,
-                                            ]}
-                                        />
+                                    <FilterInventory name={"Race"} actionValues={actionRace} eventSearch={eventSearchRace} handleChange={handleChangeRace}>
+                                        </FilterInventory>
                                     </div>
                                     <div>
-                                        <FilterInventory
-                                            component={[
-                                                Class.AIR,
-                                                Class.MAGE,
-                                                Class.MELEE,
-                                                Class.RANGE,
-                                                Class.TANKER,
-                                            ]}
-                                        />
+                                    <FilterInventory name={"Rank"} actionValues={actionRank} eventSearch={eventSearchRank} handleChange={handleChangeRank}>
+                                        </FilterInventory>
                                     </div>
                                 </div>
                             </div>
