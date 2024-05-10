@@ -20,12 +20,12 @@ export const StartPage: React.FC<ButtonStartProps> = ({
         }
     });
     return (
-        <div className="h-screen w-[414px] lg:w-full flex justify-center items-center rounded-lg bg-bglogin bg-cover bg-center">
+        <div className="h-screen w-full lg:w-full flex justify-center items-center rounded-lg bg-bglogin bg-cover bg-center">
             <div
                 className={clsx(
                     classes?.sizePage,
                     classes?.bgSize,
-                    " flex justify-center relative "
+                    " flex justify-center relative"
                 )}
             >
                 <div

@@ -1,34 +1,33 @@
-.listInventory{
+.listInventory {
     display: flex;
     justify-items: center;
 }
 .mainAvatar {
     display: flex;
     width: 25%;
-    background-image: url('../src/assets/img/profile.png');
+    background-image: url("../src/assets/img/profile.png");
     justify-content: center;
     text-align: center;
     height: 50rem;
-    margin-left: 6rem/* 96px */;
-    margin-top: 6rem/* 96px */;
+    margin-left: 6rem /* 96px */;
+    margin-top: 6rem /* 96px */;
     border-radius: 10px;
 }
 .bgInventory {
     background-image: url("../../assets/img/bginventory.png");
     background-size: 100% 100%;
-    background-repeat:no-repeat ;
-    
+    background-repeat: no-repeat;
 }
-.text_zero{
+.text_zero {
     width: 6rem;
     position: relative;
     background-image: url("../../assets/img/zero_pc.png");
     background-size: 100% 100%;
 }
-.heroImage{
+.heroImage {
     display: none;
 }
-.img_zero{
+.img_zero {
     text-align: center;
     width: 439px;
     color: white;
@@ -36,14 +35,14 @@
     background-image: url("../../assets/img/zero_pc.png");
     background-size: 100% 100%;
 }
-.filterInventory{
+.filterInventory {
     padding-top: 6rem;
     padding-left: 6rem;
 }
 .filterInventory img {
     width: 15rem;
 }
-.zeroInventory{
+.zeroInventory {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,37 +52,34 @@
     font-style: normal;
     padding-top: 6rem;
     padding-left: 12rem;
-
 }
-.text_zero{
+.text_zero {
     width: 439px;
 }
-.zero_res{
+.zero_res {
     display: none;
 }
-.img_inventory{
+.img_inventory {
     width: 15rem;
 }
-@media screen and (max-width: 768px) {
-    .listInventory{
+@media screen and (max-width: 1024px) {
+    .listInventory {
         justify-items: center;
     }
-    .bgInventory{
+    .bgInventory {
         padding-top: 30px;
         width: 100%;
-        background-image: url('../src/assets/img/Fixed.png');
+        background-image: url("../src/assets/img/Fixed.png");
         background-size: 100% 100%;
-        background-repeat:no-repeat ;
-        
-
+        background-repeat: no-repeat;
     }
-    .mainAvatar{
+    .mainAvatar {
         display: none;
     }
-    .filterInventory{
+    .filterInventory {
         display: none;
     }
-    .heroImage{
+    .heroImage {
         padding-top: 50px;
         display: block;
         justify-content: center;
@@ -97,38 +93,36 @@
     .heroImage img {
         margin-right: auto;
         margin-left: auto;
-        
     }
-    .img_zero{
+    .img_zero {
         display: none;
     }
-    .zeroInventory{
+    .zeroInventory {
         padding: 0;
         margin-right: auto;
         margin-left: auto;
         display: block;
     }
-    .zero_res{
+    .zero_res {
         font-size: 1rem;
-        display:block;
+        display: block;
         width: 18rem;
         color: white;
         background-image: url("../../assets/img/text_zero.png");
         background-size: 100% 100%;
     }
-    .img_inventory{
+    .img_inventory {
         width: 11rem;
         margin-right: auto;
         margin-left: auto;
     }
 
-    .listInventory{
+    .listInventory {
         padding: 0;
         padding-left: 1rem;
         padding-right: 1rem;
     }
-    .itemInventory{
+    .itemInventory {
         width: 50%;
     }
-    
 }

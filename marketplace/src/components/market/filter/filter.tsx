@@ -29,25 +29,27 @@ export const Filter: React.FC<FilterProps> = ({
             >
                 {headerFilter}
             </span>
-            {component.map((item, index) => (
-                <div
-                    key={index}
-                    className={`${
-                        isClick ? "" : "hidden"
-                    } rounded-lg p-3 hover:bg-violet-600`}
-                >
-                    <button
-                        onClick={() => onToggle(item)}
+            <div className="grid grid-cols-2 gap-4 justify-center">
+                {component.map((item, index) => (
+                    <div
+                        key={index}
                         className={`${
-                            item === selectedItem
-                                ? "bg-[#DA8B14] text-black"
-                                : "bg-[#423429] text-white"
-                        } w-full p-2 rounded-md`}
+                            isClick ? "" : "hidden"
+                        } rounded-lg p-3 hover:bg-violet-600`}
                     >
-                        {item}
-                    </button>
-                </div>
-            ))}
+                        <button
+                            onClick={() => onToggle(item)}
+                            className={`${
+                                item === selectedItem
+                                    ? "bg-[#DA8B14] text-black"
+                                    : "bg-[#423429] text-white"
+                            } w-full p-2 rounded-md`}
+                        >
+                            {item}
+                        </button>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

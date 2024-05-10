@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { Header } from "../../components";
+import { ChangeUserName, Header } from "../../components";
 
 import { useEffect, useState } from "react";
 import { useInventory } from "../../hooks";
@@ -11,6 +11,8 @@ import { useAccountInformation } from "../../hooks/";
 import { ButtonInventory } from "../../components/common/inventory/button-inventory";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import BasicModal from "../../components/common/basic-modal";
+import { ChangePassword } from "../../components/change-info/change-password";
 type ProfileProps = {
     classes?: {
         [key: string]: string;
@@ -57,7 +59,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
     const [errorChangePassword, setErrorChangePassword] = useState([]);
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [oldpassword] = useState("");
+    const [oldpassword, setOldPassword] = useState("");
 
     const [erroDiff, setErroDiff] = useState("");
     useEffect(() => {
@@ -65,13 +67,37 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
             setUsername(userData.username);
         }
     }, [userData]);
+
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 1024);
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        handleResize();
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
     const handleEditClick = () => {
-        setIsEditing(true);
-        setNewUsername(username);
+        if (isMobile) {
+            handleOpenModal();
+        } else {
+            setIsEditing(true);
+            setNewUsername(username);
+        }
     };
 
     const handlePassEditClick = () => {
-        setIsEditingPass(true);
+        if (isMobile) {
+            handleOpenModalPassword();
+        } else {
+            setIsEditingPass(true);
+        }
     };
     // useEffect(() => {
     //     axios
@@ -84,7 +110,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
     //         .catch((err) => {
     //             console.log(err);
     //         });
-            
+
     // }, [newUsername]);
     const handleSaveClick = async () => {
         try {
@@ -100,7 +126,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
         } catch (error: unknown) {
             if (error instanceof AxiosError) {
                 console.error("Error updating username:", error);
-                setErrorChangePassword(error.response?.data.message);
+                setErrorChangeUserName(error.response?.data.message);
             }
             // Handle error here, maybe show a message to the user
         }
@@ -131,8 +157,6 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
             if (newPassword !== confirmPassword) {
                 setErroDiff("Passwords do not match");
                 return; // Stop further execution
-                setErroDiff("Passwords do not match");
-                return; // Stop further execution
             }
             setErroDiff("");
             setErroDiff("");
@@ -145,8 +169,8 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                     repassword: confirmPassword,
                 }
             );
-            console.log(response.data, "data here");
-            console.log(response, " response here");
+            console.log(response);
+
             setErrorChangePassword([]);
             // Reset password fields
             setNewPassword("");
@@ -160,6 +184,18 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
         }
     };
 
+    const handlePasswordChange = (e) => {
+        setNewPassword(e.target.value);
+        setErrorChangePassword([]);
+    };
+
+    const handleOldPasswordChange = (e) => {
+        setOldPassword(e.target.value);
+        setErrorChangePassword([]);
+    };
+    const handleChange = (e) => {
+        setNewUsername(e.target.value);
+    };
     const handleConfirmPasswordChange = (e) => {
         if (newPassword !== e.target.value) {
             setErroDiff("Password not match");
@@ -172,6 +208,30 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
         }
         setConfirmPassword(e.target.value);
     };
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const [isModalOpenPassword, setIsModalOpenPassword] = useState(false);
+
+    const handleOpenModal = () => {
+        setIsEditing(true);
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsEditing(false);
+        setIsModalOpen(false);
+    };
+    const handeleCloseModalPassword = () => {
+        setIsEditingPass(false);
+        setIsModalOpenPassword(false);
+    };
+    const handleOpenModalPassword = () => {
+        setIsEditingPass(true);
+        setIsModalOpenPassword(true);
+    };
+
+    const shouldHideModal = !isMobile;
 
     return (
         <div className="">
@@ -202,37 +262,66 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                             <p className="text-sm font-semibold text-white pb-14">
                                 #{account["id"]}
                             </p>
-                            <ButtonInventory
-                                selectedItem={"Profile settings"}
-                            />
+                            <div className="hidden lg:block">
+                                <ButtonInventory
+                                    selectedItem={"Profile settings"}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div className="w-full ml-10">
                     <div
-                        className={clsx(
-                            classes?.profileSize,
-                            classes?.profilebg,
-                            classes?.profileFont,
-                            ""
-                        )}
+                        className={
+                            isEditingPass
+                                ? clsx(
+                                      classes?.profileSizePassOpen,
+                                      classes?.profilebg,
+                                      classes?.profileFont,
+                                      "relative"
+                                  )
+                                : clsx(
+                                      classes?.profileSize,
+                                      classes?.profilebg,
+                                      classes?.profileFont,
+                                      "relative"
+                                  )
+                        }
                     >
                         <div className={clsx(classes?.profileHeader, "")}>
                             Profile settings
                         </div>
                         <div className={clsx(classes?.profileInfo, "")}>
-                            <div className={clsx(classes?.userName, "")}>
-                                <div className={clsx(classes?.layout, "flex")}>
+                            <div
+                                className={
+                                    isEditing
+                                        ? "block"
+                                        : clsx(classes?.userName, "flex")
+                                }
+                            >
+                                <div
+                                    className={clsx(
+                                        classes?.layout,
+                                        "lg:flex items-center"
+                                    )}
+                                >
                                     <div
                                         className={clsx(classes?.sizeOfAtb, "")}
                                     >
-                                        Username
+                                        <span
+                                            className={clsx(
+                                                classes?.sizeOfAtb,
+                                                ""
+                                            )}
+                                        >
+                                            UserName
+                                        </span>
                                     </div>
 
-                                    <span>
+                                    <div>
                                         {isEditing ? (
-                                            <>
+                                            <div className="hidden lg:block">
                                                 <p className="text-red-500">
                                                     {errorChangeUserName}
                                                 </p>
@@ -251,22 +340,26 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                                         id="outlined-basic"
                                                         label="Username"
                                                         variant="outlined"
+                                                        value={newUsername}
+                                                        onChange={handleChange}
                                                         sx={{
                                                             "& label": {
-                                                                color: "gray", // Màu chữ mặc định
+                                                                color: "#777", // Màu chữ mặc định
                                                             },
                                                             "& fieldset": {
                                                                 borderColor:
-                                                                    "gray", // Màu border mặc định
+                                                                    "white", // Màu border mặc định
                                                             },
                                                             "&:focus-within label":
                                                                 {
                                                                     color: "white", // Thay đổi màu chữ thành màu xanh khi focus
+                                                                    fontSize:
+                                                                        "20px",
                                                                 },
                                                             "&:focus-within fieldset":
                                                                 {
                                                                     borderColor:
-                                                                        "blue", // Thay đổi màu border thành màu xanh khi focus
+                                                                        "#B7A284 !important", // Thay đổi màu border thành màu xanh khi focus
                                                                 },
                                                         }}
                                                         InputProps={{
@@ -276,34 +369,39 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                                         }}
                                                     />
                                                 </Box>
-                                            </>
+                                            </div>
                                         ) : (
-                                            <span>{username}</span>
+                                            <span
+                                                className={clsx(classes?.user)}
+                                            >
+                                                {username}
+                                            </span>
                                         )}
-                                    </span>
+                                    </div>
                                 </div>
 
                                 <div className={clsx(classes?.edit, "")}>
                                     {isEditing ? (
                                         <>
-                                            <button
-                                                className={clsx(
-                                                    classes?.editBtn,
-                                                    ""
-                                                )}
-                                                onClick={handleSaveClick}
-                                            >
-                                                Save
-                                            </button>
-                                            <button
-                                                className={clsx(
-                                                    classes?.editBtn,
-                                                    ""
-                                                )}
-                                                onClick={handleCancelClick}
-                                            >
-                                                Cancel
-                                            </button>
+                                            <div className="hidden lg:flex flex-row gap-8 mb-4 ml-20 justify-between">
+                                                <button
+                                                    className={clsx(
+                                                        classes?.editBtn
+                                                    )}
+                                                    onClick={handleSaveClick}
+                                                >
+                                                    Save
+                                                </button>
+                                                <button
+                                                    className={clsx(
+                                                        classes?.editBtn,
+                                                        ""
+                                                    )}
+                                                    onClick={handleCancelClick}
+                                                >
+                                                    Cancel
+                                                </button>
+                                            </div>
                                         </>
                                     ) : (
                                         <button
@@ -313,7 +411,14 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                             )}
                                             onClick={handleEditClick}
                                         >
-                                            Edit
+                                            <span
+                                                className={clsx(
+                                                    classes?.editText,
+                                                    ""
+                                                )}
+                                            >
+                                                Edit
+                                            </span>
                                         </button>
                                     )}
                                 </div>
@@ -324,12 +429,17 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                 height="2"
                                 viewBox="0 0 1131 2"
                                 fill="none"
-                                className="border border-[#574239] h-0 w-full"
+                                className="border border-[#574239] hidden lg:block  h-0 w-11/12"
                             >
                                 <path d="M0 1H1130.43" stroke="#574239" />
                             </svg>
                             <div className={clsx(classes?.email, "")}>
-                                <div className="flex">
+                                <div
+                                    className={clsx(
+                                        classes?.layout,
+                                        "lg:flex items-center"
+                                    )}
+                                >
                                     <div
                                         className={clsx(classes?.sizeOfAtb, "")}
                                     >
@@ -354,21 +464,39 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                 height="2"
                                 viewBox="0 0 1131 2"
                                 fill="none"
-                                className="border border-[#574239] h-0 w-full"
+                                className="border border-[#574239] h-0 w-11/12"
                             >
                                 <path d="M0 1H1130.43" stroke="#574239" />
                             </svg>
-                            <div className={clsx(classes?.password, "")}>
-                                <div className={clsx(classes?.layout, "flex")}>
+                            <div
+                                className={
+                                    isEditingPass
+                                        ? "block"
+                                        : clsx(classes?.password, "flex mt-6")
+                                }
+                            >
+                                <div
+                                    className={clsx(
+                                        classes?.passwordSetup,
+                                        "flex items-center"
+                                    )}
+                                >
                                     <div
                                         className={clsx(classes?.sizeOfAtb, "")}
                                     >
-                                        Password
+                                        <span
+                                            className={clsx(
+                                                classes?.sizeOfAtb,
+                                                ""
+                                            )}
+                                        >
+                                            Password
+                                        </span>
                                     </div>
-                                    <span>
+                                    <div className="hidden lg:inline-block">
                                         {isEditingPass ? (
                                             <>
-                                                <p className="text-red-500">
+                                                <p className="text-red-500 lg:w-[500px] lg:h-14">
                                                     {erroDiff}
                                                 </p>
                                                 {Array.isArray(
@@ -376,7 +504,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                                 ) ? (
                                                     errorChangePassword.length >
                                                         0 && (
-                                                        <p className="text-red-500">
+                                                        <p className="text-red-500 lg:w-[500px] lg:h-20">
                                                             {errorChangePassword.map(
                                                                 (
                                                                     item,
@@ -394,7 +522,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                                         </p>
                                                     )
                                                 ) : (
-                                                    <p className="text-red-500">
+                                                    <p className="text-red-500 h-8">
                                                         {errorChangePassword}
                                                     </p>
                                                 )}
@@ -414,6 +542,13 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                                         label="Old password"
                                                         variant="outlined"
                                                         type="password"
+                                                        style={{
+                                                            marginTop: "30px",
+                                                        }}
+                                                        value={oldpassword}
+                                                        onChange={
+                                                            handleOldPasswordChange
+                                                        }
                                                         sx={{
                                                             "& label": {
                                                                 color: "gray", // Màu chữ mặc định
@@ -455,6 +590,10 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                                         label="New password"
                                                         type="password"
                                                         variant="outlined"
+                                                        value={newPassword}
+                                                        onChange={
+                                                            handlePasswordChange
+                                                        }
                                                         sx={{
                                                             "& label": {
                                                                 color: "gray", // Màu chữ mặc định
@@ -480,61 +619,105 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                                                         }}
                                                     />
                                                 </Box>
-                                                <label htmlFor="confirm">
-                                                    Confirm password
-                                                    <input
+                                                <Box
+                                                    component="form"
+                                                    sx={{
+                                                        "& > :not(style)": {
+                                                            m: 1,
+                                                            width: "25ch",
+                                                        },
+                                                    }}
+                                                    noValidate
+                                                    autoComplete="off"
+                                                >
+                                                    <TextField
+                                                        id="outlined-basic"
+                                                        label="Confirm password"
                                                         type="password"
+                                                        variant="outlined"
                                                         value={confirmPassword}
-                                                        id="confirm"
                                                         onChange={
                                                             handleConfirmPasswordChange
                                                         }
-                                                        className="text-base text-black p-1 my-2"
+                                                        sx={{
+                                                            "& label": {
+                                                                color: "gray", // Màu chữ mặc định
+                                                            },
+                                                            "& fieldset": {
+                                                                borderColor:
+                                                                    "gray", // Màu border mặc định
+                                                            },
+                                                            "&:focus-within label":
+                                                                {
+                                                                    color: "white", // Thay đổi màu chữ thành màu xanh khi focus
+                                                                },
+                                                            "&:focus-within fieldset":
+                                                                {
+                                                                    borderColor:
+                                                                        "blue", // Thay đổi màu border thành màu xanh khi focus
+                                                                },
+                                                        }}
+                                                        InputProps={{
+                                                            sx: {
+                                                                color: "white", // Thay đổi màu chữ của input thành màu xanh
+                                                            },
+                                                        }}
                                                     />
-                                                </label>
+                                                </Box>
                                             </>
                                         ) : (
                                             ""
                                         )}
-                                    </span>
+                                    </div>
                                 </div>
-                                <div className={clsx(classes?.edit, "")}>
-                                    <div className={clsx(classes?.edit, "")}>
+                                <div className={clsx(classes?.editPass, "")}>
+                                    <div
+                                        className={clsx(classes?.editPass, "")}
+                                    >
                                         {isEditingPass ? (
                                             <>
-                                                <button
-                                                    className={clsx(
-                                                        classes?.editBtn,
-                                                        ""
-                                                    )}
-                                                    onClick={
-                                                        handleChangePasswordClick
-                                                    }
-                                                >
-                                                    Save
-                                                </button>
-                                                <button
-                                                    className={clsx(
-                                                        classes?.editBtn,
-                                                        ""
-                                                    )}
-                                                    onClick={
-                                                        handlePassCancelClick
-                                                    }
-                                                >
-                                                    Cancel
-                                                </button>
+                                                <div className="hidden lg:flex justify-evenly mt-5 ">
+                                                    <button
+                                                        className={clsx(
+                                                            classes?.editBtn,
+                                                            ""
+                                                        )}
+                                                        onClick={
+                                                            handleChangePasswordClick
+                                                        }
+                                                    >
+                                                        Save
+                                                    </button>
+                                                    <button
+                                                        className={clsx(
+                                                            classes?.editBtn,
+                                                            ""
+                                                        )}
+                                                        onClick={
+                                                            handlePassCancelClick
+                                                        }
+                                                    >
+                                                        Cancel
+                                                    </button>
+                                                </div>
                                             </>
                                         ) : (
                                             <button
                                                 className={clsx(
                                                     classes?.editBtn,
                                                     classes?.editspacing,
+                                                    classes?.buttoneEdit,
                                                     ""
                                                 )}
                                                 onClick={handlePassEditClick}
                                             >
-                                                Edit
+                                                <span
+                                                    className={clsx(
+                                                        classes?.editText
+                                                    )}
+                                                >
+                                                    Edit
+                                                </span>
                                             </button>
                                         )}
                                     </div>
@@ -550,7 +733,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                             <div
                                 className={clsx(classes?.walletLogo, "")}
                             ></div>
-                            <div>
+                            <div className={clsx(classes?.walletBalanceMB, "")}>
                                 <div
                                     className={clsx(
                                         classes?.headerWalletBalance,
@@ -579,7 +762,21 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                             <div>
                                 <div className={clsx(classes?.herosCount, "")}>
                                     Hero Owner: {myHeros.length}
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="270"
+                                        height="2"
+                                        viewBox="0 0 270 2"
+                                        fill="none"
+                                        className="lg:hidden mt-5"
+                                    >
+                                        <path
+                                            d="M0 1L270 1.00002"
+                                            stroke="#463024"
+                                        />
+                                    </svg>
                                 </div>
+
                                 <div className={clsx(classes?.herosCount, "")}>
                                     <div
                                         className={clsx(classes?.countAtb, "")}
@@ -693,6 +890,43 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="">
+                {!shouldHideModal && (
+                    <BasicModal
+                        open={isModalOpen}
+                        onClose={handleCloseModal}
+                        style={{ height: "70%" }}
+                        modalContent={
+                            <ChangeUserName
+                                value={newUsername}
+                                onChange={handleChange}
+                                onClick={handleSaveClick}
+                            />
+                        }
+                    />
+                )}
+            </div>
+
+            <div>
+                {!shouldHideModal && (
+                    <BasicModal
+                        open={isModalOpenPassword}
+                        onClose={handeleCloseModalPassword}
+                        modalContent={
+                            <ChangePassword
+                                valueConfirm={confirmPassword}
+                                onChangeConfirm={handleConfirmPasswordChange}
+                                valueNewPass={newPassword}
+                                onChangeNewPass={handlePasswordChange}
+                                valueOldPass={oldpassword}
+                                onChangeOldPass={handleOldPasswordChange}
+                                onClick={handleChangePasswordClick}
+                            />
+                        }
+                        style={{ height: "70%" }}
+                    />
+                )}
             </div>
         </div>
     );
