@@ -13,6 +13,9 @@ export const FilterInventory = ({name,actionValues, eventSearch, handleChange}) 
                     "& .MuiInputLabel-root": {
                         // Màu text của InputLabel
                         color: "#F1E9DC",
+                        "&:focus": {
+                            color: "orange", // Màu text khi focus là màu cam
+                          },
                     },
                     "& .MuiInputBase-root": {
                         color: "#F1E9DC", // Màu text của Select khi không focus
@@ -23,6 +26,12 @@ export const FilterInventory = ({name,actionValues, eventSearch, handleChange}) 
                             borderColor: "#B7A284",
                         },
                         backgroundColor: "#170A02CC",
+                        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "orange", // Màu border khi focus là màu cam
+                          },
+                          "& .MuiSelect-icon": {
+                            color: "#F1E9DC", // Màu của mũi tên là màu cam
+                          },
                 }}
                 size="small"
             >
