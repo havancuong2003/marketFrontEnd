@@ -13,29 +13,9 @@ import { DetailHero } from "../../components/common/detail-hero";
 import hero from "../../assets/img/HeroImage.png";
 import zero from "../../assets/img/zeroInventory.png";
 import { VITE_API_URL } from "../../env";
+import { Account, Hero } from "../../models";
 
-interface Inventory {
-    id: string;
-    name: string;
-    class: Class;
-    race: Race;
-    rank: Rank;
-    level: number;
-    image: string;
-    price: number;
-    hp: number;
-    speed: number;
-    dps: number;
-    atk: number;
-    power: number;
-}
-interface Account {
-    id: string;
-    username: string;
-    email: string;
-    balance: number;
-    avatar: string;
-}
+
 
 type InventoryHeroProps = {
     classes?: {
@@ -216,7 +196,7 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
                                     <div className="w-full">
                                     
                                     <div className={clsx(classes?.listInventory,"pl-60 justify-between pr-60")}>
-                                        {heroInventory.map((hero) => (
+                                        {heroInventory.map((hero : Hero) => (
                                             <div
                                             className={clsx(classes?.itemInventory)}
                                                 key={hero.id}

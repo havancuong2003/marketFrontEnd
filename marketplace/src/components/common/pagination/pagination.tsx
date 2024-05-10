@@ -30,12 +30,13 @@ export const PaginationActivity: React.FC<Props> = ({
           </div>
           <Stack spacing={2} className="flex items-end">
             <Pagination
+                siblingCount={0}
                 page={currentPage}
                 count={totalPage}
                 variant="outlined"
                 shape="rounded"
                 color='secondary'           
-                onChange={(event, page) => navigate(`?page=${page}`)}
+                onChange={(page) => navigate(`?page=${page}`)}
                 sx= {
                   {
                     "& .MuiPaginationItem-root": {

@@ -5,7 +5,7 @@ import {
     Navigate,
 } from "react-router-dom";
 import React, { Suspense } from "react";
-import { LoginForm, SignUpForm } from "./components";
+import { Layout, LoginForm, SignUpForm } from "./components";
 import { isAuthenticated } from "./utils";
 
 const LazyMarket = React.lazy(() =>
@@ -76,41 +76,54 @@ const App: React.FC = () => {
                             />
                         }
                     />
+
                     <Route
                         path="hero/:id/detail"
-                        element={<LazyHeroDetail />}
+                        element={
+                            <Layout>
+                                <LazyHeroDetail />
+                            </Layout>
+                        }
                     />
                     {/* PRIVATE ROUTE */}
                     <Route
                         path="/inventory"
                         element={
-                            <PrivateRoute>
-                                <LazyInventory />
-                            </PrivateRoute>
+                            <Layout>
+                                <PrivateRoute>
+                                    <LazyInventory />
+                                </PrivateRoute>
+                            </Layout>
                         }
                     />
                     <Route
                         path="/activities"
                         element={
-                            <PrivateRoute>
-                                <LazyActivities />
-                            </PrivateRoute>
+                            <Layout>
+                                <PrivateRoute>
+                                    <LazyActivities />
+                                </PrivateRoute>
+                            </Layout>
                         }
                     />
                     <Route
                         path="/confirm"
                         element={
-                            <PrivateRoute>
-                                <LazyBuyHero />
-                            </PrivateRoute>
+                            <Layout>
+                                <PrivateRoute>
+                                    <LazyBuyHero />
+                                </PrivateRoute>
+                            </Layout>
                         }
                     />
                     <Route
                         path="/profile"
                         element={
-                            <PrivateRoute>
-                                <LazyProfile />
-                            </PrivateRoute>
+                            <Layout>
+                                <PrivateRoute>
+                                    <LazyProfile />
+                                </PrivateRoute>
+                            </Layout>
                         }
                     />
                 </Routes>

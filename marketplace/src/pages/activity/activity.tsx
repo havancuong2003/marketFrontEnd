@@ -1,7 +1,7 @@
 import { Header, PaginationActivity } from "../../components";
 import { ButtonInventory } from "../../components/common/inventory/button-inventory";
 import avatar from "../../assets/img/avatar-account.png";
-import { useAccountInformation } from "../../hooks";
+import { useAccountInformation, useCheckMobileScreen } from "../../hooks";
 import dayjs from "dayjs";
 import { TOKEN, VITE_API_URL } from "../../env";
 import TimeAgo from "javascript-time-ago";
@@ -14,6 +14,15 @@ import axios from "axios";
 import { Event } from "../../types";
 import clsx from "clsx";
 import hero from "../../assets/img/HeroImage.png";
+import {
+    FormControl,
+    InputLabel,
+    MenuItem,
+    Select,
+    SelectChangeEvent,
+} from "@mui/material";
+import { Activity } from "../../models";
+
 
 type ActivitiesProps = {
     classes?: {
@@ -37,6 +46,13 @@ const mappingItemBackgroundColor = {
     SALE: "text-blue-500",
     PURCHASE: "text-yellow-500",
 };
+const mappingItemTextColor = {
+    ALL:"white",
+    LIST: "red",
+    DELIST: "green",
+    SALE: "blue",
+    PURCHASE: "yellow",
+};
 
 const mappingActionDetail = {
     LIST: "Viewing the list",
@@ -44,7 +60,7 @@ const mappingActionDetail = {
     SALE: "On sale",
     PURCHASE: "Making a purchase",
 };
-const items_per_page = 10;
+
 export const Activities: React.FC<ActivitiesProps> = ({ classes }) => {
     const [searchParams] = useSearchParams();
     const { account } = useAccountInformation();
@@ -54,18 +70,28 @@ export const Activities: React.FC<ActivitiesProps> = ({ classes }) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [totalRecords, setTotalRecords] = useState(0);
     const actionValues = Object.values(Event);
+    const checkMobile = useCheckMobileScreen();
+    const items_per_page = 10;
+    const [eventSearch, setEvent] = useState("");
+    const handleChange = (event: SelectChangeEvent) => {
+        setEvent(event.target.value);
+        //navigate(`?event=${event.target.value}`);
+    };
     useEffect(() => {
+        if(eventSearch === ""){
+            setEvent("ALL");
+        }
         // todo: check page value
         let page = Number(searchParams.get("page"));
         if (!page) page = 1;
         if (isNaN(page)) page = 1;
         setCurrentPage(page);
-
         // todo fetch data
         axios
             .get(VITE_API_URL + "/api/v1/activity", {
                 params: {
                     page: page,
+                    event: eventSearch,
                 },
                 paramsSerializer: function customSerializer(params) {
                     // Customize serialization logic here
@@ -80,13 +106,14 @@ export const Activities: React.FC<ActivitiesProps> = ({ classes }) => {
             // todo set records
             .then((res) => {
                 setActivities(res.data.records);
+                console.log(res.data.records)
                 setTotalRecords(res.data.totalRecords);
                 setTotalPage(Math.ceil(totalRecords / items_per_page));
             })
             .catch((err) => {
                 console.log(err);
             });
-    }, [searchParams, totalRecords]);
+    }, [searchParams, totalRecords, currentPage, eventSearch]);
 
     //console.log("total page",totalPage)
     return (
@@ -102,8 +129,8 @@ export const Activities: React.FC<ActivitiesProps> = ({ classes }) => {
                             ACTIVITIES
                         </span>
                         <img src={hero} alt="" />
-                        
                     </div>
+
                     <div className={clsx(classes?.containerActivities, "flex")}>
                         <div className={clsx(classes?.containerProfile, "")}>
                             <div className="pt-10">
@@ -130,9 +157,54 @@ export const Activities: React.FC<ActivitiesProps> = ({ classes }) => {
                                         Activities
                                     </span>
                                     <div className="flex items-end">
-                                        <ul className="items-end">
+                                        <div className={clsx(classes?.filter)}>
+                                            <FormControl
+                                                sx={{ m: 1, minWidth: 200, // Default minWidth
+                                                '@media (max-width: 768px)': {
+                                                    minWidth: 300, // Adjust minWidth for screens with max-width of 600px
+                                                },
+                                                '& .MuiInputLabel-root': {
+                                                    // Màu text của InputLabel
+                                                    color: 'white',
+                                                },'& .MuiInputBase-root': {
+                                                    color: mappingItemTextColor[eventSearch], // Màu text của Select khi không focus
+                                                },
+                                                
+                                                '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
+                                                    borderColor: 'gray',
+                                                }
+                                                }}
+                                                size="medium"
+                                            >
+                                                <InputLabel id="demo-select-small-label">
+                                                    EVENT
+                                                </InputLabel>
+                                                <Select
+                                                    labelId="demo-select-small-label"
+                                                    id="demo-select-small"
+                                                    value={eventSearch}
+                                                    label={eventSearch}
+                                                    onChange={handleChange}
+                                                >
+                                                    <MenuItem value="ALL">
+                                                        <span>ALL</span>
+                                                    </MenuItem>
+                                                    {actionValues.map(
+                                                        (value) => (
+                                                            <MenuItem
+                                                                key={value}
+                                                                value={value}
+                                                            >
+                                                                {value}
+                                                            </MenuItem>
+                                                        )
+                                                    )}
+                                                </Select>
+                                            </FormControl>
+                                        </div>
+                                        <div className={clsx(classes?.info,"w-full grid grid-cols-2 gap-2 pb-2 pl-28")}>
                                             {actionValues.map((item) => (
-                                                <li
+                                                <div
                                                     key={item}
                                                     className={clsx(
                                                         mappingItemBackgroundColor[
@@ -142,13 +214,25 @@ export const Activities: React.FC<ActivitiesProps> = ({ classes }) => {
                                                 >
                                                     {item} :{" "}
                                                     {mappingActionDetail[item]}
-                                                </li>
+                                                </div>
                                             ))}
-                                        </ul>
+                                        </div>
                                     </div>
                                 </div>
-                                <table className=" w-full table-auto border-collapse">
-                                    <thead className="text-[#968469] text-2xl border-b-2 border-[#B7A284] border-opacity-20 mt-5 mb-5 flex w-full">
+                                <table
+                                    className={clsx(
+                                        checkMobile
+                                            ? "max-h-[300px]"
+                                            : "max-h-[800px]",
+                                        " w-full table-auto border-collapse"
+                                    )}
+                                >
+                                    <thead
+                                        className={clsx(
+                                            classes?.tableHead,
+                                            "text-[#968469] border-b-2 border-[#B7A284] border-opacity-20 mt-5 mb-5 flex w-full"
+                                        )}
+                                    >
                                         <tr className="flex w-full">
                                             <td className="w-1/5">Event</td>
                                             <td className="w-1/5">Item</td>
@@ -159,10 +243,15 @@ export const Activities: React.FC<ActivitiesProps> = ({ classes }) => {
                                     </thead>
 
                                     <tbody
-                                        className="custom-scrollbar text-[#CCC3B5] text-sm mt-5 mb-5 flex flex-col  justify-between overflow-y-scroll w-full h-[500px]"
+                                        className={clsx(
+                                            checkMobile
+                                                ? "max-h-[300px]"
+                                                : "max-h-[800px]",
+                                            "custom-scrollbar text-[#CCC3B5] mt-5 mb-5 flex flex-col  justify-between overflow-y-scroll w-full"
+                                        )}
                                         id="style-2"
                                     >
-                                        {activities.map((item) => (
+                                        {activities.map((item : Activity) => (
                                             <tr
                                                 className={clsx(
                                                     "border-b border-[#B7A284] border-opacity-20 flex w-full"

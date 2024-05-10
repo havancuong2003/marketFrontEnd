@@ -8,3 +8,4 @@ export * from "./use-delist-hero";
 export * from "./use-hero-info";
 export * from "./use-history-trans";
 export * from "./use-account-information";
+export * from './use-screen'
