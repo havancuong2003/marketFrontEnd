@@ -1,7 +1,7 @@
 .container {
     @apply flex justify-center items-center;
     position: fixed;
-    width: 100%;
+    width: 100vw;
     z-index: 999;
     top: 0;
 }
@@ -11,7 +11,7 @@
 .logoResponsive {
     margin-left: 130px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
     .navheader,
     .clickbutton {
         display: none;
@@ -19,7 +19,9 @@
     .sizenav {
         width: 20px;
         height: 16px;
-        margin-left: 90px;
+        position: absolute;
+        top: 25px;
+        right: 40px;
     }
     .bgopa {
         background: rgba(23, 10, 2, 0.9);
@@ -38,5 +40,8 @@
     width: 200px;
     height: 40px;
     border: 1px solid white;
+    margin-right: 50px;
+}
+.buttonProf2 {
     margin-right: 100px;
 }

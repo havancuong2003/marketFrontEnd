@@ -27,7 +27,7 @@ const LazyBuyHero = React.lazy(() =>
     }))
 );
 const LazyProfile = React.lazy(() =>
-    import("./pages").then(({ Profile }) => ({ default: Profile }))
+    import("./pages/profile").then(({ Profile }) => ({ default: Profile }))
 );
 const LazyHeroDetail = React.lazy(() =>
     import("./pages").then(({ HeroDetail }) => ({
