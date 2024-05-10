@@ -23,7 +23,6 @@ import {
 } from "@mui/material";
 import { Activity } from "../../models";
 
-
 type ActivitiesProps = {
     classes?: {
         [key: string]: string;
@@ -47,7 +46,7 @@ const mappingItemBackgroundColor = {
     PURCHASE: "text-yellow-500",
 };
 const mappingItemTextColor = {
-    ALL:"white",
+    ALL: "white",
     LIST: "red",
     DELIST: "green",
     SALE: "blue",
@@ -78,7 +77,7 @@ export const Activities: React.FC<ActivitiesProps> = ({ classes }) => {
         //navigate(`?event=${event.target.value}`);
     };
     useEffect(() => {
-        if(eventSearch === ""){
+        if (eventSearch === "") {
             setEvent("ALL");
         }
         // todo: check page value
@@ -106,7 +105,7 @@ export const Activities: React.FC<ActivitiesProps> = ({ classes }) => {
             // todo set records
             .then((res) => {
                 setActivities(res.data.records);
-                console.log(res.data.records)
+                console.log(res.data.records);
                 setTotalRecords(res.data.totalRecords);
                 setTotalPage(Math.ceil(totalRecords / items_per_page));
             })
@@ -159,20 +158,27 @@ export const Activities: React.FC<ActivitiesProps> = ({ classes }) => {
                                     <div className="flex items-end">
                                         <div className={clsx(classes?.filter)}>
                                             <FormControl
-                                                sx={{ m: 1, minWidth: 200, // Default minWidth
-                                                '@media (max-width: 768px)': {
-                                                    minWidth: 300, // Adjust minWidth for screens with max-width of 600px
-                                                },
-                                                '& .MuiInputLabel-root': {
-                                                    // Màu text của InputLabel
-                                                    color: 'white',
-                                                },'& .MuiInputBase-root': {
-                                                    color: mappingItemTextColor[eventSearch], // Màu text của Select khi không focus
-                                                },
-                                                
-                                                '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
-                                                    borderColor: 'gray',
-                                                }
+                                                sx={{
+                                                    m: 1,
+                                                    minWidth: 200, // Default minWidth
+                                                    "@media (max-width: 1024px)":
+                                                        {
+                                                            minWidth: 300, // Adjust minWidth for screens with max-width of 600px
+                                                        },
+                                                    "& .MuiInputLabel-root": {
+                                                        // Màu text của InputLabel
+                                                        color: "white",
+                                                    },
+                                                    "& .MuiInputBase-root": {
+                                                        color: mappingItemTextColor[
+                                                            eventSearch
+                                                        ], // Màu text của Select khi không focus
+                                                    },
+
+                                                    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline":
+                                                        {
+                                                            borderColor: "gray",
+                                                        },
                                                 }}
                                                 size="medium"
                                             >
@@ -202,7 +208,12 @@ export const Activities: React.FC<ActivitiesProps> = ({ classes }) => {
                                                 </Select>
                                             </FormControl>
                                         </div>
-                                        <div className={clsx(classes?.info,"w-full grid grid-cols-2 gap-2 pb-2 pl-28")}>
+                                        <div
+                                            className={clsx(
+                                                classes?.info,
+                                                "w-full grid grid-cols-2 gap-2 pb-2 pl-28"
+                                            )}
+                                        >
                                             {actionValues.map((item) => (
                                                 <div
                                                     key={item}
@@ -251,7 +262,7 @@ export const Activities: React.FC<ActivitiesProps> = ({ classes }) => {
                                         )}
                                         id="style-2"
                                     >
-                                        {activities.map((item : Activity) => (
+                                        {activities.map((item: Activity) => (
                                             <tr
                                                 className={clsx(
                                                     "border-b border-[#B7A284] border-opacity-20 flex w-full"

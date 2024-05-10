@@ -1,173 +1,21 @@
-.container {
-    width: 395px;
-    height: 820px;
-
-    margin: 121px 20px 0 140px;
-}
-
-.profileSize {
-    width: 90%;
-    height: 550px;
-    border-radius: 10px;
-    margin-top: 121px;
-}
-
-.profileInfo {
-    height: 244px;
-    margin: 14px 277px 42px 62px;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 37px;
-}
-.profileHeader {
-    width: 317px;
-    height: 47px;
-    margin-top: 29px;
-    margin-left: 62px;
-}
 @font-face {
-    font-family: Avenir;
+    font-family: "Avenir";
     src: url("../../font/avenir_ff/AvenirLTStd-Roman.otf");
-}
-.profilebg {
-    background-color: rgba(23, 10, 2, 0.8);
-}
-.profileFont {
-    font-family: Avenir;
-    color: #f1e9dc;
-
-    font-size: 25px;
-    font-style: normal;
-    font-weight: 900;
-    line-height: normal;
-}
-
-.userName,
-.password,
-.email {
-    display: flex;
-    justify-content: space-between;
-    color: #f1e9dc;
-    font-variant-numeric: lining-nums tabular-nums;
-    font-feature-settings: "clig" off, "liga" off;
-
-    font-family: Avenir;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 25px;
-    width: 700px;
-}
-
-.edit {
-    display: flex;
-    width: 256px;
-    height: 36px;
-
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
-}
-.editBtn {
-    border-radius: 10px;
-
-    background: var(--black-80, rgba(23, 10, 2, 0.8));
-    width: 238px;
-
-    padding: 7px 9px;
-    color: var(--Text_Beige_Default, #f1e9dc);
-    font-variant-numeric: lining-nums tabular-nums;
-    font-feature-settings: "clig" off, "liga" off;
-
-    /* Bodycopy */
-    font-family: Avenir;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 25px; /* 125% */
-}
-
-.sizeOfAtb {
-    width: 50px;
-    height: 25px;
-    margin-right: 121px;
-}
-.testbg {
-    background-image: url("https://png.pngtree.com/thumb_back/fw800/background/20201009/pngtree-soft-pastel-yellow-with-white-glitters-design-image_403267.jpg");
 }
 
 .balance {
-    width: 90%;
+    width: 100%;
     height: 188px;
     border-radius: 10px;
     background: var(--black-80, rgba(23, 10, 2, 0.8));
     margin-top: 24px;
 }
-
-.headerwallet {
-    width: 317px;
-    height: 47px;
-
-    color: var(--Text_Beige_Default, #f1e9dc);
-    font-family: Avenir;
-    font-size: 25px;
-    font-style: normal;
-    font-weight: 900;
-    line-height: normal;
-    margin-left: 62px;
-    padding-top: 29px;
-    margin-bottom: 50px;
-}
-
 .walletLogo {
     width: 48px;
     height: 48px;
     flex-shrink: 0;
     background: url("../../assets/img/logomoney.png");
     margin-right: 30px;
-}
-
-.containWallet {
-    width: 480px;
-    height: 48px;
-    margin-left: 62px;
-    margin-top: 20px;
-}
-
-.myHeros {
-    width: 90%;
-
-    height: 368px;
-    flex-shrink: 0;
-    border-radius: 10px;
-    background: var(--black-80, rgba(23, 10, 2, 0.8));
-    margin-top: 24px;
-}
-
-.headerHeros {
-    padding-top: 29px;
-    margin-left: 62px;
-    color: var(--Text_Beige_Default, #f1e9dc);
-    font-family: Avenir;
-    font-size: 25px;
-    font-style: normal;
-    font-weight: 900;
-    line-height: normal;
-}
-
-.heroLogo {
-    margin-left: 62px;
-    width: 48px;
-    height: 68px;
-    flex-shrink: 0;
-    background-image: url("../../assets/img/heroProfile.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    margin-top: 30px;
-    box-shadow: 0px 0px 31px 0px rgba(255, 162, 95, 0.7);
 }
 
 .herosCount {
@@ -188,45 +36,447 @@
     margin-top: 28px;
 }
 
-.headerAtb {
-    display: inline-block;
-    margin-right: 54px;
-    width: 100px;
-}
-.countAtb > span:nth-child(n + 2) {
-    display: inline-block;
-    margin-left: 30px;
-    width: 130px;
-    margin-bottom: 10px;
+@media screen and (max-width: 1024px) {
+    .changeUserName {
+        z-index: 999;
+    }
+    .profileSize,
+    .myHeros {
+        color: white;
+    }
+    .password {
+        height: 50px;
+    }
+    .profileSize {
+        border-radius: 5px;
+        border: 0.5px solid var(--Stroke_Black-BG, #574239);
+        background: var(--black-80, rgba(23, 10, 2, 0.8));
+    }
+    .profileSize,
+    .balance,
+    .myHeros {
+        margin-left: 24px;
+        width: 90%;
+    }
+
+    .profileHeader {
+        color: #f1e9dc;
+        text-align: center;
+        font-family: Avenir;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: normal;
+        margin: 16px 0;
+    }
+    // .layout,
+    // .edit,
+    // .passwordSetup,
+    // .editPass {
+    //     display: inline-block;
+    //     vertical-align: top;
+    // }
+    // .editPass {
+    //     margin-left: 75px;
+    // }
+    .editBtn {
+        gap: 10px;
+        flex-shrink: 0;
+        border-radius: 5px;
+        background: var(--black-80, rgba(23, 10, 2, 0.8));
+        position: absolute;
+        right: 1.5rem;
+        margin-top: 15px;
+    }
+    .user,
+    .email {
+        color: #f1e9dc;
+        font-family: Avenir;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+    .editText {
+        color: var(--Text_Beige_Default, #f1e9dc);
+        font-variant-numeric: lining-nums tabular-nums;
+        font-feature-settings: "clig" off, "liga" off;
+        font-family: Avenir;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 25px;
+    }
+
+    .headerwallet {
+        text-align: center;
+    }
+    .balance {
+        display: inline-flex;
+        padding: 16px 0px;
+        flex-direction: column;
+        align-items: center;
+        gap: 5x;
+        border-radius: 5px;
+        border: 0.5px solid var(--Stroke_Black-BG, #574239);
+        background: var(--black-80, rgba(23, 10, 2, 0.8));
+        height: 80px;
+    }
+    .myHeros {
+        display: inline-flex;
+        padding: 16px 0px;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 5px;
+        border: 0.5px solid var(--Stroke_Black-BG, #574239);
+        background: var(--black-80, rgba(23, 10, 2, 0.8));
+        margin-bottom: 30px;
+        margin-top: 25px;
+    }
+    .walletBalanceMB {
+        display: flex;
+    }
+    .walletLogo {
+        width: 24px;
+        height: 24px;
+        background-size: cover;
+        margin-right: 5px;
+    }
+    .headerwallet,
+    .walletBalance {
+        color: var(--Text_Beige_Default, #f1e9dc);
+        text-align: center;
+        font-family: Avenir;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: normal;
+    }
+    .headerwallet {
+        margin-bottom: 10px;
+    }
+    .headerWalletBalance {
+        color: var(--Subtle-Text, #b7a284);
+        font-family: Avenir;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: normal;
+        margin-top: 3px;
+        margin-right: 10px;
+    }
+    .headerAtb {
+        display: inline-block;
+        width: 100%;
+        color: var(--Text_Beige_Default, #f1e9dc);
+        font-variant-numeric: lining-nums tabular-nums;
+        font-feature-settings: "clig" off, "liga" off;
+        font-family: Avenir;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 25px; /* 208.333% */
+    }
+    .countAtb > span:nth-child(n + 2) {
+        margin-right: 10px;
+    }
+    .countAtb > span:nth-child(n + 1) {
+        width: 100%;
+        flex-shrink: 0;
+        color: var(--Text_Beige_Default, #f1e9dc);
+        font-variant-numeric: lining-nums tabular-nums;
+        font-feature-settings: "clig" off, "liga" off;
+        font-family: Avenir;
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 25px; /* 250% */
+    }
+    .heroLogo {
+        width: 55px;
+        height: 78px;
+        flex-shrink: 0;
+        background: url("../../assets/img/hero2.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        box-shadow: 0px 0px 31px 0px rgba(255, 162, 95, 0.7);
+        margin-left: 10px;
+        margin-top: 120px;
+    }
+    .heroOfme {
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    .herosCount {
+        margin-left: 10px;
+        width: 100%;
+    }
+    .editBtn {
+        width: 120px;
+        height: 24px;
+        padding: 7px 9px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+        border-radius: 5px;
+        border: 1px solid var(--Text_Beige_Default, #f1e9dc);
+        background: var(--black-80, rgba(23, 10, 2, 0.8));
+    }
+    .sizeOfAtb {
+        color: #f1e9dc;
+        font-family: Avenir;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: normal;
+    }
+    .profileInfo {
+        margin-left: 10px;
+    }
+    .email {
+        margin: 20px 0;
+    }
 }
 
-.walletBalance {
-    color: var(--Text_Beige_Default, #f1e9dc);
-    font-family: Avenir;
-    font-size: 25px;
-    font-style: normal;
-    font-weight: 900;
-    line-height: normal;
+@media screen and (min-width: 1024px) {
+    .container {
+        width: 395px;
+        height: 820px;
+
+        margin: 121px 20px 0 140px;
+    }
+    .edit {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .profileSize {
+        width: 90%;
+        height: 600px;
+        border-radius: 10px;
+        margin-top: 121px;
+    }
+    .profileSizePassOpen {
+        width: 90%;
+        height: 800px;
+        border-radius: 10px;
+        margin-top: 121px;
+    }
+
+    .profileInfo {
+        height: 244px;
+        margin: 14px 277px 42px 62px;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .profileHeader {
+        width: 317px;
+        height: 47px;
+        margin-top: 29px;
+        margin-left: 62px;
+        padding: 40px 0;
+    }
+    @font-face {
+        font-family: Avenir;
+        src: url("../../font/avenir_ff/AvenirLTStd-Roman.otf");
+    }
+    .profilebg {
+        background-color: rgba(23, 10, 2, 0.8);
+    }
+    .profileFont {
+        font-family: Avenir;
+        color: #f1e9dc;
+
+        font-size: 25px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: normal;
+    }
+
+    .userName,
+    .password,
+    .email {
+        justify-content: space-between;
+        color: #f1e9dc;
+        font-variant-numeric: lining-nums tabular-nums;
+        font-feature-settings: "clig" off, "liga" off;
+
+        font-family: Avenir;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 25px;
+        width: 700px;
+    }
+    .layout {
+        height: 100px;
+    }
+    // .editPass {
+    //     display: flex;
+    //     width: 256px;
+    //     height: 250px;
+    //     flex-direction: column;
+    //     justify-content: center;
+    //     align-items: end;
+    //     gap: 10px;
+    //     flex-shrink: 0;
+    // }
+    .editBtn {
+        border-radius: 10px;
+        width: 256px;
+        height: 36px;
+        background: var(--black-80, rgba(23, 10, 2, 0.8));
+        width: 238px;
+
+        padding: 7px 9px;
+        color: var(--Text_Beige_Default, #f1e9dc);
+        font-variant-numeric: lining-nums tabular-nums;
+        font-feature-settings: "clig" off, "liga" off;
+
+        /* Bodycopy */
+        font-family: Avenir;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 25px; /* 125% */
+    }
+
+    .sizeOfAtb {
+        width: 50px;
+        height: 25px;
+        margin-right: 121px;
+    }
+    .testbg {
+        background-image: url("https://png.pngtree.com/thumb_back/fw800/background/20201009/pngtree-soft-pastel-yellow-with-white-glitters-design-image_403267.jpg");
+    }
+
+    .balance {
+        width: 90%;
+        height: 188px;
+        border-radius: 10px;
+        background: var(--black-80, rgba(23, 10, 2, 0.8));
+        margin-top: 24px;
+    }
+
+    .headerwallet {
+        width: 317px;
+        height: 47px;
+        color: var(--Text_Beige_Default, #f1e9dc);
+        font-family: Avenir;
+        font-size: 25px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: normal;
+        margin-left: 62px;
+        padding-top: 29px;
+        margin-bottom: 50px;
+    }
+
+    .containWallet {
+        width: 480px;
+        height: 48px;
+        margin-left: 62px;
+        margin-top: 20px;
+    }
+
+    .myHeros {
+        width: 90%;
+
+        height: 368px;
+        flex-shrink: 0;
+        border-radius: 10px;
+        background: var(--black-80, rgba(23, 10, 2, 0.8));
+        margin-top: 24px;
+    }
+
+    .headerHeros {
+        padding-top: 29px;
+        margin-left: 62px;
+        color: var(--Text_Beige_Default, #f1e9dc);
+        font-family: Avenir;
+        font-size: 25px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: normal;
+    }
+
+    .heroLogo {
+        margin-left: 62px;
+        width: 48px;
+        height: 68px;
+        flex-shrink: 0;
+        background-image: url("../../assets/img/heroProfile.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        margin-top: 30px;
+        box-shadow: 0px 0px 31px 0px rgba(255, 162, 95, 0.7);
+    }
+
+    .herosCount {
+        color: var(--Text_Beige_Default, #f1e9dc);
+        font-variant-numeric: lining-nums tabular-nums;
+        font-feature-settings: "clig" off, "liga" off;
+
+        /* Bodycopy */
+        font-family: Avenir;
+        font-size: 20px;
+        font-style: normal;
+
+        font-weight: 300;
+        line-height: 20px; /* 125% */
+        margin-left: 28px;
+        margin-top: 28px;
+    }
+
+    .headerAtb {
+        display: inline-block;
+        margin-right: 54px;
+        width: 100px;
+    }
+    .countAtb > span:nth-child(n + 2) {
+        display: inline-block;
+        margin-left: 30px;
+        width: 130px;
+        margin-bottom: 10px;
+    }
+
+    .walletBalance {
+        color: var(--Text_Beige_Default, #f1e9dc);
+        font-family: Avenir;
+        font-size: 25px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: normal;
+    }
+    .headerWalletBalance {
+        color: var(--Subtle-Text, #b7a284);
+        font-family: Avenir;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: normal;
+    }
+    .editBtn:hover {
+        background-color: #da8b14;
+    }
+    .editBtn:active {
+        background-color: #5e441d;
+    }
 }
-.headerWalletBalance {
-    color: var(--Subtle-Text, #b7a284);
-    font-family: Avenir;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 900;
-    line-height: normal;
-}
-.containerProfile{
-    background-image: url('../src/assets/img/bginventory.png');
+.containerProfile {
+    background-image: url("../src/assets/img/bginventory.png");
     background-size: 100% 100%;
-    background-repeat:no-repeat ;
- }
-  .avatarImage{
+    background-repeat: no-repeat;
+}
+.avatarImage {
     display: none;
-  }
+}
 
- @media screen and (max-width: 768px) {
-    .avatarImage{
+@media screen and (max-width: 1024px) {
+    .avatarImage {
         padding-top: 100px;
         display: block;
         justify-content: center;
@@ -242,10 +492,10 @@
         margin-right: auto;
         margin-left: auto;
     }
-    .container{
+    .container {
         display: none;
     }
-    .containerProfile{
+    .containerProfile {
         margin-top: 0;
         display: block;
         background-image: url("../../assets/img/Fixed.png");
@@ -253,23 +503,22 @@
         background-size: 100% 100%;
         justify-items: center;
     }
-    .textFont{
+    .textFont {
         margin-top: 0;
         font-family: Avenir;
         color: white;
         font-size: 25px;
     }
-    .textFontId{
+    .textFontId {
         margin-top: 0;
         font-family: Avenir;
         color: white;
         font-size: 15px;
     }
-    .layout{
+    .layout {
         display: block;
     }
-    .profileSize{
+    .profileSize {
         margin-top: 0;
     }
-    
- }
+}

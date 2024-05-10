@@ -31,7 +31,6 @@
 .sell_bt {
     width: 400px;
     height: 58px;
-
 }
 
 .buy_bt {
@@ -48,17 +47,12 @@
 
 .action {
     width: 33.33%;
-    font-size: 1.5rem
-            /* 24px */
-        ;
-    line-height: 2rem
-            /* 32px */
-        ;
+    font-size: 1.5rem /* 24px */;
+    line-height: 2rem /* 32px */;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
-    
 }
 
-.buy_bt span{
+.buy_bt span {
     width: 100%;
 }
 
@@ -73,11 +67,9 @@
     display: flex;
 }
 
-.delist_bt{
+.delist_bt {
     width: 67%;
 }
-
-
 
 @media screen and (max-width: 1024px) {
     .container {
@@ -92,7 +84,7 @@
     }
 
     .delist_bt {
-            width: 100%
+        width: 100%;
     }
 
     .hero_info {
@@ -135,18 +127,15 @@
         background-image: url("../../../assets/img/Yellow_L_mobile.png");
         width: 100%;
         height: 40%;
-    
+
         text-align: center;
         align-items: center;
-        
     }
 
-
-    .sell_bt span{
+    .sell_bt span {
         display: flex;
         justify-content: center;
         align-items: center;
-       
     }
     .stats_title {
         display: flex;
@@ -162,14 +151,13 @@
         justify-content: center;
     }
 
-    .stats_content_responsive{
+    .stats_content_responsive {
         display: block;
         margin-bottom: 2rem;
     }
 
     .stats_properties {
         display: block;
-        
     }
 
     .stats_properties div {
@@ -180,17 +168,14 @@
 
     .stats_properties img {
         width: 600%;
-        
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
     .buy_bt {
         width: 100%;
-            height: 35%;
-        }
-
-        
+        height: 35%;
+    }
 }
 
 @media screen and (max-width: 640px) {
@@ -198,7 +183,7 @@
         width: 100%;
         height: 20%;
     }
-         .action {
-             font-size: 90%;
-         }
+    .action {
+        font-size: 90%;
+    }
 }

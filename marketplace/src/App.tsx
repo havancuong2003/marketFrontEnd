@@ -6,6 +6,8 @@ import {
 } from "react-router-dom";
 import React, { Suspense } from "react";
 import { Layout, LoginForm, SignUpForm } from "./components";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 import { isAuthenticated } from "./utils";
 
 const LazyMarket = React.lazy(() =>
@@ -33,7 +35,7 @@ const LazyBuyHero = React.lazy(() =>
     }))
 );
 const LazyProfile = React.lazy(() =>
-    import("./pages").then(({ Profile }) => ({ default: Profile }))
+    import("./pages/profile").then(({ Profile }) => ({ default: Profile }))
 );
 const LazyHeroDetail = React.lazy(() =>
     import("./pages").then(({ HeroDetail }) => ({
@@ -52,7 +54,15 @@ const PrivateRoute = ({ children }) => {
 const App: React.FC = () => {
     return (
         <Router>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense
+                fallback={
+                    <div className="w-full h-screen flex justify-center items-center">
+                        <Box sx={{ display: "flex" }}>
+                            <CircularProgress />
+                        </Box>
+                    </div>
+                }
+            >
                 <Routes>
                     {/* PUBLIC ROUTE */}
                     <Route index element={

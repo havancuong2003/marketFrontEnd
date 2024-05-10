@@ -1,27 +1,25 @@
-.rightFooterLogo{
+.rightFooterLogo {
     display: none;
 }
-.rightFooter{
+.rightFooter {
     display: flex;
 }
-.footer{
-    padding-left: 5rem/* 80px */;
-    padding-right: 5rem/* 80px */;
+.footer {
+    padding-left: 5rem /* 80px */;
+    padding-right: 5rem /* 80px */;
 }
-@media screen and (max-width: 768px) {
-    .rightFooter{
+@media screen and (max-width: 1024px) {
+    .rightFooter {
         display: none;
     }
-    .rightFooterLogo{
+    .rightFooterLogo {
         display: flex;
     }
-    .leftFooter{
+    .leftFooter {
         font-size: 0.75rem;
-
     }
-    .footer{
+    .footer {
         padding-left: 2rem;
         padding-right: 2rem;
     }
-    
 }

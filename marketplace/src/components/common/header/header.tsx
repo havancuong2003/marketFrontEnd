@@ -81,6 +81,7 @@ export const Header = (props) => {
                         className={clsx(
                             classes.clickbutton,
                             classes.buttonProf,
+                            classes.buttonProf2,
                             "text-center"
                         )}
                         onClick={() =>
@@ -131,13 +132,14 @@ export const Header = (props) => {
                             </button>
                             <button
                                 className="cursor-pointer  p-1 rounded-md active:bg-red-900"
-                                onClick={() =>
-                                    handleItemClick(
-                                        isAuthenticated()
-                                            ? "/profile"
-                                            : "/login"
-                                    )
-                                }
+                                // onClick={() =>
+                                //     handleItemClick(
+                                //         isAuthenticated()
+                                //             ? "/profile"
+                                //             : "/login"
+                                //     )
+                                // }
+                                onClick={() => navigate("/profile")}
                             >
                                 {isAuthenticated() ? "Profile" : "Login"}
                             </button>
