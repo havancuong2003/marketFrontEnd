@@ -19,7 +19,7 @@ export const PaginationActivity: React.FC<Props> = ({
     const navigate = useNavigate()
     console.log("current page ",currentPage)
     return (
-        <div className="flex justify-between text-[#968469] pl-3 pr-3">
+        <div className="flex justify-between text-[#968469]">
           <div>
             <span>Total {totalRecords} results</span>
           </div>

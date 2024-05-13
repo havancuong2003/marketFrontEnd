@@ -40,12 +40,12 @@ export const FilterInventory = ({name,actionValues, eventSearch, handleChange}) 
                 }}
                 size="small"
             >
-                <InputLabel id="demo-select-small-label">Search {name}</InputLabel>
+                <InputLabel id="demo-select-small-label">{name}</InputLabel>
                 <Select
                     labelId="demo-select-small-label"
                     id="demo-select-small"
                     value={eventSearch}
-                    label={eventSearch}
+                    label={name}
                     onChange={handleChange}
                 >
                     <MenuItem value="ALL">
