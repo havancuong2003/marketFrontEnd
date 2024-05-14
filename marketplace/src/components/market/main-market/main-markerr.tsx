@@ -1,10 +1,12 @@
 import { DetailHero } from "../../common/detail-hero";
 import button from "../../../assets/img/button.png";
 import clsx from "clsx";
-import { useNavigate } from "react-router-dom";
+import { UUID } from "crypto";
+import { Hero } from "../../../models";
 
 type MainMarkerrProps = {
-    heros: any;
+    account_id:UUID
+    heros: Hero[];
     dataSize: number;
     totalPages: number;
     currentPage: number;
@@ -15,6 +17,7 @@ type MainMarkerrProps = {
     };
 };
 export const MainMarkerr: React.FC<MainMarkerrProps> = ({
+    account_id,
     heros,
     dataSize,
     totalPages,
@@ -35,7 +38,6 @@ export const MainMarkerr: React.FC<MainMarkerrProps> = ({
         }
     };
 
-    const navigate = useNavigate();
 
     return (
         <div className="flex w-full h-full">
@@ -69,14 +71,15 @@ export const MainMarkerr: React.FC<MainMarkerrProps> = ({
                     <div className="flex flex-wrap justify-center gap-y-10 lg:justify-start lg:gap-x-14 lg:ml-32">
                         {heros.map((hero) => (
                             <div
-                                onClick={() =>
-                                    navigate("/hero/" + hero.id + "/detail")
-                                }
                                 className={clsx(
-                                    "cursor-pointer  flex justify-center items-center lg:block"
+                                    "flex justify-center items-center lg:block"
                                 )}
                             >
                                 <DetailHero
+                                    status={hero.status}
+                                    user_id={account_id}
+                                    owner = {hero.account_id}
+                                    id={hero.id}
                                     key={hero.id}
                                     price={hero.price}
                                     hp={hero.hp}

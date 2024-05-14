@@ -216,15 +216,10 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
                                             <div
                                             className={clsx(classes?.itemInventory)}
                                                 key={hero.id}
-                                                onClick={() =>
-                                                    navigate(
-                                                        "/hero/" +
-                                                            hero.id +
-                                                            "/detail"
-                                                    )
-                                                }
                                             >
                                                 <DetailHero
+                                                    status={hero.status}
+                                                    id={hero.id}
                                                     key={hero.id}
                                                     price={hero.price}
                                                     hp={hero.hp}
