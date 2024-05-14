@@ -25,6 +25,8 @@
     margin: 3rem 7rem 0 0;
 }
 
+
+
 @media screen and (max-width: 1024px) {
 
 
@@ -49,6 +51,10 @@
     }
 
     .history {
+        display: none;
+    }
+
+    .history_table{
         display: none;
     }
 }

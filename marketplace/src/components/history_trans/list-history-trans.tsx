@@ -76,7 +76,7 @@ export const HistoryTrans: React.FC<HistoryTransProps> = ({
 
     return (
         <div className={clsx(classes?.container, "flex justify-center")}>
-            <div className="w-7/12  bg-[#170A02] mt-2 tex-sm ">
+            <div className="w-7/12  bg-[#170A02] mt-10 mb-10 tex-sm rounded-xl">
                 <table className=" w-full table-auto border-collapse ">
                     <thead className="text-dark-yellow  border-light-brown border-opacity-20 mt-5 mb-5 flex mx-20 ">
                         <tr className="flex w-full justify-between   ">

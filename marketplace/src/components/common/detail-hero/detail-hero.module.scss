@@ -1,5 +1,5 @@
 .size {
-    width: 240px;
+    width: 245px;
     height: 380px;
 }
 
@@ -13,7 +13,7 @@
     left: 9px;
 }
 .backgroundHeroCard {
-    background-image: url("../../../assets/img/hero-card.png");
+    background-image: url("../../../assets/img/hero_card.png");
 }
 .avat {
     background-image: url("../../../assets/img/avatar.png");
@@ -23,19 +23,26 @@
 }
 .info {
     display: flex;
+    width: 220px;
 }
 .sizeInfo {
     height: 50px;
     width: 220px;
 }
 .price {
-    margin-bottom: 8px;
+   
 }
 @media screen and (max-width: 1024px) {
+
+    .priceInfo{
+        width: 150px;
+        margin-bottom: 15px;
+    }
+
     .price {
-        margin-bottom: 20px;
+        //margin-bottom: 20px;
         font-size: 15px;
-        margin-left: 40px;
+        //margin-left: 40px;
     }
     .sizeAvatar {
         width: 170px;

@@ -66,7 +66,7 @@ export const MainMarkerr: React.FC<MainMarkerrProps> = ({
                             className={clsx(classes?.backgroundmarket, "")}
                         ></div>
                     </div>
-                    <div className="flex flex-wrap justify-center gap-y-10 lg:justify-start lg:gap-x-14 lg:ml-32">
+                    <div className="flex flex-wrap justify-center gap-y-10 lg:justify-start lg:gap-x-14 lg:ml-28">
                         {heros.map((hero) => (
                             <div
                                 onClick={() =>

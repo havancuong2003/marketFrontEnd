@@ -50,7 +50,7 @@ export default {
                 bglogin: "url('../src/assets/img/background.png')",
                 login: "url('../src/assets/img/bg-login.png')",
                 market: "url('../src/assets/img/bg-market.png')",
-                herocard: "url('../src/assets/img/hero-card.png')",
+                herocard: "url('../src/assets/img/hero_card.png')",
                 avarta: "url('../src/assets/img/avatar.png')",
                 pre: "url('../src/assets/img/pre.png')",
                 next: "url('../src/assets/img/next.png')",

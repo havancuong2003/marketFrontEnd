@@ -45,7 +45,10 @@ export const BuyHero: React.FC<BuyHeroProps> = ({
 
     return (
         <div
-            className={clsx(classes?.container, "bg-cover bg-center absolute ")}
+            className={clsx(
+                classes?.container,
+                "bg-cover bg-center absolute mt-16 "
+            )}
         >
             <div
                 className={clsx(

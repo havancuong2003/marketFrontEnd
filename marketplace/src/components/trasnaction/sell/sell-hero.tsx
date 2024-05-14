@@ -70,7 +70,7 @@ export const SellHero: React.FC<SellHeroProps> = ({
         <div
             className={clsx(
                 classes?.container,
-                "bg-cover bg-center absolute top-14 text-main"
+                "bg-cover bg-center absolute top-14 text-main  mt-16"
             )}
         >
             <div className={clsx(classes?.x_button, "absolute top-0 right-0")}>
