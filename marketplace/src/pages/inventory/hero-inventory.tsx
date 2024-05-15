@@ -24,7 +24,7 @@ type InventoryHeroProps = {
     };
 };
 
-const items_per_page = 2;
+const items_per_page = 4;
 
 export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
     const [searchParams] = useSearchParams();
@@ -144,7 +144,7 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
                                 )}
                             >
                                 <div>
-                                    <img className="w-[200px]" src={herotext} alt="" />
+                                    <img className="w-[200px] pt-1.5" src={herotext} alt="" />
                                 </div>
                                 <div className="flex text-end">
                                     <div>
@@ -211,10 +211,11 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
                                     ) : (
                                     <div className="w-full">
                                     
-                                    <div className={clsx(classes?.listInventory,"pl-60 justify-between pr-60")}>
+                                    <div>
+                                        <div className={clsx(classes?.listInventory,"flex flex-wrap justify-center gap-6 lg:gap-20 lg:justify-start")}>
                                         {heroInventory.map((hero : Hero) => (
                                             <div
-                                            className={clsx(classes?.itemInventory)}
+                                                className={clsx(classes?.itemInventory)}
                                                 key={hero.id}
                                             >
                                                 <DetailHero
@@ -230,17 +231,19 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
                                                     classess={hero.class}
                                                 />
                                             </div>
+                                            
                                         ))}
+                                        </div>
                                         
-                                        
-                                    </div>
-                                    <div className=" justify-items-end pr-10 pl-10 pt-24">
+                                         <div className={clsx(classes?.padding,"pt-24")}>
                                             <PaginationActivity
                                                 currentPage={currentPage}
                                                 totalPage={totalPage}
                                                 totalRecords={totalRecords}
                                             />
+                                        </div>
                                     </div>
+                                    
                                     
                                     </div>
                                     )}

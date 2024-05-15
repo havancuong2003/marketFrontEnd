@@ -9,7 +9,7 @@
     @apply cursor-pointer hover:bg-violet-600 rounded-lg p-2 active:bg-violet-700  mx-3;
 }
 .logoResponsive {
-    margin-left: 130px;
+    margin-left: 5rem;
 }
 @media screen and (max-width: 1024px) {
     .navheader,
@@ -21,7 +21,7 @@
         height: 16px;
         position: absolute;
         top: 25px;
-        right: 40px;
+        right: 2rem;
     }
     .bgopa {
         background: rgba(23, 10, 2, 0.9);
@@ -29,7 +29,7 @@
         backdrop-filter: blur(2px);
     }
     .logoResponsive {
-        margin-left: 30px;
+        margin-left: 2rem;
     }
     .container {
         width: 100%;
@@ -41,8 +41,8 @@
     width: 200px;
     height: 40px;
     border: 1px solid white;
-    margin-right: 50px;
+    margin-right: 30px;
 }
 .buttonProf2 {
-    margin-right: 100px;
+    margin-right: 5rem;
 }

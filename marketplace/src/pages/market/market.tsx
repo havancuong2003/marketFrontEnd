@@ -12,9 +12,10 @@ type MarketProps = {
     classes?: {
         [key: string]: string;
     };
+    send: (val: string) => void;
 };
 
-export const Market: React.FC<MarketProps> = ({ classes }) => {
+export const Market: React.FC<MarketProps> = ({ classes,send }) => {
     const {
         heros,
         setHeros,
@@ -67,7 +68,7 @@ export const Market: React.FC<MarketProps> = ({ classes }) => {
         ).then((data: any) => {
             setHeros(data.data);
         });
-    }, [currentPage, dataSize, selectedRank, selectedClass, selectedRace]);
+    }, [currentPage, dataSize, selectedRank, selectedClass, selectedRace,send]);   
     const resetFilters = () => {
         setLoading(true);
         setTimeout(() => {
@@ -130,6 +131,7 @@ export const Market: React.FC<MarketProps> = ({ classes }) => {
                             </div>
                         ) : (
                             <MainMarkerr
+                                send={send}
                                 account_id={account.account.id}
                                 heros={heros}
                                 dataSize={dataSize}

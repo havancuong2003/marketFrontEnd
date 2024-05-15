@@ -15,12 +15,14 @@ type BuyHeroProps = {
     hero: Hero;
     onClickX: () => void;
     onClickPay: () => void;
+    send: (val: string) => void;
 };
 export const BuyHero: React.FC<BuyHeroProps> = ({
     classes,
     hero,
     onClickX,
     onClickPay,
+    send,
 }) => {
     const [error, setError] = useState("");
     const handleCheckOut = async (id: number) => {
@@ -32,7 +34,7 @@ export const BuyHero: React.FC<BuyHeroProps> = ({
             confirmButtonText: "Yes",
         }).then((result) => {
             if (result.isConfirmed) {
-                buyHero(id).then((response) => {
+                buyHero(id, { send }).then((response) => {
                     const { error } = response;
                     setError(error);
                     if (!error) {

@@ -1,4 +1,4 @@
-import { Button, Stack } from "@mui/material";
+import { Button } from "@mui/material";
 import clsx from "clsx";
 import { unListHero } from "../activity-hero";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +18,7 @@ type DetailHeroProps = {
     race: string;
     status: number;
     classess: string;
+    send: (val: string) => void;
     classes?: {
         [key: string]: string;
     };
@@ -34,6 +35,7 @@ export const DetailHero: React.FC<DetailHeroProps> = ({
     race,
     status,
     classess,
+    send,
     classes,
 }) => {
     const navigate = useNavigate();
@@ -54,7 +56,7 @@ export const DetailHero: React.FC<DetailHeroProps> = ({
                     timer: 1500,
                     showConfirmButton: false,
                 });
-                unListHero(id);
+                unListHero(id, { send });
                 navigate("/inventory");    
             }
 

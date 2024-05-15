@@ -21,7 +21,7 @@ export const PaginationActivity: React.FC<Props> = ({
     return (
         <div className="flex justify-between text-[#968469]">
           <div>
-            <span>Total {totalRecords} results</span>
+            <span>Total : {totalRecords} </span>
           </div>
           <Stack spacing={2} className="flex items-end">
             <Pagination
