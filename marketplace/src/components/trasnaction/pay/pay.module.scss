@@ -1,0 +1,85 @@
+.container {
+    color: white;
+    background-image: url('../../../assets/img/Group37032.png');
+    z-index: 999;
+    width: 660px;
+    height: 450px;
+    padding: 40px;
+    font-family: Skranji;
+}
+
+.arrow {
+    width: 126px;
+    height: 121px;
+}
+
+.view_item {
+    background-image: url('../../../assets/img/Yellow_L.png');
+    width: 400px;
+    height: 60px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.text {
+    font-size: 1.875rem
+        /* 30px */
+    ;
+    line-height: 2.25rem
+        /* 36px */
+    ;
+    padding-top: 1.25rem
+        /* 20px */
+    ;
+}
+
+.message {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    padding-top: 1rem;
+}
+
+.button {
+    padding-top: 2.5rem
+        /* 40px */
+    ;
+}
+
+
+@media screen and (max-width: 1024px) {
+    .container {
+        background-image: url('../../../assets/img/Popup_Dialogue_S.png');
+        width: 300px;
+        height: 300px;
+        padding: 0px;
+    }
+
+    .arrow {
+        width: 90px;
+        height: 86px;
+    }
+
+    .text {
+        font-size: 1rem;
+        line-height: 1.25rem;
+        padding-top: 0;
+    }
+
+    .message {
+        font-size: 0.75em;
+        line-height: 0.75rem;
+        padding-top: 1rem;
+    }
+
+    .view_item {
+        background-image: url('../../../assets/img/Yellow_M_moblie.png');
+        width: 210px;
+        height: 40px;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    .button {
+        padding-top: 1.5rem
+            /* 40px */
+        ;
+    }
+}

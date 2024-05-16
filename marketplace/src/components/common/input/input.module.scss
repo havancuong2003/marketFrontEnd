@@ -1,0 +1,10 @@
+.inputSize {
+    width: 100%;
+}
+@media screen and (max-width: 1024px) {
+    .inputSize {
+        width: 90%;
+        height: 30px;
+        font-size: 13px;
+    }
+}

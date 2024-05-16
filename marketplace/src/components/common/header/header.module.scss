@@ -1,0 +1,48 @@
+.container {
+    @apply flex justify-center items-center;
+    position: fixed;
+    width: 100vw;
+    z-index: 999;
+    top: 0;
+}
+.clickbutton {
+    @apply cursor-pointer hover:bg-violet-600 rounded-lg p-2 active:bg-violet-700  mx-3;
+}
+.logoResponsive {
+    margin-left: 5rem;
+}
+@media screen and (max-width: 1024px) {
+    .navheader,
+    .clickbutton {
+        display: none;
+    }
+    .sizenav {
+        width: 20px;
+        height: 16px;
+        position: absolute;
+        top: 25px;
+        right: 2rem;
+    }
+    .bgopa {
+        background: rgba(23, 10, 2, 0.9);
+
+        backdrop-filter: blur(2px);
+    }
+    .logoResponsive {
+        margin-left: 2rem;
+    }
+    .container {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+.buttonProf {
+    width: 200px;
+    height: 40px;
+    border: 1px solid white;
+    margin-right: 30px;
+}
+.buttonProf2 {
+    margin-right: 5rem;
+}

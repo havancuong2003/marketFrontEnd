@@ -1,2 +1,2 @@
-export * from "./img"
-export * from "./react.svg"
+export * from "./img";
+export * from "./react.svg";
