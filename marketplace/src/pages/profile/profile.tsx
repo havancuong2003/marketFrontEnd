@@ -1,9 +1,9 @@
 import clsx from "clsx";
-import { ChangeUserName, Header } from "../../components";
+import { ChangeUserName, CopyText, Header } from "../../components";
 
 import { useEffect, useState } from "react";
 import { useInventory } from "../../hooks";
-import { getInfoUser } from "../../services";
+import { ShortId, getInfoUser } from "../../services";
 import axios, { AxiosError } from "axios";
 import { VITE_API_URL } from "../../env";
 import avatar from "../../assets/img/avatar-account.png";
@@ -254,20 +254,18 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                 </div>
                 <div className={clsx(classes?.container, "")}>
                     <div className=" w-full bg-bgprofile flex justify-center text-center">
-                        <div className="pt-10">
-                            <img src={avatar} alt="" className="pb-3 p-5" />
-                            <p className="text-4xl font-semibold text-white pb-3">
-                                {account["username"]}
-                            </p>
-                            <p className="text-sm font-semibold text-white pb-14">
-                                #{account["id"]}
-                            </p>
-                            <div className="hidden lg:block">
-                                <ButtonInventory
-                                    selectedItem={"Profile settings"}
-                                />
+                            <div className="pt-10">
+                                <img src={avatar} alt="" className="pb-3 p-5" />
+                                <p className={clsx(classes?.text,"text-4xl font-semibold text-white")}>
+                                    {account["username"]}
+                                </p>
+                                <p className={clsx(classes?.text,"text-sm font-semibold text-white pl-10")}>
+                                    # {ShortId(account["id"])}
+                                     <CopyText text={account["id"]} />
+                                </p>
+                               
+                                <ButtonInventory selectedItem={"Profile settings"} />
                             </div>
-                        </div>
                     </div>
                 </div>
 

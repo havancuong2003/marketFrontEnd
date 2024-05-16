@@ -1,4 +1,4 @@
-import { FilterInventory, Header, PaginationActivity } from "../../components";
+import { CopyText, FilterInventory, Header, PaginationActivity } from "../../components";
 import axios from "axios";
 import { ButtonInventory } from "../../components/common/inventory/button-inventory";
 import { useAccountInformation } from "../../hooks";
@@ -14,6 +14,7 @@ import zero from "../../assets/img/zeroInventory.png";
 import { VITE_API_URL } from "../../env";
 import { Account, Hero } from "../../models";
 import { SelectChangeEvent } from "@mui/material";
+import { ShortId } from "../../services";
 
 
 
@@ -23,7 +24,7 @@ type InventoryHeroProps = {
     };
 };
 
-const items_per_page = 2;
+const items_per_page = 4;
 
 export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
     const [searchParams] = useSearchParams();
@@ -112,16 +113,18 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
             <div className={clsx(classes?.bgInventory, "")}>
                 <div className="flex">
                     <div className={clsx(classes?.mainAvatar, "")}>
-                        <div className="pt-10">
-                            <img src={avatar} alt="" className="pb-3 p-5" />
-                            <p className="text-4xl font-semibold text-white pb-3">
-                                {account.username}
-                            </p>
-                            <p className="text-sm font-semibold text-white pb-14">
-                                #{account.id}
-                            </p>
-                            <ButtonInventory selectedItem={"Inventory"} />
-                        </div>
+                    <div className="pt-10">
+                                <img src={avatar} alt="" className="pb-3 p-5" />
+                                <p className={clsx(classes?.text,"text-4xl font-semibold text-white")}>
+                                    {account["username"]}
+                                </p>
+                                <p className={clsx(classes?.text,"text-sm font-semibold text-white pl-10")}>
+                                    # {ShortId(account["id"])}
+                                    <CopyText text={account["id"]} />
+                                </p>
+                                
+                                <ButtonInventory selectedItem={"Inventory"} />
+                            </div>
                     </div>
                     <div className={clsx(classes?.mainInventory, "w-full")}>
                         <div className={clsx("w-full ")}>
@@ -141,7 +144,7 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
                                 )}
                             >
                                 <div>
-                                    <img className="w-[200px]" src={herotext} alt="" />
+                                    <img className="w-[200px] pt-1.5" src={herotext} alt="" />
                                 </div>
                                 <div className="flex text-end">
                                     <div>
@@ -208,20 +211,16 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
                                     ) : (
                                     <div className="w-full">
                                     
-                                    <div className={clsx(classes?.listInventory,"pl-60 justify-between pr-60")}>
+                                    <div>
+                                        <div className={clsx(classes?.listInventory,"flex flex-wrap justify-center gap-6 lg:gap-20 lg:justify-start")}>
                                         {heroInventory.map((hero : Hero) => (
                                             <div
-                                            className={clsx(classes?.itemInventory)}
+                                                className={clsx(classes?.itemInventory)}
                                                 key={hero.id}
-                                                onClick={() =>
-                                                    navigate(
-                                                        "/hero/" +
-                                                            hero.id +
-                                                            "/detail"
-                                                    )
-                                                }
                                             >
                                                 <DetailHero
+                                                    status={hero.status}
+                                                    id={hero.id}
                                                     key={hero.id}
                                                     price={hero.price}
                                                     hp={hero.hp}
@@ -232,17 +231,19 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
                                                     classess={hero.class}
                                                 />
                                             </div>
+                                            
                                         ))}
+                                        </div>
                                         
-                                        
-                                    </div>
-                                    <div className=" justify-items-end pr-10 pl-10 pt-24">
+                                         <div className={clsx(classes?.padding,"pt-24")}>
                                             <PaginationActivity
                                                 currentPage={currentPage}
                                                 totalPage={totalPage}
                                                 totalRecords={totalRecords}
                                             />
+                                        </div>
                                     </div>
+                                    
                                     
                                     </div>
                                     )}

@@ -7,13 +7,15 @@ import { SideBar } from "../../components/market/side-bar-market";
 import { useHeroMarket } from "../../hooks/use-hero-market";
 import { useSearchMarket } from "../../hooks/use-search-market";
 import clsx from "clsx";
+import { useAccountInformation } from "../../hooks";
 type MarketProps = {
     classes?: {
         [key: string]: string;
     };
+    send: (val: string) => void;
 };
 
-export const Market: React.FC<MarketProps> = ({ classes }) => {
+export const Market: React.FC<MarketProps> = ({ classes,send }) => {
     const {
         heros,
         setHeros,
@@ -66,7 +68,7 @@ export const Market: React.FC<MarketProps> = ({ classes }) => {
         ).then((data: any) => {
             setHeros(data.data);
         });
-    }, [currentPage, dataSize, selectedRank, selectedClass, selectedRace]);
+    }, [currentPage, dataSize, selectedRank, selectedClass, selectedRace,send]);   
     const resetFilters = () => {
         setLoading(true);
         setTimeout(() => {
@@ -85,7 +87,8 @@ export const Market: React.FC<MarketProps> = ({ classes }) => {
     const handleClickFilter = (filterstt) => {
         setFilterOff(filterstt);
     };
-
+    const account = useAccountInformation()
+    console.log(account.account.id)
     return (
         <div className="bg-black h-auto">
             <div className="bg-market h-auto relative bg-cover bg-center">
@@ -128,6 +131,8 @@ export const Market: React.FC<MarketProps> = ({ classes }) => {
                             </div>
                         ) : (
                             <MainMarkerr
+                                send={send}
+                                account_id={account.account.id}
                                 heros={heros}
                                 dataSize={dataSize}
                                 totalPages={totalPage}
@@ -135,6 +140,7 @@ export const Market: React.FC<MarketProps> = ({ classes }) => {
                                 onPageChange={handlePageChange}
                                 onFilterStatusChange={handleClickFilter}
                             />
+                            
                         )}
                     </div>
                 </div>

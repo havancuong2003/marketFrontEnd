@@ -23,6 +23,7 @@ type DetailInfoProps = {
     hero: Hero;
     onClickBuy: () => void;
     onClickSell: (id: number) => void;
+    send: (val: string) => void;
 };
 
 export const DetailInfo: React.FC<DetailInfoProps> = ({
@@ -30,6 +31,7 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
     hero,
     onClickBuy,
     onClickSell,
+    send,
 }) => {
     const navigate = useNavigate();
 
@@ -49,7 +51,7 @@ export const DetailInfo: React.FC<DetailInfoProps> = ({
                     timer: 2000,
                     showConfirmButton: false,
                 });
-                unListHero(id);
+                unListHero(id, { send });
                 navigate("/");
             }
         });

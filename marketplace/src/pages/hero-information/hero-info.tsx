@@ -18,8 +18,9 @@ type HeroDetailProps = {
         [key: string]: string;
     };
     hero: Hero;
+    send: (val: string) => void;
 };
-export const HeroDetail: React.FC<HeroDetailProps> = ({ classes }) => {
+export const HeroDetail: React.FC<HeroDetailProps> = ({ classes ,send}) => {
     const hero = useHeroDetail();
     const [showHistory, setShowHistory] = useState(false);
     const [showBuy, setShowBuy] = useState(false);
@@ -57,6 +58,7 @@ export const HeroDetail: React.FC<HeroDetailProps> = ({ classes }) => {
             {showBuy && !isPay && (
                 <div className=" flex justify-center relative">
                     <BuyHero
+                        send={send}
                         hero={hero}
                         onClickX={handleBuyHero}
                         onClickPay={handlePay}
@@ -73,6 +75,7 @@ export const HeroDetail: React.FC<HeroDetailProps> = ({ classes }) => {
             {showSell && !isSell && (
                 <div className=" flex justify-center relative items-center ">
                     <SellHero
+                        send={send}
                         hero={hero}
                         onClickX={handleSellHero}
                         onClickSell={handleSell}
@@ -102,6 +105,7 @@ export const HeroDetail: React.FC<HeroDetailProps> = ({ classes }) => {
                         </div>
                         <div className={clsx(classes?.detail_hero)}>
                             <DetailInfo
+                                send={send}
                                 hero={hero}
                                 onClickBuy={handleBuyHero}
                                 onClickSell={handleSellHero}

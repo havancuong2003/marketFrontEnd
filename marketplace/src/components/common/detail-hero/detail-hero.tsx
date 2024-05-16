@@ -1,27 +1,68 @@
+import { Button } from "@mui/material";
 import clsx from "clsx";
-
+import { unListHero } from "../activity-hero";
+import { useNavigate } from "react-router-dom";
+import { UUID } from "crypto";
+import { Status } from "../../../types";
+import RemoveShoppingCartTwoToneIcon from '@mui/icons-material/RemoveShoppingCartTwoTone';
+import Swal from "sweetalert2";
 type DetailHeroProps = {
+    user_id:UUID,
+    owner:UUID,
+    id:number;
     price: number;
     hp: number;
     speed: number;
     dps: number;
     atk: number;
     race: string;
+    status: number;
     classess: string;
+    send: (val: string) => void;
     classes?: {
         [key: string]: string;
     };
 };
 export const DetailHero: React.FC<DetailHeroProps> = ({
+    user_id,
+    owner,
+    id,
     price,
     hp,
     speed,
     dps,
     atk,
     race,
+    status,
     classess,
+    send,
     classes,
 }) => {
+    const navigate = useNavigate();
+
+    const handelUnList = async (id: number) => {
+        Swal.fire({
+            title: "DELIST ITEM?",
+            text: "This item will be instantly REMOVED from Marketplace and return to your Inventory",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "DELISTED!",
+                    text: "Your hero had been delisted",
+                    icon: "success",
+                    timer: 1500,
+                    showConfirmButton: false,
+                });
+                unListHero(id, { send });
+                navigate("/inventory");    
+            }
+
+        });
+    };
+
     return (
         <div
             className={clsx(
@@ -39,9 +80,31 @@ export const DetailHero: React.FC<DetailHeroProps> = ({
                         classes?.avat,
                         "bg-cover bg-center rounded-lg"
                     )}
-                ></div>
+                >
+                    {
+                        owner === user_id && status === Status.MARKET? (
+                            <div className="flex w-full">
+                                <div  className="flex justify-end flex-grow mt-2">
+                                    <Button
+                             
+                                        onClick={() => {
+                                            handelUnList(id);
+                                        }}
+                                    >
+                                        <RemoveShoppingCartTwoToneIcon></RemoveShoppingCartTwoToneIcon>
+                                    </Button>
+                                </div>
+                                
+                            </div>
+                        ):("")
+                    }
+                    
+                </div>
             </div>
-            <div className={clsx(" absolute bottom-0 lg:text-white")}>
+            <div
+                className={clsx(" absolute bottom-0 lg:text-white cursor-pointer")}
+                onClick={()=>navigate("/hero/" + id + "/detail")}
+            >
                 <div
                     className={clsx(
                         classes?.info,

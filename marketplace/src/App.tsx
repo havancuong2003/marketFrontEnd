@@ -4,11 +4,14 @@ import {
     Routes,
     Navigate,
 } from "react-router-dom";
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Layout, LoginForm, SignUpForm } from "./components";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import { isAuthenticated } from "./utils";
+import { io, Socket } from "socket.io-client";
+
+
 
 const LazyMarket = React.lazy(() =>
     import("./pages").then(({ Market }) => ({ default: Market }))
@@ -51,7 +54,29 @@ const PrivateRoute = ({ children }) => {
     return children;
 };
 
+
+
 const App: React.FC = () => {
+    const [socket,setSocket] = useState<Socket>()
+    const [event,setEvent] = useState("")
+    console.log("event",event)
+    const send = (value:string) =>{
+
+        socket?.emit("messages",value)
+        console.log("socket",value)
+    }
+    useEffect(() => {
+        const newSocket = io("http://localhost:8001");
+        setSocket(newSocket)
+    },[setSocket])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const eventListener = (event:string) => {
+        setEvent(event)
+    }
+    useEffect(() => {
+        socket?.on("messages",eventListener);
+        return () => {socket?.off("messages",eventListener)}
+    },[eventListener])
     return (
         <Router>
             <Suspense
@@ -66,9 +91,9 @@ const App: React.FC = () => {
                 <Routes>
                     {/* PUBLIC ROUTE */}
                     <Route index element={
-                    <Layout>
-                        <LazyMarket />
-                    </Layout>
+                        <Layout>
+                            <LazyMarket send={send}/>
+                        </Layout>
                         
                     
                     } />
@@ -97,7 +122,7 @@ const App: React.FC = () => {
                         path="hero/:id/detail"
                         element={
                             <Layout>
-                                <LazyHeroDetail />
+                                <LazyHeroDetail send={send} />
                             </Layout>
                         }
                     />
