@@ -69,16 +69,7 @@
         line-height: normal;
         margin: 16px 0;
     }
-    // .layout,
-    // .edit,
-    // .passwordSetup,
-    // .editPass {
-    //     display: inline-block;
-    //     vertical-align: top;
-    // }
-    // .editPass {
-    //     margin-left: 75px;
-    // }
+
     .editBtn {
         gap: 10px;
         flex-shrink: 0;
@@ -244,7 +235,6 @@
     .container {
         width: 395px;
         height: 820px;
-
         margin: 121px 20px 0 140px;
     }
     .edit {
@@ -267,7 +257,7 @@
 
     .profileInfo {
         height: 244px;
-        margin: 14px 277px 42px 62px;
+        margin: 14px 0 42px 62px;
         display: inline-flex;
         flex-direction: column;
         align-items: flex-start;
@@ -309,7 +299,7 @@
         font-style: normal;
         font-weight: 400;
         line-height: 25px;
-        width: 700px;
+        width: 600px;
     }
     .layout {
         height: 100px;

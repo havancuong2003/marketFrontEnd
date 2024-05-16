@@ -234,7 +234,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
     const shouldHideModal = !isMobile;
 
     return (
-        <div className="">
+        <div className="pb-40 bg-black">
             <div>
                 <Header />
             </div>
@@ -271,7 +271,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
                     </div>
                 </div>
 
-                <div className="w-full ml-10">
+                <div className="lg:w-full">
                     <div
                         className={
                             isEditingPass
