@@ -10,7 +10,6 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import { isAuthenticated } from "./utils";
 import { io, Socket } from "socket.io-client";
-import { HeroDetail } from "./pages";
 
 
 
@@ -60,7 +59,7 @@ const PrivateRoute = ({ children }) => {
 const App: React.FC = () => {
     const [socket,setSocket] = useState<Socket>()
     const [event,setEvent] = useState("")
-
+    console.log("event",event)
     const send = (value:string) =>{
 
         socket?.emit("messages",value)
@@ -92,9 +91,9 @@ const App: React.FC = () => {
                 <Routes>
                     {/* PUBLIC ROUTE */}
                     <Route index element={
-                    <Layout>
-                        <LazyMarket send={send}/>
-                    </Layout>
+                        <Layout>
+                            <LazyMarket send={send}/>
+                        </Layout>
                         
                     
                     } />
