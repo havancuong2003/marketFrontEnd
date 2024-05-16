@@ -59,7 +59,7 @@ export const Market: React.FC<MarketProps> = ({ classes }) => {
     useEffect(() => {
         herosMarket(
             currentPage,
-            4,
+            8,
             selectedRace,
             selectedClass,
             selectedRank

@@ -90,7 +90,11 @@ export const MainMarkerr: React.FC<MainMarkerrProps> = ({
                         ))}
                     </div>
 
-                    <div className="flex justify-center items-center my-20 text-white ">
+                    <div
+                        className={`flex justify-center items-center my-20 text-white ${
+                            totalPages <= 1 ? "hidden" : ""
+                        }`}
+                    >
                         <button
                             className={clsx(
                                 " active:bg-orange-500  w-7 h-10 mx-5 mt-2",

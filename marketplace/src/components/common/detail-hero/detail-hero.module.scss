@@ -30,12 +30,19 @@
 }
 .price {
     margin-bottom: 8px;
+    margin-left: -10px;
 }
 @media screen and (max-width: 1024px) {
     .price {
         margin-bottom: 20px;
         font-size: 15px;
         margin-left: 40px;
+        color: #f1e9dc;
+        font-family: Avenir;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: normal;
     }
     .sizeAvatar {
         width: 170px;
@@ -119,7 +126,7 @@
     position: absolute;
     left: -15px;
 }
-@media screen and (min-width: 	1024px) {
+@media screen and (min-width: 1024px) {
     .sizeInfo {
         height: 50px;
         width: 220px;
@@ -132,7 +139,7 @@
     .setPosDps {
         position: absolute;
         bottom: 54px;
-        left: 100px;
+        left: 95px;
     }
     .setPosHp {
         position: absolute;
@@ -142,7 +149,7 @@
     .setPosAtk {
         position: absolute;
         bottom: 48px;
-        left: 115px;
+        left: 110px;
     }
     .infoFooterRight {
         position: absolute;
