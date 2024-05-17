@@ -22,7 +22,7 @@ export const CopyText: React.FC<CopyTextProps> = ({ text, classes }) => {
     };
 
     return (
-        <CopyToClipboard text={text} onCopy={handleCopy}>
+        <CopyToClipboard text={text} onCopy={handleCopy} className={"p-0"}>
             <Tooltip title={tooltipTitle} placement="top">
                 <Button>
                     <img

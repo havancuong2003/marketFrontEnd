@@ -1,4 +1,9 @@
-import { FilterInventory, Header, PaginationActivity } from "../../components";
+import {
+    CopyText,
+    FilterInventory,
+    Header,
+    PaginationActivity,
+} from "../../components";
 import axios from "axios";
 import { ButtonInventory } from "../../components/common/inventory/button-inventory";
 import { useAccountInformation } from "../../hooks";
@@ -14,6 +19,7 @@ import zero from "../../assets/img/zeroInventory.png";
 import { VITE_API_URL } from "../../env";
 import { Account, Hero } from "../../models";
 import { SelectChangeEvent } from "@mui/material";
+import { ShortId } from "../../services";
 
 type InventoryHeroProps = {
     classes?: {
@@ -21,7 +27,7 @@ type InventoryHeroProps = {
     };
 };
 
-const items_per_page = 2;
+const items_per_page = 4;
 
 export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
     const [searchParams] = useSearchParams();
@@ -117,12 +123,24 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
                     <div className={clsx(classes?.mainAvatar, "")}>
                         <div className="pt-10">
                             <img src={avatar} alt="" className="pb-3 p-5" />
-                            <p className="text-4xl font-semibold text-white pb-3">
-                                {account.username}
+                            <p
+                                className={clsx(
+                                    classes?.text,
+                                    "text-4xl font-semibold text-white"
+                                )}
+                            >
+                                {account["username"]}
                             </p>
-                            <p className="text-sm font-semibold text-white pb-14">
-                                #{account.id}
+                            <p
+                                className={clsx(
+                                    classes?.text,
+                                    "text-sm font-semibold text-white pl-10"
+                                )}
+                            >
+                                # {ShortId(account["id"])}
+                                <CopyText text={account["id"]} />
                             </p>
+
                             <ButtonInventory selectedItem={"Inventory"} />
                         </div>
                     </div>
@@ -146,6 +164,11 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
                                 <div>
                                     <img
                                         className="w-[200px]"
+                                        src={herotext}
+                                        alt=""
+                                    />
+                                    <img
+                                        className="w-[200px] pt-1.5"
                                         src={herotext}
                                         alt=""
                                     />
