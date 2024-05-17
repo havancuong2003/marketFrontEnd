@@ -41,10 +41,11 @@ export const HistoryTrans: React.FC<HistoryTransProps> = ({
     const [total, setTotal] = useState();
 
     useEffect(() => {
-        const page = searchParams.get("page");
-        const params = page ? { page } : {};
-
-        page ? setCurrPage(Number(page)) : null;
+        let page = Number(searchParams.get("page"));
+        console.log(page);
+        const params = page ? { page: Number(page) } : {};
+        if (isNaN(page)) page = 1;
+        setCurrPage(page);
         axios
             .get(
                 VITE_API_URL + "/api/v1/history-trans/" + heroId + "/top-trans",
@@ -158,7 +159,7 @@ export const HistoryTrans: React.FC<HistoryTransProps> = ({
                                                 {...item}
                                             />
                                         )}
-                                        page={Number(currPage)}
+                                        page={currPage}
                                         sx={{
                                             "& .MuiPaginationItem-root": {
                                                 color: "#B7A284",
@@ -166,8 +167,9 @@ export const HistoryTrans: React.FC<HistoryTransProps> = ({
                                         }}
                                         color="secondary"
                                         variant="outlined"
-                                        onChange={(page) => {
+                                        onChange={(e, page) => {
                                             //handlePageChange(event, page);
+                                            console.log(e);
                                             navigate("?page=" + page);
                                         }}
                                         shape="rounded"
