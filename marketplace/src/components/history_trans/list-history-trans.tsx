@@ -42,7 +42,7 @@ export const HistoryTrans: React.FC<HistoryTransProps> = ({
 
     useEffect(() => {
         let page = Number(searchParams.get("page"));
-        console.log(page);
+
         const params = page ? { page: Number(page) } : {};
         if (isNaN(page)) page = 1;
         setCurrPage(page);
