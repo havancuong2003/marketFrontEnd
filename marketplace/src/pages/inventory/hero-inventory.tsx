@@ -107,7 +107,7 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
 
     const navigate = useNavigate();
     return (
-        <div className="bg-black pb-40">
+        <div className="bg-black pb-32">
             <div>
                 <Header />
             </div>

@@ -234,7 +234,7 @@ export const Profile: React.FC<ProfileProps> = ({ classes }) => {
     const shouldHideModal = !isMobile;
 
     return (
-        <div className="pb-40 bg-black">
+        <div className="pb-32 bg-black">
             <div>
                 <Header />
             </div>
