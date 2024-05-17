@@ -4,12 +4,15 @@ import { unListHero } from "../activity-hero";
 import { useNavigate } from "react-router-dom";
 import { UUID } from "crypto";
 import { Status } from "../../../types";
-import RemoveShoppingCartTwoToneIcon from '@mui/icons-material/RemoveShoppingCartTwoTone';
+import RemoveShoppingCartTwoToneIcon from "@mui/icons-material/RemoveShoppingCartTwoTone";
 import Swal from "sweetalert2";
+import okg from "../../../assets/img//OKGToken.png";
+import { NumericFormat } from "react-number-format";
+
 type DetailHeroProps = {
-    user_id:UUID,
-    owner:UUID,
-    id:number;
+    user_id: UUID;
+    owner: UUID;
+    id: number;
     price: number;
     hp: number;
     speed: number;
@@ -57,9 +60,8 @@ export const DetailHero: React.FC<DetailHeroProps> = ({
                     showConfirmButton: false,
                 });
                 unListHero(id, { send });
-                navigate("/inventory");    
+                navigate("/inventory");
             }
-
         });
     };
 
@@ -81,35 +83,34 @@ export const DetailHero: React.FC<DetailHeroProps> = ({
                         "bg-cover bg-center rounded-lg"
                     )}
                 >
-                    {
-                        owner === user_id && status === Status.MARKET? (
-                            <div className="flex w-full">
-                                <div  className="flex justify-end flex-grow mt-2">
-                                    <Button
-                             
-                                        onClick={() => {
-                                            handelUnList(id);
-                                        }}
-                                    >
-                                        <RemoveShoppingCartTwoToneIcon></RemoveShoppingCartTwoToneIcon>
-                                    </Button>
-                                </div>
-                                
+                    {owner === user_id && status === Status.MARKET ? (
+                        <div className="flex w-full">
+                            <div className="flex justify-end flex-grow mt-2">
+                                <Button
+                                    onClick={() => {
+                                        handelUnList(id);
+                                    }}
+                                >
+                                    <RemoveShoppingCartTwoToneIcon></RemoveShoppingCartTwoToneIcon>
+                                </Button>
                             </div>
-                        ):("")
-                    }
-                    
+                        </div>
+                    ) : (
+                        ""
+                    )}
                 </div>
             </div>
             <div
-                className={clsx(" absolute bottom-0 lg:text-white cursor-pointer")}
-                onClick={()=>navigate("/hero/" + id + "/detail")}
+                className={clsx(
+                    " absolute bottom-0 lg:text-white cursor-pointer"
+                )}
+                onClick={() => navigate("/hero/" + id + "/detail")}
             >
                 <div
                     className={clsx(
                         classes?.info,
                         classes?.sizeInfo,
-                        "absolute bottom-2 lg:bottom-16  left-3 lg:text-lg"
+                        "absolute bottom-2 lg:bottom-16  left-3 lg:text-base"
                     )}
                 >
                     <div className={clsx(classes?.setPosHp, "  ml-2")}>
@@ -125,7 +126,7 @@ export const DetailHero: React.FC<DetailHeroProps> = ({
                     className={clsx(
                         classes?.info,
                         classes?.sizeInfo,
-                        "flex absolute bottom-5 lg:bottom-8 right-2  left-5 lg:text-lg"
+                        "flex absolute bottom-5 lg:bottom-8 right-2  left-5 lg:text-base"
                     )}
                 >
                     <div className={clsx(classes?.setPosSpd, "mx-1  ")}>
@@ -142,12 +143,19 @@ export const DetailHero: React.FC<DetailHeroProps> = ({
                 </div>
                 <div
                     className={clsx(
+                        classes?.priceInfo,
                         classes?.info,
-                        "absolute left-14 bottom-7 lg:bottom-10 lg:left-32"
+
+                        "absolute  bottom-7 lg:bottom-10 justify-between items-center pl-8 lg:mb-1 "
                     )}
                 >
+                    <img src={okg} className="h-6" />
                     <span title="price" className={clsx(classes?.price)}>
-                        {price}
+                        <NumericFormat
+                            value={price}
+                            thousandSeparator=","
+                            displayType="text"
+                        />
                     </span>
                 </div>
                 {/* bottom-1 left-3 */}

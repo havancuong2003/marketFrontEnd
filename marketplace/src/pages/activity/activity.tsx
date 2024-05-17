@@ -117,7 +117,7 @@ export const Activities: React.FC<ActivitiesProps> = ({ classes }) => {
 
     //console.log("total page",totalPage)
     return (
-        <div>
+        <div className="bg-black pb-32">
             <div>
                 <Header />
             </div>

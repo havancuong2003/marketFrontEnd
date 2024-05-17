@@ -5,7 +5,7 @@ export * from "./background.png";
 export * from "./avatar.png";
 export * from "./bg-login.png";
 export * from "./bg-market.png";
-export * from "./hero-card.png";
+export * from "./hero_card.png";
 export * from "./pre.png";
 export * from "./next.png";
 export * from "./detail-hero.png";

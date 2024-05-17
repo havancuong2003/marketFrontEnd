@@ -33,9 +33,13 @@ export const Header = (props) => {
             >
                 <div className="flex items-center">
                     <img
-                        className={clsx(classes?.logoResponsive, " lg:ml-24")}
+                        className={clsx(
+                            classes?.logoResponsive,
+                            " lg:ml-24 cursor-pointer"
+                        )}
                         src={logo}
                         alt="logo"
+                        onClick={() => navigate("/")}
                     />
                     <div className={clsx(classes.navheader, "")}>
                         <button

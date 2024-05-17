@@ -115,7 +115,7 @@ export const HeroDetail: React.FC<HeroDetailProps> = ({ classes ,send}) => {
                     <div
                         className={clsx(
                             classes?.history,
-                            "flex justify-center w-full mt-28"
+                            "flex justify-center w-full mt-28 mb-10"
                         )}
                     >
                         <Tooltip
@@ -132,16 +132,18 @@ export const HeroDetail: React.FC<HeroDetailProps> = ({ classes ,send}) => {
                                 onClick={toggleHistory}
                             >
                                 <Button>
-                                    <span className=" text-2xl pb-2 text-main font-Skranji ">
-                                        History
+                                    <span className=" text-xl pb-1 text-main font-Skranji ">
+                                        View History
                                     </span>
                                 </Button>
                             </div>
                         </Tooltip>
                     </div>
 
-                    {showHistory && <HistoryTrans heroId={hero.id} />}
-                    {/* <img src={footer} className="mt-28"></img> */}
+                    <div className={clsx(classes?.history_table)}>
+                        {showHistory && <HistoryTrans heroId={hero.id} />}
+                        {/* <img src={footer} className="mt-28"></img> */}
+                    </div>
                 </div>
             </div>
         </>

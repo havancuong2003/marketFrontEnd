@@ -90,7 +90,7 @@ export const Market: React.FC<MarketProps> = ({ classes,send }) => {
     const account = useAccountInformation()
     console.log(account.account.id)
     return (
-        <div className="bg-black h-auto">
+        <div className="bg-black h-auto pb-32">
             <div className="bg-market h-auto relative bg-cover bg-center">
                 <div className="w-full">
                     <Header />
