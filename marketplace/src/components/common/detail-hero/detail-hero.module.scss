@@ -30,11 +30,11 @@
     width: 220px;
 }
 .price {
-   
+    // margin-bottom: 0px;
+    // margin-left: -10px;
 }
 @media screen and (max-width: 1024px) {
-
-    .priceInfo{
+    .priceInfo {
         width: 150px;
         margin-bottom: 15px;
     }
@@ -42,7 +42,13 @@
     .price {
         //margin-bottom: 20px;
         font-size: 15px;
-        //margin-left: 40px;
+        // margin-left: 40px;
+        // color: #f1e9dc;
+        // font-family: Avenir;
+        // font-size: 20px;
+        // font-style: normal;
+        // font-weight: 900;
+        // line-height: normal;
     }
     .sizeAvatar {
         width: 170px;
@@ -126,7 +132,7 @@
     position: absolute;
     left: -15px;
 }
-@media screen and (min-width: 	1024px) {
+@media screen and (min-width: 1024px) {
     .sizeInfo {
         height: 50px;
         width: 220px;
@@ -139,6 +145,7 @@
     .setPosDps {
         position: absolute;
         bottom: 54px;
+        //left: 95px;
         left: 100px;
     }
     .setPosHp {
@@ -149,6 +156,7 @@
     .setPosAtk {
         position: absolute;
         bottom: 48px;
+        //left: 110px;'
         left: 115px;
     }
     .infoFooterRight {

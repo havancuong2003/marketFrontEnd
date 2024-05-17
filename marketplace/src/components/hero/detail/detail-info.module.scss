@@ -176,6 +176,12 @@
         width: 100%;
         height: 35%;
     }
+
+    .stats_content_responsive div{
+        display: flex;
+        font-size: 12px;
+    }
+
 }
 
 @media screen and (max-width: 640px) {
@@ -183,7 +189,13 @@
         width: 100%;
         height: 20%;
     }
+
+          .stats_content_responsive div {
+              display: flex;
+              font-size: 12px;
+          }
     .action {
         font-size: 90%;
     }
 }
+

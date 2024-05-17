@@ -1,4 +1,9 @@
-import { FilterInventory, Header, PaginationActivity } from "../../components";
+import {
+    CopyText,
+    FilterInventory,
+    Header,
+    PaginationActivity,
+} from "../../components";
 import axios from "axios";
 import { ButtonInventory } from "../../components/common/inventory/button-inventory";
 import { useAccountInformation } from "../../hooks";
@@ -14,8 +19,7 @@ import zero from "../../assets/img/zeroInventory.png";
 import { VITE_API_URL } from "../../env";
 import { Account, Hero } from "../../models";
 import { SelectChangeEvent } from "@mui/material";
-
-
+import { ShortId } from "../../services";
 
 type InventoryHeroProps = {
     classes?: {
@@ -23,7 +27,7 @@ type InventoryHeroProps = {
     };
 };
 
-const items_per_page = 2;
+const items_per_page = 4;
 
 export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
     const [searchParams] = useSearchParams();
@@ -34,7 +38,6 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
     const actionClass = Object.values(Class);
     const actionRace = Object.values(Race);
     const actionRank = Object.values(Rank);
-
 
     const [eventSearchClass, setEventClass] = useState("ALL");
     const handleChangeClass = (event: SelectChangeEvent) => {
@@ -53,13 +56,13 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
     };
     console.log("eventSearchRace", eventSearchRace);
     useEffect(() => {
-        if(eventSearchClass === ""){
+        if (eventSearchClass === "") {
             setEventClass("ALL");
         }
-        if(eventSearchRace === ""){
+        if (eventSearchRace === "") {
             setEventRace("ALL");
         }
-        if(eventSearchRank === ""){
+        if (eventSearchRank === "") {
             setEventRank("ALL");
         }
         let page = Number(searchParams.get("page"));
@@ -70,9 +73,9 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
             .get(VITE_API_URL + "/api/v1/hero/show-inventory", {
                 params: {
                     page: page,
-                    class: eventSearchClass==="ALL"?"":eventSearchClass,
-                    race: eventSearchRace==="ALL"?"":eventSearchRace,
-                    rank: eventSearchRank==="ALL"?"":eventSearchRank
+                    class: eventSearchClass === "ALL" ? "" : eventSearchClass,
+                    race: eventSearchRace === "ALL" ? "" : eventSearchRace,
+                    rank: eventSearchRank === "ALL" ? "" : eventSearchRank,
                 },
                 paramsSerializer: function customSerializer(params) {
                     // Customize serialization logic here
@@ -94,17 +97,23 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
             .catch((err) => {
                 console.log(err);
             });
-    },[searchParams,totalRecords,totalPage,eventSearchClass,eventSearchRace,eventSearchRank,currentPage]);
+    }, [
+        searchParams,
+        totalRecords,
+        totalPage,
+        eventSearchClass,
+        eventSearchRace,
+        eventSearchRank,
+        currentPage,
+    ]);
 
-
-    
     const { account } = useAccountInformation() as unknown as {
         account: Account;
     };
 
     const navigate = useNavigate();
     return (
-        <div>
+        <div className="bg-black pb-32">
             <div>
                 <Header />
             </div>
@@ -114,12 +123,24 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
                     <div className={clsx(classes?.mainAvatar, "")}>
                         <div className="pt-10">
                             <img src={avatar} alt="" className="pb-3 p-5" />
-                            <p className="text-4xl font-semibold text-white pb-3">
-                                {account.username}
+                            <p
+                                className={clsx(
+                                    classes?.text,
+                                    "text-4xl font-semibold text-white"
+                                )}
+                            >
+                                {account["username"]}
                             </p>
-                            <p className="text-sm font-semibold text-white pb-14">
-                                #{account.id}
+                            <p
+                                className={clsx(
+                                    classes?.text,
+                                    "text-sm font-semibold text-white pl-10"
+                                )}
+                            >
+                                # {ShortId(account["id"])}
+                                <CopyText text={account["id"]} />
                             </p>
+
                             <ButtonInventory selectedItem={"Inventory"} />
                         </div>
                     </div>
@@ -141,20 +162,41 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
                                 )}
                             >
                                 <div>
-                                    <img className="w-[200px]" src={herotext} alt="" />
+                                    <img
+                                        className="w-[200px]"
+                                        src={herotext}
+                                        alt=""
+                                    />
+                                    <img
+                                        className="w-[200px] pt-1.5"
+                                        src={herotext}
+                                        alt=""
+                                    />
                                 </div>
                                 <div className="flex text-end">
                                     <div>
-                                        <FilterInventory name={"Class"} actionValues={actionClass} eventSearch={eventSearchClass} handleChange={handleChangeClass}>
-                                        </FilterInventory>
+                                        <FilterInventory
+                                            name={"Class"}
+                                            actionValues={actionClass}
+                                            eventSearch={eventSearchClass}
+                                            handleChange={handleChangeClass}
+                                        ></FilterInventory>
                                     </div>
                                     <div>
-                                    <FilterInventory name={"Race"} actionValues={actionRace} eventSearch={eventSearchRace} handleChange={handleChangeRace}>
-                                        </FilterInventory>
+                                        <FilterInventory
+                                            name={"Race"}
+                                            actionValues={actionRace}
+                                            eventSearch={eventSearchRace}
+                                            handleChange={handleChangeRace}
+                                        ></FilterInventory>
                                     </div>
                                     <div>
-                                    <FilterInventory name={"Rank"} actionValues={actionRank} eventSearch={eventSearchRank} handleChange={handleChangeRank}>
-                                        </FilterInventory>
+                                        <FilterInventory
+                                            name={"Rank"}
+                                            actionValues={actionRank}
+                                            eventSearch={eventSearchRank}
+                                            handleChange={handleChangeRank}
+                                        ></FilterInventory>
                                     </div>
                                 </div>
                             </div>
@@ -173,12 +215,21 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
                                                 )}
                                             >
                                                 <br></br>
-                                                <span className="text-xl">You have no Hero!<br></br>
-                                                Let’s get some!</span>
-                                                
-                                                <p className="pt-4 pb-11 text-sm text-orange-400 underline cursor-pointer" onClick={()=>{navigate("/")}}>To marketplace</p>
+                                                <span className="text-xl">
+                                                    You have no Hero!<br></br>
+                                                    Let’s get some!
+                                                </span>
+
+                                                <p
+                                                    className="pt-4 pb-11 text-sm text-orange-400 underline cursor-pointer"
+                                                    onClick={() => {
+                                                        navigate("/");
+                                                    }}
+                                                >
+                                                    To marketplace
+                                                </p>
                                             </div>
-                                             <img
+                                            <img
                                                 className={clsx(
                                                     classes?.img_inventory,
                                                     ""
@@ -186,7 +237,7 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
                                                 src={zero}
                                                 alt=""
                                             />
-                                            
+
                                             <div
                                                 className={clsx(
                                                     classes?.img_zero,
@@ -196,55 +247,72 @@ export const InventoryHero: React.FC<InventoryHeroProps> = ({ classes }) => {
                                                 //alt=""
                                             >
                                                 <br></br>
-                                                <span  className="text-white text-4xl">
+                                                <span className="text-white text-4xl">
                                                     Let’s get <br></br>
-                                                some heroes!</span>
-                                                
-                                                <p className="pt-4 text-sm text-orange-400 underline cursor-pointer" onClick={()=>{navigate("/")}}>To marketplace</p>
-                                            </div>    
-                                           
-                                           
+                                                    some heroes!
+                                                </span>
+
+                                                <p
+                                                    className="pt-4 text-sm text-orange-400 underline cursor-pointer"
+                                                    onClick={() => {
+                                                        navigate("/");
+                                                    }}
+                                                >
+                                                    To marketplace
+                                                </p>
+                                            </div>
                                         </div>
                                     ) : (
-                                    <div className="w-full">
-                                    
-                                    <div className={clsx(classes?.listInventory,"pl-60 justify-between pr-60")}>
-                                        {heroInventory.map((hero : Hero) => (
+                                        <div className="w-full">
                                             <div
-                                            className={clsx(classes?.itemInventory)}
-                                                key={hero.id}
-                                                onClick={() =>
-                                                    navigate(
-                                                        "/hero/" +
-                                                            hero.id +
-                                                            "/detail"
-                                                    )
-                                                }
+                                                className={clsx(
+                                                    classes?.listInventory,
+                                                    "pl-60 justify-between pr-60"
+                                                )}
                                             >
-                                                <DetailHero
-                                                    key={hero.id}
-                                                    price={hero.price}
-                                                    hp={hero.hp}
-                                                    speed={hero.speed}
-                                                    dps={hero.dps}
-                                                    atk={hero.power}
-                                                    race={hero.race}
-                                                    classess={hero.class}
+                                                {heroInventory.map(
+                                                    (hero: Hero) => (
+                                                        <div
+                                                            className={clsx(
+                                                                classes?.itemInventory
+                                                            )}
+                                                            key={hero.id}
+                                                            onClick={() =>
+                                                                navigate(
+                                                                    "/hero/" +
+                                                                        hero.id +
+                                                                        "/detail"
+                                                                )
+                                                            }
+                                                        >
+                                                            <DetailHero
+                                                                key={hero.id}
+                                                                price={
+                                                                    hero.price
+                                                                }
+                                                                hp={hero.hp}
+                                                                speed={
+                                                                    hero.speed
+                                                                }
+                                                                dps={hero.dps}
+                                                                atk={hero.power}
+                                                                race={hero.race}
+                                                                classess={
+                                                                    hero.class
+                                                                }
+                                                            />
+                                                        </div>
+                                                    )
+                                                )}
+                                            </div>
+                                            <div className=" justify-items-end pr-10 pl-10 pt-24">
+                                                <PaginationActivity
+                                                    currentPage={currentPage}
+                                                    totalPage={totalPage}
+                                                    totalRecords={totalRecords}
                                                 />
                                             </div>
-                                        ))}
-                                        
-                                        
-                                    </div>
-                                    <div className=" justify-items-end pr-10 pl-10 pt-24">
-                                            <PaginationActivity
-                                                currentPage={currentPage}
-                                                totalPage={totalPage}
-                                                totalRecords={totalRecords}
-                                            />
-                                    </div>
-                                    
-                                    </div>
+                                        </div>
                                     )}
                                 </div>
                             </div>

@@ -1,4 +1,4 @@
-import { Header, PaginationActivity } from "../../components";
+import { CopyText, Header, PaginationActivity } from "../../components";
 import { ButtonInventory } from "../../components/common/inventory/button-inventory";
 import avatar from "../../assets/img/avatar-account.png";
 import { useAccountInformation, useCheckMobileScreen } from "../../hooks";
@@ -22,6 +22,7 @@ import {
     SelectChangeEvent,
 } from "@mui/material";
 import { Activity } from "../../models";
+import { ShortId } from "../../services";
 
 type ActivitiesProps = {
     classes?: {
@@ -116,7 +117,7 @@ export const Activities: React.FC<ActivitiesProps> = ({ classes }) => {
 
     //console.log("total page",totalPage)
     return (
-        <div>
+        <div className="bg-black pb-32">
             <div>
                 <Header />
             </div>
@@ -134,12 +135,15 @@ export const Activities: React.FC<ActivitiesProps> = ({ classes }) => {
                         <div className={clsx(classes?.containerProfile, "")}>
                             <div className="pt-10">
                                 <img src={avatar} alt="" className="pb-3 p-5" />
-                                <p className="text-4xl font-semibold text-white pb-3">
+                                <p className={clsx(classes?.text,"text-4xl font-semibold text-white")}>
                                     {account["username"]}
                                 </p>
-                                <p className="text-sm font-semibold text-white pb-14">
-                                    #{account["id"]}
+                                <p className={clsx(classes?.text,"text-sm font-semibold text-white pl-10")}>
+                                    # {ShortId(account["id"])}
+                                    <CopyText text={account["id"]} />
                                 </p>
+                                
+                                
                                 <ButtonInventory selectedItem={"Activities"} />
                             </div>
                         </div>
@@ -156,18 +160,19 @@ export const Activities: React.FC<ActivitiesProps> = ({ classes }) => {
                                         Activities
                                     </span>
                                     <div className="flex items-end">
-                                        <div className={clsx(classes?.filter)}>
-                                            <FormControl
+                                        <div className={clsx(classes?.filter,"w-full")}>
+                                            <FormControl className={clsx(classes?.formControl)}
                                                 sx={{
                                                     m: 1,
-                                                    minWidth: 200, // Default minWidth
+                                                    width: 150,
+                                                    maxWidth: "90%", // Default minWidth
                                                     "@media (max-width: 1024px)":
                                                         {
-                                                            minWidth: 300, // Adjust minWidth for screens with max-width of 600px
+                                                            minWidth: "80%", // Adjust minWidth for screens with max-width of 600px
                                                         },
                                                     "& .MuiInputLabel-root": {
                                                         // Màu text của InputLabel
-                                                        color: "white",
+                                                        color: "#F1E9DC",
                                                     },
                                                     "& .MuiInputBase-root": {
                                                         color: mappingItemTextColor[
@@ -179,6 +184,9 @@ export const Activities: React.FC<ActivitiesProps> = ({ classes }) => {
                                                         {
                                                             borderColor: "gray",
                                                         },
+                                                        "& .MuiSelect-icon": {
+                                                            color: "#F1E9DC", // Màu của mũi tên là màu cam
+                                                          },
                                                 }}
                                                 size="medium"
                                             >
@@ -189,7 +197,7 @@ export const Activities: React.FC<ActivitiesProps> = ({ classes }) => {
                                                     labelId="demo-select-small-label"
                                                     id="demo-select-small"
                                                     value={eventSearch}
-                                                    label={eventSearch}
+                                                    label="EVENT"
                                                     onChange={handleChange}
                                                 >
                                                     <MenuItem value="ALL">
@@ -281,40 +289,43 @@ export const Activities: React.FC<ActivitiesProps> = ({ classes }) => {
                                                         : "-"}
                                                 </td>
                                                 <td
-                                                    onClick={() => {
+                                                    className="w-1/5 mt-5 "
+                                                >
+                                                    
+                                                    {item.hero_id
+                                                        ? <>
+                                                        <span
+                                                        className="cursor-pointer underline"
+                                                        onClick={() => {
                                                         navigate(
                                                             "../hero/" +
                                                                 item.hero_id +
                                                                 "/detail"
                                                         );
-                                                    }}
-                                                    className="w-1/5 mt-5 mb- cursor-pointer"
-                                                >
-                                                    ID:
-                                                    {item.hero_id
-                                                        ? item.hero_id
+                                                    }}>
+                                                            ID:{item.hero_id}
+                                                        </span>
+                                                        <CopyText text={item.hero_id}></CopyText>
+                                                        </>
                                                         : "-"}
                                                 </td>
-                                                <td className="w-1/5 mt-5 mb-5 text-end pr-20">
+                                                <td className={"w-1/5 mt-5 mb-5"}>
                                                     {item.value
-                                                        ? item.value +
+                                                        ? item.value.toString() +
                                                           " " +
                                                           TOKEN
                                                         : "-"}
                                                 </td>
                                                 <td className="w-1/5 mt-5 mb-5">
                                                     {item.opposite_user_id
-                                                        ? item.opposite_user_id.substring(
-                                                              0,
-                                                              4
-                                                          ) +
-                                                          "..." +
-                                                          item.opposite_user_id.substring(
-                                                              item
-                                                                  .opposite_user_id
-                                                                  .length - 4
-                                                          )
+
+                                                        ?  <>
+                                                            {ShortId(item.opposite_user_id)} 
+                                                          <CopyText text={item.opposite_user_id}></CopyText>
+                                                        
+                                                            </>
                                                         : "-"}
+                                                        
                                                 </td>
                                                 <td className="w-1/5 mt-5 mb-5">
                                                     {LastSeen({

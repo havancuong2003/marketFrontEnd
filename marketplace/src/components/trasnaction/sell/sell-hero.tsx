@@ -14,6 +14,7 @@ type SellHeroProps = {
         [key: string]: string;
     };
     hero: Hero;
+    send: (val:string) => void;
     onClickX: () => void;
     onClickSell: () => void;
 };
@@ -22,6 +23,7 @@ export const SellHero: React.FC<SellHeroProps> = ({
     hero,
     onClickX,
     onClickSell,
+    send,
 }) => {
     const [errorPrice, setErrorPrice] = useState("");
     const [price, setPrice] = useState(0);
@@ -57,7 +59,7 @@ export const SellHero: React.FC<SellHeroProps> = ({
                 confirmButtonText: "Yes",
             }).then((result) => {
                 if (result.isConfirmed) {
-                    handleSelling(price, id);
+                    handleSelling(price, id, { send });
                     onClickSell();
                 }
             });
