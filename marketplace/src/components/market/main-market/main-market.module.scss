@@ -1,0 +1,63 @@
+.herosMarket {
+    margin-left: 110px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.page {
+    display: inline-flex;
+    padding: 4px 30px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 5px;
+    border: 1px solid #775f52;
+    background: #160a04;
+    text-align: center;
+    margin-left: 11px;
+    margin-right: 10px;
+}
+.nextPage {
+    background-image: url("../../../assets/img/next.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.prePage {
+    background-image: url("../../../assets/img/pre.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+@media screen and (max-width: 1024px) {
+    .bgcolor {
+        color: red;
+        background-image: url("../../../assets/img/Filter.png");
+        width: 32px;
+        height: 32px;
+    }
+    .getSise {
+        width: 32px;
+        height: 32px;
+        position: absolute;
+        top: 18px;
+        right: 35px;
+        z-index: 1;
+    }
+    .herosMarket {
+        margin-left: 30%;
+        margin-top: 0px;
+    }
+    .backgroundmarket {
+        background-image: url("../../../assets/img/heromarket.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% 100%;
+        height: 178px;
+        width: 244px;
+    }
+    .sizeHR {
+        width: 20px;
+    }
+    .marketHeaderSpacing {
+        margin-top: 50px;
+    }
+}

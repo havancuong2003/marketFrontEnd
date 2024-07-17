@@ -1,0 +1,115 @@
+.containerActivities {
+    display: flex;
+}
+.container {
+    background-image: url("../src/assets/img/bginventory.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.text{
+    margin-left: auto;
+    margin-right: auto;
+}
+.containerProfile {
+    display: flex;
+    width: 25%;
+    background-image: url("../src/assets/img/profile.png");
+    justify-content: center;
+    text-align: center;
+    height: 800px;
+    margin-left: 6rem /* 96px */;
+    margin-top: 6rem /* 96px */;
+    border-radius: 10px;
+}
+.tableActivities {
+    font-size: 0.875rem;
+    background-color: rgba(23, 10, 2, 0.8);
+    border-radius: 10px;
+    width: 100%;
+    margin-left: 6rem /* 96px */;
+    margin-right: 6rem /* 96px */;
+    margin-top: 6rem /* 96px */;
+    justify-content: center;
+    font-size: 0.875rem /* 14px */;
+    line-height: 1.25rem /* 20px */;
+}
+.heroImage {
+    display: none;
+}
+
+.tableHead {
+    font-size: 1.5rem /* 24px */;
+    line-height: 2rem /* 32px */;
+}
+
+@media screen and (max-width: 1024px) {
+    .info {
+        display: none;
+    }
+    .filter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .tableHead {
+        font-size: 0.875rem /* 14px */;
+        line-height: 1.25rem /* 20px */;
+    }
+    .containerActivities {
+        display: block;
+    }
+    .containerProfile {
+        display: none;
+    }
+    .container {
+        padding-top: 30px;
+        width: 100%;
+        background-image: url("../src/assets/img/Fixed.png");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+    .containerProfile {
+        width: 100%;
+        margin-left: 10px;
+    }
+    .tableActivities {
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-top: 0px;
+        margin: auto;
+        padding-top: 10px;
+        padding-bottom: 15px;
+        width: 95%;
+        background-color: rgba(23, 10, 2, 0.8);
+        border-radius: 10px;
+        font-size: 0.75rem /* 14px */;
+        line-height: 1rem /* 20px */;
+    }
+    .heroImage {
+        padding-top: 50px;
+        display: block;
+        justify-content: center;
+        justify-items: center;
+        align-items: center;
+        text-align: center;
+        font-family: "Skranji", system-ui;
+        font-weight: 400;
+        font-style: normal;
+    }
+    .heroImage img {
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .title {
+        display: none;
+    }
+    table{
+        text-align: center;
+        word-break: break-all;
+    }
+    .formControl{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+}
